@@ -7,6 +7,8 @@ PODS:
     - CocoaLumberjack/Core
   - CocoaLumberjack/Extensions (2.2.0):
     - CocoaLumberjack/Default
+  - NSHash (1.1.0)
+  - RDVTabBarController (1.1.9)
   - ReactiveCocoa (2.5):
     - ReactiveCocoa/UI (= 2.5)
   - ReactiveCocoa/Core (2.5):
@@ -18,14 +20,18 @@ PODS:
 
 DEPENDENCIES:
   - CocoaLumberjack
+  - NSHash (~> 1.1.0)
+  - RDVTabBarController
   - ReactiveCocoa
   - UINavigationBar+Addition
 
 SPEC CHECKSUMS:
   CocoaLumberjack: 17fe8581f84914d5d7e6360f7c70022b173c3ae0
+  NSHash: 61d598c6d48957c5557f1eef0aeafd6ef5ec5fb7
+  RDVTabBarController: 67794f7a7a37f8e32f046f85ac67d06ab92d624a
   ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
   UINavigationBar+Addition: 433c16a992cfb73c3141b1f7fcaa93169c15cfa0
 
-PODFILE CHECKSUM: 8a20f546fa674dba8296bce814fe7b7931aef9b8
+PODFILE CHECKSUM: 723536e4c4fc48140c6affc5abfaa5725d1f9305
 
 COCOAPODS: 1.0.0.beta.6

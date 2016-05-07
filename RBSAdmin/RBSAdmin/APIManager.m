@@ -27,21 +27,59 @@
 // User API
 //=========================================================================================
 /**
- *  Admin login.
+ *  Login.
  */
-- (void)adminLoginWithId:(NSString *)adminId
-                password:(NSString *)password
-                 success:(void(^)(id jsonData))success
-                 failure:(void(^)(NSError *error))failure
-                 timeout:(void(^)(void))timeout {
-    NSString *url = [URLManager sharedInstance].adminLoginURL;
+- (void)loginWithType:(NSString *)type
+               userId:(NSString *)userId
+             password:(NSString *)password
+              success:(void(^)(id jsonData))success
+              failure:(void(^)(NSError *error))failure
+              timeout:(void(^)(void))timeout {
+    NSString *url = [URLManager sharedInstance].loginURL;
     
     NSDictionary *parms =
-    @{@"id": adminId,
-      @"password": [password MD5String]};
+    @{@"type": type,
+      @"id": userId,
+      @"password": [password SHA1]};
     
     [[HttpPackage sharedInstance]
-     post:url
+     httpRequestWithMethod:POST
+     url:url
+     parameters:parms
+     success:success
+     failure:failure
+     timeout:timeout];
+}
+
+#pragma mark - Room API
+//=========================================================================================
+// Room API
+//=========================================================================================
+/**
+ *  Get room list.
+ *  @param building
+ *      软件楼 or 图书馆, pass nil to retrieve both.
+ *  @param fromIndex
+ *      -1 to retrieve all.
+ */
+- (void)getRoomListWithBuilding:(NSString *)building
+                      fromIndex:(NSInteger)fromIndex
+                        success:(void(^)(id jsonData))success
+                        failure:(void(^)(NSError *error))failure
+                        timeout:(void(^)(void))timeout {
+    NSString *url = [URLManager sharedInstance].roomListURL;
+    
+    NSDictionary *parms;
+    if (building) {
+       parms = @{@"building": building,
+                 @"fromIndex": [NSNumber numberWithInteger:fromIndex]};
+    } else {
+        parms = @{@"fromIndex": [NSNumber numberWithInteger:fromIndex]};
+    }
+    
+    [[HttpPackage sharedInstance]
+     httpRequestWithMethod:POST
+     url:url
      parameters:parms
      success:success
      failure:failure

@@ -11,12 +11,7 @@
 /**
  *  Server address.
  */
-static const NSString *server = @"http://192.168.11.13";
-
-/**
- *  Server port.
- */
-static const unsigned int port = 9999;
+static const NSString *server = @"http://www.zss-rbs.site:8080/RBSServer";
 
 /**
  *  API urls stored here.
@@ -24,9 +19,14 @@ static const unsigned int port = 9999;
 @interface URLManager : NSObject
 
 /**
- *  Admin login url.
+ *  Login url.
  */
-@property(copy, readonly, nonatomic) NSString *adminLoginURL;
+@property(copy, readonly, nonatomic) NSString *loginURL;
+
+/**
+ *  Get room list url.
+ */
+@property(copy, readonly, nonatomic) NSString *roomListURL;
 
 + (instancetype)sharedInstance;
 

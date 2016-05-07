@@ -21,12 +21,13 @@
 }
 
 - (NSString *)formUrlWithRoute:(NSString *)route {
-    return [NSString stringWithFormat:@"%@:%u%@",
-            server, port, route];
+    return [NSString stringWithFormat:@"%@%@",
+            server, route];
 }
 
 - (void)initUrls {
-    _adminLoginURL = [self formUrlWithRoute:@"/user/admin_login"];
+    _loginURL = [self formUrlWithRoute:@"/user/login"];
+    _roomListURL = [self formUrlWithRoute:@"/room/list"];
 }
 
 @end

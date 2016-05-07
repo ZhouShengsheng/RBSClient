@@ -13,12 +13,30 @@
  */
 static const float requestTimeout = 8.0f;
 
+typedef NS_ENUM(NSUInteger, HttpMethod) {
+    GET,
+    POST,
+    PUT,
+    PATCH,
+    DELETE
+};
+
 /**
  *  Async http requests wrapper.
  */
 @interface HttpPackage : NSObject
 
 + (instancetype)sharedInstance;
+
+/**
+ *  Send http request.
+ */
+- (void)httpRequestWithMethod:(HttpMethod)method
+                          url:(NSString*)url
+                   parameters:(NSDictionary *)parameters
+                      success:(void(^)(id jsonData))success
+                      failure:(void(^)(NSError *error))failure
+                      timeout:(void(^)(void))timeout;
 
 /**
  *  Get request.

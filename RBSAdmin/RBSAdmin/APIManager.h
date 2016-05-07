@@ -17,12 +17,30 @@
 // User API
 //=========================================================================================
 /**
- *  Admin login.
+ *  Login.
  */
-- (void)adminLoginWithId:(NSString *)adminId
-                password:(NSString *)password
-                 success:(void(^)(id jsonData))success
-                 failure:(void(^)(NSError *error))failure
-                 timeout:(void(^)(void))timeout;
+- (void)loginWithType:(NSString *)type
+               userId:(NSString *)userId
+             password:(NSString *)password
+              success:(void(^)(id jsonData))success
+              failure:(void(^)(NSError *error))failure
+              timeout:(void(^)(void))timeout;
+
+#pragma mark - Room API
+//=========================================================================================
+// Room API
+//=========================================================================================
+/**
+ *  Get room list.
+ *  @param building 
+ *      软件楼 or 图书馆, pass nil to retrieve both.
+ *  @param fromIndex 
+ *      -1 to retrieve all.
+ */
+- (void)getRoomListWithBuilding:(NSString *)building
+                      fromIndex:(NSInteger)fromIndex
+                        success:(void(^)(id jsonData))success
+                        failure:(void(^)(NSError *error))failure
+                        timeout:(void(^)(void))timeout;
 
 @end

@@ -10,6 +10,8 @@
 #import "Utils.h"
 #import "APIManager.h"
 #import "UIHelper.h"
+#import "MainController.h"
+#import "UserManager.h"
 
 @interface LoginViewController () <UITextFieldDelegate>
 
@@ -43,7 +45,7 @@
  */
 - (void)initView {
     GlobalConstants *constants = [GlobalConstants sharedInstance];
-    UIImage *appImage = [UIImage imageNamed:@"app_image_admin"];
+    UIImage *appImage = [UIImage imageNamed:@"launchScreenTopImageAdmin"];
     self.appImageView = [[UIImageView alloc]
                          initWithFrame:CGRectMake((constants.screenWidth - appImage.size.width)/2,
                                                   (constants.screenHeight - appImage.size.height)/2 - 100,
@@ -72,12 +74,29 @@
  */
 - (void)autoLogin {
     self.loginViewGroup.alpha = 0;
+    [[UserManager sharedInstance]
+     autoLoginWithCompletion:^(BOOL succeed, NSString *message) {
+         if (succeed) {
+             [self loginSucceedWithData:nil];
+         } else {
+             [self showLoginGroup];
+             if (![message isEqualToString:@"初始用户。"]) {
+                 [self loginFailWithMessage:message];
+             }
+         }
+     }];
+}
+
+/**
+ *  Show login group.
+ */
+- (void)showLoginGroup {
     [UIView animateWithDuration:0.8f
                           delay:0.25f
                         options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
                          CGRect frame = self.appImageView.frame;
-                         frame.origin.y -= 120;
+                         frame.origin.y -= 50;
                          self.appImageView.frame = frame;
                      }
                      completion:^(BOOL finished) {
@@ -85,7 +104,10 @@
                          [UIView animateWithDuration:0.25
                                           animations:^{
                                               self.loginViewGroup.alpha = 1;
-                                          }];
+                                          }
+                          completion:^(BOOL finished) {
+                              [self.idTextField becomeFirstResponder];
+                          }];
                      }];
 }
 
@@ -115,13 +137,15 @@
     self.idTextField.enabled = NO;
     self.passwordTextField.enabled = NO;
     [[APIManager sharedInstance]
-     adminLoginWithId:self.idTextField.text
+     loginWithType:@"admin"
+     userId:self.idTextField.text
      password:self.passwordTextField.text
      success:^(id jsonData) {
          NSString *message = jsonData[@"message"];
-         if ([message isEqualToString:@"logged in!"]) {
-             [self loginSucceed];
+         if (!message) {
+             [self loginSucceedWithData:jsonData];
          } else {
+             DDLogError(@"Login message: %@", message);
              [self loginFailWithMessage:@"登录失败！学工号或密码错误！"];
          }
      }
@@ -136,10 +160,28 @@
 /**
  *  Login succeed callback.
  */
-- (void)loginSucceed {
+- (void)loginSucceedWithData:(id) jsonData {
     DDLogError(@"loginSucceed");
-    [self setUpLogin];
-    [UIHelper showTopSuccessView:@"登陆成功!" fromViewController:self];
+    
+    if (jsonData) {
+        // Save user logged in.
+        Faculty *admin = [Faculty new];
+        admin.facultyId = jsonData[@"id"];
+        admin.idDigest = jsonData[@"idDigest"];
+        admin.password = self.passwordTextField.text;
+        admin.name = jsonData[@"name"];
+        admin.gender = [jsonData[@"gender"] boolValue];
+        admin.designation = jsonData[@"designation"];
+        admin.office = jsonData[@"office"];
+        admin.phone = jsonData[@"phone"];
+        
+        UserManager *userManager = [UserManager sharedInstance];
+        userManager.admin = admin;
+        userManager.userType = USER_TYPE_ADMIN;
+        [userManager saveUserData];
+    }
+    
+    [[MainController sharedInstance] setupRootViewController];
 }
 
 /**
@@ -175,7 +217,6 @@
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
-    DDLogError(@"%s", __func__);
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.05 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self checkLoginButton];
     });
@@ -183,7 +224,6 @@
 }
 
 - (BOOL)textFieldShouldClear:(UITextField *)textField {
-    DDLogError(@"%s", __func__);
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.05 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self checkLoginButton];
     });
@@ -191,7 +231,6 @@
 }
 
 - (void)checkLoginButton {
-    DDLogError(@"%s", __func__);
     self.loginButton.enabled = (self.idTextField.text.length > 0 &&
                                 self.passwordTextField.text.length > 0);
 }
