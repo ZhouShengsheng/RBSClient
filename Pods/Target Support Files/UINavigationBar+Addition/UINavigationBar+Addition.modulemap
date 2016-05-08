@@ -1,0 +1,6 @@
+framework module UINavigationBar_Addition {
+  umbrella header "UINavigationBar+Addition-umbrella.h"
+
+  export *
+  module * { export * }
+}

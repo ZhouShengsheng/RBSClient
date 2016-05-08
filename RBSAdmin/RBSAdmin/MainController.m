@@ -27,6 +27,7 @@
     if (!self.tabBarController) {
         [self setupViewControllers];
         self.tabBarController.delegate = self;
+        [self customizeInterface];
         //[self addBadgeNotificationObserver];
     }
     
@@ -96,6 +97,16 @@
         UIImage *unselectedimage = [UIImage imageNamed:imageItems[index]];
         [item setFinishedSelectedImage:selectedimage withFinishedUnselectedImage:unselectedimage];
     }
+}
+
+- (void)customizeInterface {
+    UINavigationBar *navigationBarAppearance = [UINavigationBar appearance];
+    [navigationBarAppearance setTintColor: [UIColor themeColor]];
+    
+    UIToolbar *toolBarAppearance = [UIToolbar appearance];
+    [toolBarAppearance setTintColor: [UIColor themeColor]];
+    
+    [[UITableViewCell appearance] setTintColor:[UIColor labelTextColor]];
 }
 
 @end

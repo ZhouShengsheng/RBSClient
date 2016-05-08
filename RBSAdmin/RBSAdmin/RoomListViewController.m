@@ -11,10 +11,18 @@
 #import "RoomListCell.h"
 #import "Room.h"
 #import "APIManager.h"
+#import "Venders.h"
+#import "RoomScreenViewController.h"
 
 @interface RoomListViewController ()
 
 @property (strong, nonatomic) NSMutableArray<Room *> *roomList;
+@property (assign, nonatomic) BOOL noMoreData;
+
+@property (strong, nonatomic) MJRefreshNormalHeader *header;
+@property (strong, nonatomic) MJRefreshAutoNormalFooter *footer;
+
+@property(strong, nonatomic) RoomScreen *tempRoomScreen;
 
 @end
 
@@ -23,46 +31,124 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    self.title = @"教室列表";
-    [self.tableView registerNib:[UINib nibWithNibName:@"RoomListCell" bundle:nil]
-         forCellReuseIdentifier:@"RoomListCell"];
-    //self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.tableView.tableFooterView = [[UIView alloc]
-                                      initWithFrame:CGRectMake(0, 0, 0,
-                                                               [GlobalConstants sharedInstance].tabBarHeight)];
-    
-    self.roomList = [NSMutableArray array];
-    [self loadData];
+    self.tempRoomScreen = [RoomScreen sharedInstance];
+    [self initializeView];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    [[self rdv_tabBarController] setTabBarHidden:NO animated:YES];
+    
+    // Check room screen update.
+    RoomScreen *roomScreen = [RoomScreen sharedInstance];
+    if (self.tempRoomScreen != roomScreen) {
+        self.tempRoomScreen = roomScreen;
+        [self.header beginRefreshing];
+    }
+}
+
+/**
+ *  Load data from server.
+ */
 - (void)loadData {
+    NSString *building = nil;
+    if (self.tempRoomScreen.buildingList &&
+        self.tempRoomScreen.buildingList.count == 1) {
+        building = self.tempRoomScreen.buildingList.firstObject;
+    }
+    
+    NSNumber *hasMultiMedia = nil;
+    if (self.tempRoomScreen.hasMultiMediaList &&
+        self.tempRoomScreen.hasMultiMediaList.count == 1) {
+        NSString *hasOrNot = self.tempRoomScreen.hasMultiMediaList.firstObject;
+        if ([hasOrNot isEqualToString:@"有"]) {
+            hasMultiMedia = @1;
+        } else {
+            hasMultiMedia = @0;
+        }
+    }
+    
+    NSMutableArray *timeIntervalList = [NSMutableArray array];
+    for (TimeInterval *timeInterval in self.tempRoomScreen.timeIntervalList) {
+        NSString *from = [NSString stringWithFormat:@"%@ %@:00",
+                          [timeInterval date], [timeInterval fromTime]];
+        NSString *to = [NSString stringWithFormat:@"%@ %@:00",
+                        [timeInterval date], [timeInterval toTime]];
+        NSArray *fromTo = @[from, to];
+        [timeIntervalList addObject:fromTo];
+    }
+    
+    NSData *jsonData = [NSJSONSerialization
+                        dataWithJSONObject:timeIntervalList
+                        options:NSJSONWritingPrettyPrinted
+                        error:nil];
+    NSString *timeIntervals = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    timeIntervals = [timeIntervals stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+    
     [[APIManager sharedInstance]
-     getRoomListWithBuilding:nil
+     getRoomListWithBuilding:building
+     capacity:self.tempRoomScreen.capacity
+     hasMultiMedia:hasMultiMedia
+     timeIntervals:timeIntervals
      fromIndex:self.roomList.count
      success:^(id jsonData) {
          NSArray *array = (NSArray *)jsonData;
-         for (int i = 0; i < array.count; i++) {
-             NSDictionary *roomData = array[i];
-             Room *room = [Room new];
-             room.building = roomData[@"building"];
-             room.number = roomData[@"number"];
-             room.capacity = [roomData[@"capacity"] unsignedIntegerValue];
-             room.hasMultiMedia = [roomData[@"hasmultimedia"] unsignedIntegerValue];
-             [self.roomList addObject:room];
+         NSUInteger count = array.count;
+         if (count < defaultPageSize) {
+             self.noMoreData = YES;
+         }
+         for (NSUInteger i = 0; i < count; i++) {
+             [self.roomList addObject:[[Room alloc] initWithJsonData:array[i]]];
          }
          [self.tableView reloadData];
+         [self.header endRefreshing];
+         [self.footer endRefreshing];
+         self.tableView.mj_footer = self.footer;
      }
      failure:^(NSError *error) {
-         
+         [self.header endRefreshing];
+         [self.footer endRefreshing];
      }
      timeout:^{
-         
+         [self.header endRefreshing];
+         [self.footer endRefreshing];
      }];
+}
+
+#pragma mark - RecyclableViewController protocol methods
+- (void)initializeView {
+    // Title.
+    self.title = @"教室列表";
+    
+    // Navigation bar buttons.
+    UIBarButtonItem *screenButton = [[UIBarButtonItem alloc]
+                                     initWithImage:[UIImage imageNamed:@"icon_screen"]
+                                     style:UIBarButtonItemStylePlain
+                                     target:self
+                                     action:@selector(screenButtonTapped)];
+    screenButton.tintColor = [UIColor themeColor];
+    UIBarButtonItem *searchButton = [[UIBarButtonItem alloc]
+                                     initWithImage:[UIImage imageNamed:@"icon_search"]
+                                     style:UIBarButtonItemStylePlain
+                                     target:self
+                                     action:@selector(searchButtonTapped)];
+    searchButton.tintColor = [UIColor themeColor];
+    self.navigationItem.rightBarButtonItems = @[searchButton, screenButton];
+    
+    // Init room list array.
+    self.roomList = [NSMutableArray array];
+    
+    // Register table view cell.
+    [self.tableView registerNib:[UINib nibWithNibName:@"RoomListCell" bundle:nil]
+         forCellReuseIdentifier:@"RoomListCell"];
+    
+    // Init header and footer.
+    self.header = [UIHelper refreshHeaderWithTarget:self action:@selector(refresh)];
+    self.tableView.mj_header = self.header;
+    
+    self.footer = [UIHelper refreshFooterWithTarget:self action:@selector(loadMore)];
+    [self.header beginRefreshing];
 }
 
 #pragma mark - Table view data source
@@ -79,10 +165,7 @@
     RoomListCell *cell = (RoomListCell *)[tableView dequeueReusableCellWithIdentifier:@"RoomListCell"
                                                             forIndexPath:indexPath];
     
-    Room *room = self.roomList[indexPath.row];
-    cell.buildingNumberLabel.text = [room.building stringByAppendingString:room.number];
-    cell.infoLabel.text = [NSString stringWithFormat:@"%u人 %@多媒体设备",
-                           room.capacity, room.hasMultiMedia ? @"有": @"无"];
+    [cell displayWithRoom:self.roomList[indexPath.row]];
     
     return cell;
 }
@@ -92,48 +175,47 @@
     DDLogError(@"clicked %ld", (long)indexPath.row);
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+#pragma mark - Header and footer actions
+/**
+ *  Pull down to refresh.
+ */
+- (void)refresh {
+    self.noMoreData = NO;
+    self.tableView.mj_footer = nil;
+    
+    [self.roomList removeAllObjects];
+    [self.tableView reloadData];
+    
+    // Load data from server.
+    [self loadData];
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+/**
+ *  Load more.
+ */
+- (void)loadMore {
+    if (self.noMoreData) {
+        [self.tableView.mj_footer endRefreshingWithNoMoreData];
+    } else {
+        [self loadData];
+    }
 }
-*/
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+#pragma mark - Button actions
+
+/**
+ *  Screen.
+ */
+- (void)screenButtonTapped {
+    RoomScreenViewController *vc = [RoomScreenViewController new];
+    [self.navigationController pushViewController:vc animated:YES];
 }
-*/
 
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
+/**
+ *  Search.
+ */
+- (void)searchButtonTapped {
+    
 }
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

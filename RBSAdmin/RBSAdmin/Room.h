@@ -10,6 +10,8 @@
 
 @interface Room : NSObject
 
+- (instancetype)initWithJsonData:(id)jsonData;
+
 @property (copy, nonatomic) NSString *building;
 @property (copy, nonatomic) NSString *number;
 @property (assign, nonatomic) NSUInteger capacity;

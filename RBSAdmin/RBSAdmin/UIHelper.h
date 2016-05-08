@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "Utils.h"
-#import "MozTopAlertView.h"
+#import "Venders.h"
 
 @interface UIHelper : NSObject
 
@@ -32,5 +32,15 @@
  *  Display top popup error view.
  */
 + (void)showTopErrorView:(NSString*)msg fromViewController:(UIViewController*)viewController;
+
+/**
+ *  Create a new refresh header.
+ */
++ (MJRefreshNormalHeader *)refreshHeaderWithTarget:(id)target action:(SEL)action;
+
+/**
+ *  Create a new refresh footer.
+ */
++ (MJRefreshAutoNormalFooter *)refreshFooterWithTarget:(id)target action:(SEL)action;
 
 @end

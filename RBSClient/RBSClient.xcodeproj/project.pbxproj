@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		61805E03A5CE4347572369C3 /* libPods-RBSClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C72F0CC04EDA22CB9020BB44 /* libPods-RBSClient.a */; };
+		ADEE41FAE1D4C8795F3A9E85 /* Pods_RBSClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DC2D40FEC963746DBBB740C /* Pods_RBSClient.framework */; };
 		F9F1212E1C6DD65400F07165 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F9F1212D1C6DD65400F07165 /* main.m */; };
 		F9F121311C6DD65400F07165 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F9F121301C6DD65400F07165 /* AppDelegate.m */; };
 		F9F121341C6DD65400F07165 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9F121331C6DD65400F07165 /* ViewController.m */; };
@@ -37,7 +37,7 @@
 
 /* Begin PBXFileReference section */
 		479AAE3387D5B14129D569D6 /* Pods-RBSClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RBSClient.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-RBSClient/Pods-RBSClient.debug.xcconfig"; sourceTree = "<group>"; };
-		C72F0CC04EDA22CB9020BB44 /* libPods-RBSClient.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RBSClient.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7DC2D40FEC963746DBBB740C /* Pods_RBSClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RBSClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E36978883B9D67022929E333 /* Pods-RBSClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RBSClient.release.xcconfig"; path = "../Pods/Target Support Files/Pods-RBSClient/Pods-RBSClient.release.xcconfig"; sourceTree = "<group>"; };
 		F9F121291C6DD65400F07165 /* RBSClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RBSClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9F1212D1C6DD65400F07165 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -62,7 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				61805E03A5CE4347572369C3 /* libPods-RBSClient.a in Frameworks */,
+				ADEE41FAE1D4C8795F3A9E85 /* Pods_RBSClient.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,7 +86,7 @@
 		6F04CFA418FD4549C14CFC59 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C72F0CC04EDA22CB9020BB44 /* libPods-RBSClient.a */,
+				7DC2D40FEC963746DBBB740C /* Pods_RBSClient.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

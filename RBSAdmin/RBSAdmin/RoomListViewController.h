@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "Utils.h"
 
-@interface RoomListViewController : UITableViewController
+@interface RoomListViewController : UITableViewController <RecyclableViewController>
 
 @end

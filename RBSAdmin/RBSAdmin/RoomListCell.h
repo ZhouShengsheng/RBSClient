@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Models.h"
 
 @interface RoomListCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *buildingNumberLabel;
 @property (weak, nonatomic) IBOutlet UILabel *infoLabel;
+
+- (void)displayWithRoom:(Room *)room;
 
 @end

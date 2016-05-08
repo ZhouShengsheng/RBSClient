@@ -7,7 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		25C9778C14F87508246FADD7 /* libPods-RBSAdmin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D3FB35712884B61C04FEF25 /* libPods-RBSAdmin.a */; };
+		6D5DF55FAB563D784EDC08DE /* Pods_RBSAdmin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2CD6DC551EC2D65435E1BDD /* Pods_RBSAdmin.framework */; };
+		F942631E1CDF56EA00D9920F /* AddTimeIntervalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F942631D1CDF56EA00D9920F /* AddTimeIntervalViewController.m */; };
+		F96CBAE31CDF033A00969415 /* RoomScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F96CBAE21CDF033A00969415 /* RoomScreenViewController.m */; };
+		F96CBAE61CDF051400969415 /* TimeInterval.m in Sources */ = {isa = PBXBuildFile; fileRef = F96CBAE51CDF051400969415 /* TimeInterval.m */; };
 		F98ABDD21C9F864A0014E903 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F98ABDD11C9F864A0014E903 /* main.m */; };
 		F98ABDD51C9F864A0014E903 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F98ABDD41C9F864A0014E903 /* AppDelegate.m */; };
 		F98ABDDB1C9F864A0014E903 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F98ABDD91C9F864A0014E903 /* Login.storyboard */; };
@@ -15,11 +18,14 @@
 		F98ABDEB1C9F864B0014E903 /* RBSAdminTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F98ABDEA1C9F864B0014E903 /* RBSAdminTests.m */; };
 		F98ABDF61C9F864B0014E903 /* RBSAdminUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = F98ABDF51C9F864B0014E903 /* RBSAdminUITests.m */; };
 		F98ABE0B1C9F88E90014E903 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F98ABE0A1C9F88E90014E903 /* LoginViewController.m */; };
+		F9955F1F1CDF1C0D00FEA66F /* RoomScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = F9955F1E1CDF1C0D00FEA66F /* RoomScreen.m */; };
+		F9955F231CDF31FD00FEA66F /* RoomSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9955F221CDF31FD00FEA66F /* RoomSearchViewController.m */; };
+		F9A642561CDF100E0080959A /* CheckableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F9A642541CDF100E0080959A /* CheckableCell.m */; };
+		F9A642571CDF100E0080959A /* CheckableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9A642551CDF100E0080959A /* CheckableCell.xib */; };
 		F9DF54AE1C9F934500B5B85E /* DDLog.m in Sources */ = {isa = PBXBuildFile; fileRef = F9DF54AD1C9F934500B5B85E /* DDLog.m */; };
 		F9DF54B31C9F94F300B5B85E /* GlobalConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = F9DF54B21C9F94F300B5B85E /* GlobalConstants.m */; };
 		F9DF54B81C9FB57400B5B85E /* APIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F9DF54B71C9FB57400B5B85E /* APIManager.m */; };
 		F9DF54D11C9FB85E00B5B85E /* CAAnimation+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = F9DF54BE1C9FB85E00B5B85E /* CAAnimation+Blocks.m */; };
-		F9DF54D21C9FB85E00B5B85E /* SSPullController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9DF54C11C9FB85E00B5B85E /* SSPullController.m */; };
 		F9DF54D31C9FB85E00B5B85E /* SSTouchEventController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9DF54C41C9FB85E00B5B85E /* SSTouchEventController.m */; };
 		F9DF54D41C9FB85E00B5B85E /* SSTouchImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = F9DF54C61C9FB85E00B5B85E /* SSTouchImageView.m */; };
 		F9DF54D51C9FB85E00B5B85E /* SSTouchLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = F9DF54C81C9FB85E00B5B85E /* SSTouchLabel.m */; };
@@ -78,7 +84,14 @@
 /* Begin PBXFileReference section */
 		9BE6B885F7E7A6640DF13615 /* Pods-RBSAdmin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RBSAdmin.release.xcconfig"; path = "../Pods/Target Support Files/Pods-RBSAdmin/Pods-RBSAdmin.release.xcconfig"; sourceTree = "<group>"; };
 		9C7B02AC36A5721E71CF1C65 /* Pods-RBSAdmin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RBSAdmin.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-RBSAdmin/Pods-RBSAdmin.debug.xcconfig"; sourceTree = "<group>"; };
-		9D3FB35712884B61C04FEF25 /* libPods-RBSAdmin.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RBSAdmin.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B2CD6DC551EC2D65435E1BDD /* Pods_RBSAdmin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RBSAdmin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F942631C1CDF56EA00D9920F /* AddTimeIntervalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddTimeIntervalViewController.h; sourceTree = "<group>"; };
+		F942631D1CDF56EA00D9920F /* AddTimeIntervalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddTimeIntervalViewController.m; sourceTree = "<group>"; };
+		F96CBAE11CDF033A00969415 /* RoomScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomScreenViewController.h; sourceTree = "<group>"; };
+		F96CBAE21CDF033A00969415 /* RoomScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoomScreenViewController.m; sourceTree = "<group>"; };
+		F96CBAE41CDF051400969415 /* TimeInterval.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeInterval.h; sourceTree = "<group>"; };
+		F96CBAE51CDF051400969415 /* TimeInterval.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeInterval.m; sourceTree = "<group>"; };
+		F96CBAE81CDF057700969415 /* Models.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Models.h; sourceTree = "<group>"; };
 		F98ABDCD1C9F864A0014E903 /* RBSAdmin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RBSAdmin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F98ABDD11C9F864A0014E903 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F98ABDD31C9F864A0014E903 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -94,6 +107,17 @@
 		F98ABDF71C9F864B0014E903 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F98ABE091C9F88E90014E903 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		F98ABE0A1C9F88E90014E903 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		F9955F1D1CDF1C0D00FEA66F /* RoomScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomScreen.h; sourceTree = "<group>"; };
+		F9955F1E1CDF1C0D00FEA66F /* RoomScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoomScreen.m; sourceTree = "<group>"; };
+		F9955F211CDF31FD00FEA66F /* RoomSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomSearchViewController.h; sourceTree = "<group>"; };
+		F9955F221CDF31FD00FEA66F /* RoomSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoomSearchViewController.m; sourceTree = "<group>"; };
+		F9A642531CDF100E0080959A /* CheckableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckableCell.h; sourceTree = "<group>"; };
+		F9A642541CDF100E0080959A /* CheckableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckableCell.m; sourceTree = "<group>"; };
+		F9A642551CDF100E0080959A /* CheckableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CheckableCell.xib; sourceTree = "<group>"; };
+		F9D7E21E1CDEE3B400FC4C4D /* Venders.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Venders.h; sourceTree = "<group>"; };
+		F9D7E2201CDEE46800FC4C4D /* SSTouchEvent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSTouchEvent.h; sourceTree = "<group>"; };
+		F9D7E2211CDEE4C300FC4C4D /* YYAddings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYAddings.h; sourceTree = "<group>"; };
+		F9D7E2231CDEE63500FC4C4D /* RecyclableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecyclableViewController.h; sourceTree = "<group>"; };
 		F9DF54AC1C9F934500B5B85E /* DDLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDLog.h; sourceTree = "<group>"; };
 		F9DF54AD1C9F934500B5B85E /* DDLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDLog.m; sourceTree = "<group>"; };
 		F9DF54B11C9F94F300B5B85E /* GlobalConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalConstants.h; sourceTree = "<group>"; };
@@ -103,8 +127,6 @@
 		F9DF54B71C9FB57400B5B85E /* APIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIManager.m; sourceTree = "<group>"; };
 		F9DF54BD1C9FB85E00B5B85E /* CAAnimation+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CAAnimation+Blocks.h"; sourceTree = "<group>"; };
 		F9DF54BE1C9FB85E00B5B85E /* CAAnimation+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CAAnimation+Blocks.m"; sourceTree = "<group>"; };
-		F9DF54C01C9FB85E00B5B85E /* SSPullController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSPullController.h; sourceTree = "<group>"; };
-		F9DF54C11C9FB85E00B5B85E /* SSPullController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSPullController.m; sourceTree = "<group>"; };
 		F9DF54C31C9FB85E00B5B85E /* SSTouchEventController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSTouchEventController.h; sourceTree = "<group>"; };
 		F9DF54C41C9FB85E00B5B85E /* SSTouchEventController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSTouchEventController.m; sourceTree = "<group>"; };
 		F9DF54C51C9FB85E00B5B85E /* SSTouchImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSTouchImageView.h; sourceTree = "<group>"; };
@@ -178,7 +200,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				25C9778C14F87508246FADD7 /* libPods-RBSAdmin.a in Frameworks */,
+				6D5DF55FAB563D784EDC08DE /* Pods_RBSAdmin.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -202,7 +224,7 @@
 		9E97F872ED548DB39B2205B9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				9D3FB35712884B61C04FEF25 /* libPods-RBSAdmin.a */,
+				B2CD6DC551EC2D65435E1BDD /* Pods_RBSAdmin.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -214,6 +236,24 @@
 				9BE6B885F7E7A6640DF13615 /* Pods-RBSAdmin.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		F942631B1CDF56BB00D9920F /* TimeInterval */ = {
+			isa = PBXGroup;
+			children = (
+				F942631C1CDF56EA00D9920F /* AddTimeIntervalViewController.h */,
+				F942631D1CDF56EA00D9920F /* AddTimeIntervalViewController.m */,
+			);
+			name = TimeInterval;
+			sourceTree = "<group>";
+		};
+		F96CBADD1CDF02D800969415 /* RoomScreen */ = {
+			isa = PBXGroup;
+			children = (
+				F96CBAE11CDF033A00969415 /* RoomScreenViewController.h */,
+				F96CBAE21CDF033A00969415 /* RoomScreenViewController.m */,
+			);
+			name = RoomScreen;
 			sourceTree = "<group>";
 		};
 		F98ABDC41C9F864A0014E903 = {
@@ -244,7 +284,7 @@
 				F98ABE061C9F886E0014E903 /* Application */,
 				F98ABE071C9F88830014E903 /* Model */,
 				F9DF54BA1C9FB59700B5B85E /* API */,
-				F98ABE081C9F88920014E903 /* ViewController */,
+				F98ABE081C9F88920014E903 /* Controller */,
 				F9EE21F61CDDEB7400BF9488 /* View */,
 				F9DF54AB1C9F931D00B5B85E /* Util */,
 				F9DF54BB1C9FB85E00B5B85E /* Vender */,
@@ -293,24 +333,30 @@
 		F98ABE071C9F88830014E903 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				F96CBAE81CDF057700969415 /* Models.h */,
 				F9FFAFD31CDDD0B900D72D78 /* Faculty.h */,
 				F9FFAFD41CDDD0B900D72D78 /* Faculty.m */,
 				F9EE21FF1CDDEEBD00BF9488 /* Student.h */,
 				F9EE22001CDDEEBD00BF9488 /* Student.m */,
 				F9EE22111CDE1CD500BF9488 /* Room.h */,
 				F9EE22121CDE1CD500BF9488 /* Room.m */,
+				F96CBAE41CDF051400969415 /* TimeInterval.h */,
+				F96CBAE51CDF051400969415 /* TimeInterval.m */,
+				F9955F1D1CDF1C0D00FEA66F /* RoomScreen.h */,
+				F9955F1E1CDF1C0D00FEA66F /* RoomScreen.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
 		};
-		F98ABE081C9F88920014E903 /* ViewController */ = {
+		F98ABE081C9F88920014E903 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
 				F9EE22061CDE009100BF9488 /* Launch */,
 				F98ABE0C1C9F88F40014E903 /* Login */,
 				F9FFAFD81CDDD6E500D72D78 /* Main */,
+				F942631B1CDF56BB00D9920F /* TimeInterval */,
 			);
-			name = ViewController;
+			name = Controller;
 			sourceTree = "<group>";
 		};
 		F98ABE0C1C9F88F40014E903 /* Login */ = {
@@ -323,6 +369,43 @@
 			name = Login;
 			sourceTree = "<group>";
 		};
+		F9955F1C1CDF18C500FEA66F /* CheckableCell */ = {
+			isa = PBXGroup;
+			children = (
+				F9A642531CDF100E0080959A /* CheckableCell.h */,
+				F9A642541CDF100E0080959A /* CheckableCell.m */,
+				F9A642551CDF100E0080959A /* CheckableCell.xib */,
+			);
+			name = CheckableCell;
+			sourceTree = "<group>";
+		};
+		F9955F201CDF307000FEA66F /* RoomSearch */ = {
+			isa = PBXGroup;
+			children = (
+				F9955F211CDF31FD00FEA66F /* RoomSearchViewController.h */,
+				F9955F221CDF31FD00FEA66F /* RoomSearchViewController.m */,
+			);
+			name = RoomSearch;
+			sourceTree = "<group>";
+		};
+		F9955F241CDF321800FEA66F /* RoomListCell */ = {
+			isa = PBXGroup;
+			children = (
+				F9EE220B1CDE11CA00BF9488 /* RoomListCell.h */,
+				F9EE220C1CDE11CA00BF9488 /* RoomListCell.m */,
+				F9EE220D1CDE11CA00BF9488 /* RoomListCell.xib */,
+			);
+			name = RoomListCell;
+			sourceTree = "<group>";
+		};
+		F9D7E2221CDEE60F00FC4C4D /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				F9D7E2231CDEE63500FC4C4D /* RecyclableViewController.h */,
+			);
+			name = Protocol;
+			sourceTree = "<group>";
+		};
 		F9DF54AB1C9F931D00B5B85E /* Util */ = {
 			isa = PBXGroup;
 			children = (
@@ -330,6 +413,7 @@
 				F9DF54AF1C9F934D00B5B85E /* DDLog */,
 				F9DF54B41C9F94F700B5B85E /* GlobalContants */,
 				F9DF54E51C9FC79700B5B85E /* Category */,
+				F9D7E2221CDEE60F00FC4C4D /* Protocol */,
 				F9DF54FD1C9FD7D400B5B85E /* UIHelper */,
 				F9EE22051CDDFC5800BF9488 /* AppTools */,
 				F9EE21FB1CDDED5E00BF9488 /* UserManager */,
@@ -377,14 +461,13 @@
 		F9DF54BB1C9FB85E00B5B85E /* Vender */ = {
 			isa = PBXGroup;
 			children = (
+				F9D7E21E1CDEE3B400FC4C4D /* Venders.h */,
 				F9FFAFFD1CDDE30200D72D78 /* LanguageManager */,
 				F9FFAFE21CDDDBB700D72D78 /* CustomizeNavigationController */,
 				F9DF54EA1C9FCDC400B5B85E /* TopAlertView */,
 				F9DF54D91C9FB8F600B5B85E /* SimpleHttp */,
 				F9DF54BC1C9FB85E00B5B85E /* CAAnimation+Blocks */,
-				F9DF54BF1C9FB85E00B5B85E /* SSPullController */,
 				F9DF54C21C9FB85E00B5B85E /* SSTouchEvent */,
-				F9DF54C91C9FB85E00B5B85E /* UIView+SSTouchEvent */,
 				F9DF54CA1C9FB85E00B5B85E /* YYAddings */,
 			);
 			name = Vender;
@@ -400,18 +483,10 @@
 			path = "CAAnimation+Blocks";
 			sourceTree = "<group>";
 		};
-		F9DF54BF1C9FB85E00B5B85E /* SSPullController */ = {
-			isa = PBXGroup;
-			children = (
-				F9DF54C01C9FB85E00B5B85E /* SSPullController.h */,
-				F9DF54C11C9FB85E00B5B85E /* SSPullController.m */,
-			);
-			path = SSPullController;
-			sourceTree = "<group>";
-		};
 		F9DF54C21C9FB85E00B5B85E /* SSTouchEvent */ = {
 			isa = PBXGroup;
 			children = (
+				F9D7E2201CDEE46800FC4C4D /* SSTouchEvent.h */,
 				F9DF54C31C9FB85E00B5B85E /* SSTouchEventController.h */,
 				F9DF54C41C9FB85E00B5B85E /* SSTouchEventController.m */,
 				F9DF54C51C9FB85E00B5B85E /* SSTouchImageView.h */,
@@ -422,16 +497,10 @@
 			path = SSTouchEvent;
 			sourceTree = "<group>";
 		};
-		F9DF54C91C9FB85E00B5B85E /* UIView+SSTouchEvent */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "UIView+SSTouchEvent";
-			sourceTree = "<group>";
-		};
 		F9DF54CA1C9FB85E00B5B85E /* YYAddings */ = {
 			isa = PBXGroup;
 			children = (
+				F9D7E2211CDEE4C300FC4C4D /* YYAddings.h */,
 				F9DF54CB1C9FB85E00B5B85E /* NSString+YYAdd.h */,
 				F9DF54CC1C9FB85E00B5B85E /* NSString+YYAdd.m */,
 				F9DF54CD1C9FB85E00B5B85E /* UIImage+YYWebImage.h */,
@@ -525,6 +594,8 @@
 		F9EE21F61CDDEB7400BF9488 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				F9955F241CDF321800FEA66F /* RoomListCell */,
+				F9955F1C1CDF18C500FEA66F /* CheckableCell */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -569,9 +640,6 @@
 			children = (
 				F9FFAFE61CDDDCD800D72D78 /* RoomListViewController.h */,
 				F9FFAFE71CDDDCD800D72D78 /* RoomListViewController.m */,
-				F9EE220B1CDE11CA00BF9488 /* RoomListCell.h */,
-				F9EE220C1CDE11CA00BF9488 /* RoomListCell.m */,
-				F9EE220D1CDE11CA00BF9488 /* RoomListCell.xib */,
 			);
 			name = RoomList;
 			sourceTree = "<group>";
@@ -601,6 +669,8 @@
 			children = (
 				F9FFAFDC1CDDDAAA00D72D78 /* Room.storyboard */,
 				F9EE22101CDE140C00BF9488 /* RoomList */,
+				F96CBADD1CDF02D800969415 /* RoomScreen */,
+				F9955F201CDF307000FEA66F /* RoomSearch */,
 			);
 			name = Room;
 			sourceTree = "<group>";
@@ -774,6 +844,7 @@
 				F9FFAFEB1CDDDD7500D72D78 /* Booking.storyboard in Resources */,
 				F9EE220A1CDE011200BF9488 /* LaunchScreen.xib in Resources */,
 				F98ABDDB1C9F864A0014E903 /* Login.storyboard in Resources */,
+				F9A642571CDF100E0080959A /* CheckableCell.xib in Resources */,
 				F9FFAFF41CDDDE3100D72D78 /* Me.storyboard in Resources */,
 				F9DF54F61C9FCDC400B5B85E /* FontAwesome.ttf in Resources */,
 			);
@@ -849,6 +920,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F9EE21FE1CDDED9000BF9488 /* UserManager.m in Sources */,
+				F9955F1F1CDF1C0D00FEA66F /* RoomScreen.m in Sources */,
 				F9DF54F71C9FCDC400B5B85E /* NSString+FontAwesome.m in Sources */,
 				F9DF54F51C9FCDC400B5B85E /* FAImageView.m in Sources */,
 				F9DF54AE1C9F934500B5B85E /* DDLog.m in Sources */,
@@ -859,13 +931,18 @@
 				F9DF54B31C9F94F300B5B85E /* GlobalConstants.m in Sources */,
 				F9DF54FC1C9FD7CF00B5B85E /* UIHelper.m in Sources */,
 				F9DF54F91C9FCDC400B5B85E /* MozTopAlertView.m in Sources */,
+				F942631E1CDF56EA00D9920F /* AddTimeIntervalViewController.m in Sources */,
 				F9DF54DF1C9FB95600B5B85E /* HttpPackage.m in Sources */,
 				F9DF54D71C9FB85E00B5B85E /* UIImage+YYWebImage.m in Sources */,
 				F9DF54D41C9FB85E00B5B85E /* SSTouchImageView.m in Sources */,
+				F9955F231CDF31FD00FEA66F /* RoomSearchViewController.m in Sources */,
 				F9FFAFCF1CDDB41200D72D78 /* NSDate+Timestamp.m in Sources */,
 				F9DF54DC1C9FB8F600B5B85E /* SimpleHttp.m in Sources */,
 				F9FFB0031CDDE36B00D72D78 /* UIColor+Util.m in Sources */,
+				F96CBAE31CDF033A00969415 /* RoomScreenViewController.m in Sources */,
+				F96CBAE61CDF051400969415 /* TimeInterval.m in Sources */,
 				F9FFAFEE1CDDDDFA00D72D78 /* BookingListViewController.m in Sources */,
+				F9A642561CDF100E0080959A /* CheckableCell.m in Sources */,
 				F9FFAFF21CDDDE2800D72D78 /* MeViewController.m in Sources */,
 				F9DF54D61C9FB85E00B5B85E /* NSString+YYAdd.m in Sources */,
 				F9FFAFD51CDDD0B900D72D78 /* Faculty.m in Sources */,
@@ -873,7 +950,6 @@
 				F9DF54B81C9FB57400B5B85E /* APIManager.m in Sources */,
 				F9DF54D81C9FB85E00B5B85E /* UIView+YYAdd.m in Sources */,
 				F9EE21F91CDDEB9300BF9488 /* UINavigationBar+Shadow.m in Sources */,
-				F9DF54D21C9FB85E00B5B85E /* SSPullController.m in Sources */,
 				F9DF54E81C9FC7C600B5B85E /* NSString+Digest.m in Sources */,
 				F9DF54E31C9FBBA500B5B85E /* URLManager.m in Sources */,
 				F98ABE0B1C9F88E90014E903 /* LoginViewController.m in Sources */,

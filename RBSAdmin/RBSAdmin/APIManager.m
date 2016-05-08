@@ -23,12 +23,7 @@
 }
 
 #pragma mark - User API
-//=========================================================================================
-// User API
-//=========================================================================================
-/**
- *  Login.
- */
+
 - (void)loginWithType:(NSString *)type
                userId:(NSString *)userId
              password:(NSString *)password
@@ -37,7 +32,7 @@
               timeout:(void(^)(void))timeout {
     NSString *url = [URLManager sharedInstance].loginURL;
     
-    NSDictionary *parms =
+    NSDictionary *params =
     @{@"type": type,
       @"id": userId,
       @"password": [password SHA1]};
@@ -45,42 +40,39 @@
     [[HttpPackage sharedInstance]
      httpRequestWithMethod:POST
      url:url
-     parameters:parms
+     parameters:params
      success:success
      failure:failure
      timeout:timeout];
 }
 
 #pragma mark - Room API
-//=========================================================================================
-// Room API
-//=========================================================================================
-/**
- *  Get room list.
- *  @param building
- *      软件楼 or 图书馆, pass nil to retrieve both.
- *  @param fromIndex
- *      -1 to retrieve all.
- */
+
 - (void)getRoomListWithBuilding:(NSString *)building
+                       capacity:(NSUInteger)capacity
+                  hasMultiMedia:(NSNumber *)hasMultiMedia
+                  timeIntervals:(NSString *)timeIntervals
                       fromIndex:(NSInteger)fromIndex
                         success:(void(^)(id jsonData))success
                         failure:(void(^)(NSError *error))failure
                         timeout:(void(^)(void))timeout {
     NSString *url = [URLManager sharedInstance].roomListURL;
     
-    NSDictionary *parms;
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"fromIndex"] = [NSNumber numberWithInteger:fromIndex];
     if (building) {
-       parms = @{@"building": building,
-                 @"fromIndex": [NSNumber numberWithInteger:fromIndex]};
-    } else {
-        parms = @{@"fromIndex": [NSNumber numberWithInteger:fromIndex]};
+        params[@"building"] = [building stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     }
+    if (hasMultiMedia) {
+        params[@"hasMultiMedia"] = hasMultiMedia;
+    }
+    params[@"timeIntervals"] = timeIntervals;
+    params[@"capacity"] = @(capacity);
     
     [[HttpPackage sharedInstance]
      httpRequestWithMethod:POST
      url:url
-     parameters:parms
+     parameters:params
      success:success
      failure:failure
      timeout:timeout];

@@ -10,4 +10,14 @@
 
 @implementation Room
 
+- (instancetype)initWithJsonData:(id)jsonData {
+    if (self = [super init]) {
+        self.building = jsonData[@"building"];
+        self.number = jsonData[@"number"];
+        self.capacity = [jsonData[@"capacity"] unsignedIntegerValue];
+        self.hasMultiMedia = [jsonData[@"hasmultimedia"] unsignedIntegerValue];
+    }
+    return self;
+}
+
 @end

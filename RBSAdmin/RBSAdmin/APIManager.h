@@ -38,6 +38,9 @@
  *      -1 to retrieve all.
  */
 - (void)getRoomListWithBuilding:(NSString *)building
+                       capacity:(NSUInteger)capacity
+                  hasMultiMedia:(NSNumber *)hasMultiMedia
+                  timeIntervals:(NSString *)timeIntervals
                       fromIndex:(NSInteger)fromIndex
                         success:(void(^)(id jsonData))success
                         failure:(void(^)(NSError *error))failure

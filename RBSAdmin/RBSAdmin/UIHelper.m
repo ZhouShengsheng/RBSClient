@@ -10,9 +10,6 @@
 
 @implementation UIHelper
 
-/**
- *  Display top popup info view.
- */
 + (void)showTopInfoView:(NSString*)msg fromViewController:(UIViewController*)viewController {
     // hide any pop view
     [MozTopAlertView hideViewWithParentView:viewController.view];
@@ -20,9 +17,6 @@
     [MozTopAlertView showWithType:MozAlertTypeInfo text:msg viewController:viewController.view];
 }
 
-/**
- *  Display top popup success view.
- */
 + (void)showTopSuccessView:(NSString*)msg fromViewController:(UIViewController*)viewController {
     // hide any pop view
     [MozTopAlertView hideViewWithParentView:viewController.view];
@@ -30,9 +24,6 @@
     [MozTopAlertView showWithType:MozAlertTypeSuccess text:msg viewController:viewController.view];
 }
 
-/**
- *  Display top popup alert view.
- */
 + (void)showTopAlertView:(NSString*)msg fromViewController:(UIViewController*)viewController {
     // hide any pop view
     [MozTopAlertView hideViewWithParentView:viewController.view];
@@ -40,14 +31,19 @@
     [MozTopAlertView showWithType:MozAlertTypeWarning text:msg viewController:viewController.view];
 }
 
-/**
- *  Display top popup error view.
- */
 + (void)showTopErrorView:(NSString*)msg fromViewController:(UIViewController*)viewController {
     // hide any pop view
     [MozTopAlertView hideViewWithParentView:viewController.view];
     // error message
     [MozTopAlertView showWithType:MozAlertTypeError text:msg viewController:viewController.view];
+}
+
++ (MJRefreshNormalHeader *)refreshHeaderWithTarget:(id)target action:(SEL)action {
+    return [MJRefreshNormalHeader headerWithRefreshingTarget:target refreshingAction:action];
+}
+
++ (MJRefreshAutoNormalFooter *)refreshFooterWithTarget:(id)target action:(SEL)action {
+    return [MJRefreshAutoNormalFooter footerWithRefreshingTarget:target refreshingAction:action];
 }
 
 @end

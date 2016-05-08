@@ -47,10 +47,10 @@
                            alpha:1];
 }
 
-+ (UIColor *)cellBgColor {
-    return [UIColor colorWithRed:243/255.0
-                           green:243/255.0
-                            blue:243/255.0
++ (UIColor *)buttonBgColor {
+    return [UIColor colorWithRed:216/255.0
+                           green:216/255.0
+                            blue:216/255.0
                            alpha:1];
 }
 

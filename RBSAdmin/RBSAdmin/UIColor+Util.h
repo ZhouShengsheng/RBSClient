@@ -26,9 +26,9 @@
 + (UIColor *)unselectedColor;
 
 /**
- *  Background color for cell.
+ *  Background color for button.
  */
-+ (UIColor *)cellBgColor;
++ (UIColor *)buttonBgColor;
 
 + (UIColor *)bgColor;
 

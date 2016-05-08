@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <CoreGraphics/CoreGraphics.h>
 
+static const int defaultPageSize = 20;
+
 @interface GlobalConstants : NSObject
 
 // sizes
