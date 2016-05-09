@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--Customize Navigation Controller-->
+        <scene sceneID="pDS-x8-dQh">
+            <objects>
+                <navigationController storyboardIdentifier="RoomNavigationController" id="9p4-qa-PsK" customClass="CustomizeNavigationController" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="pGn-PC-Ow3">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="LXB-yD-OXf" kind="relationship" relationship="rootViewController" id="8QP-hD-liO"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZKY-8P-uEf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-399" y="306"/>
+        </scene>
+        <!--教室列表-->
+        <scene sceneID="9Ad-Uk-Hq1">
+            <objects>
+                <tableViewController title="教室列表" id="LXB-yD-OXf" customClass="RoomListViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="gK0-r7-cmq">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <connections>
+                            <outlet property="dataSource" destination="LXB-yD-OXf" id="cI5-Fc-JeF"/>
+                            <outlet property="delegate" destination="LXB-yD-OXf" id="Md0-ar-GZL"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="Ih4-FR-Vt3"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hVo-fH-w7C" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="289" y="306"/>
+        </scene>
+    </scenes>
+</document>
