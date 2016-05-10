@@ -20,4 +20,10 @@
     return self;
 }
 
+- (NSString *)description {
+    return [NSString stringWithFormat:@"%@%@ %lu人 %@多媒体设备",
+            self.building, self.number, (unsigned long)self.capacity,
+            (self.hasMultiMedia ? @"有" : @"无")];
+}
+
 @end

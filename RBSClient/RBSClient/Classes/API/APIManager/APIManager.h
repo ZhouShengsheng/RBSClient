@@ -53,4 +53,52 @@
                             failure:(void(^)(NSError *error))failure
                             timeout:(void(^)(void))timeout;
 
+/**
+ *  Get room info.
+ */
+- (void)getRoomInfoWithUserType:(NSString *)userType
+                         userId:(NSString *)userId
+                       building:(NSString *)building
+                         number:(NSString *)number
+                        success:(void(^)(id jsonData))success
+                        failure:(void(^)(NSError *error))failure
+                        timeout:(void(^)(void))timeout;
+
+/**
+ *  Set favorite of a room.
+ */
+- (void)setFavoriteRoomWithUserType:(NSString *)userType
+                             userId:(NSString *)userId
+                           building:(NSString *)building
+                             number:(NSString *)number
+                            success:(void(^)(id jsonData))success
+                            failure:(void(^)(NSError *error))failure
+                            timeout:(void(^)(void))timeout;
+
+/**
+ *  Unset favorite of a room.
+ */
+- (void)unsetFavoriteRoomWithUserType:(NSString *)userType
+                               userId:(NSString *)userId
+                             building:(NSString *)building
+                               number:(NSString *)number
+                              success:(void(^)(id jsonData))success
+                              failure:(void(^)(NSError *error))failure
+                              timeout:(void(^)(void))timeout;
+
+#pragma mark - Room Booking API
+
+/**
+ *  Book room.
+ */
+- (void)bookRoomWithRoomBuilding:(NSString *)roomBuilding
+                      roomNumber:(NSString *)roomNumber
+                   applicantType:(NSString *)applicantType
+                     applicantId:(NSString *)applicantId
+                       facultyId:(NSString *)facultyId
+                   timeIntervals:(NSString *)timeIntervals
+                         success:(void(^)(id jsonData))success
+                         failure:(void(^)(NSError *error))failure
+                         timeout:(void(^)(void))timeout;
+
 @end

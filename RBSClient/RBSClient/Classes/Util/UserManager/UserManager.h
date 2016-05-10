@@ -56,4 +56,9 @@ typedef NS_ENUM(NSUInteger, UserType) {
  */
 - (NSString *)userTypeStr;
 
+/**
+ *  Get current user.
+ */
+- (id)currentUser;
+
 @end

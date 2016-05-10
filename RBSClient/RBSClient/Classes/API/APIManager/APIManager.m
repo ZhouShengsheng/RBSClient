@@ -98,4 +98,106 @@
      timeout:timeout];
 }
 
+- (void)getRoomInfoWithUserType:(NSString *)userType
+                         userId:(NSString *)userId
+                       building:(NSString *)building
+                         number:(NSString *)number
+                        success:(void(^)(id jsonData))success
+                        failure:(void(^)(NSError *error))failure
+                        timeout:(void(^)(void))timeout {
+    NSString *url = [URLManager sharedInstance].roomInfoURL;
+    
+    NSDictionary *params =
+    @{@"type": userType,
+      @"id": userId,
+      @"building": [building stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
+      @"number": [number stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]};
+    
+    [[HttpPackage sharedInstance]
+     httpRequestWithMethod:POST
+     url:url
+     parameters:params
+     success:success
+     failure:failure
+     timeout:timeout];
+}
+
+- (void)setFavoriteRoomWithUserType:(NSString *)userType
+                             userId:(NSString *)userId
+                           building:(NSString *)building
+                             number:(NSString *)number
+                            success:(void(^)(id jsonData))success
+                            failure:(void(^)(NSError *error))failure
+                            timeout:(void(^)(void))timeout {
+    NSString *url = [URLManager sharedInstance].setFavoriteURL;
+    
+    NSDictionary *params =
+    @{@"type": userType,
+      @"id": userId,
+      @"building": [building stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
+      @"number": [number stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]};
+    
+    [[HttpPackage sharedInstance]
+     httpRequestWithMethod:POST
+     url:url
+     parameters:params
+     success:success
+     failure:failure
+     timeout:timeout];
+}
+
+- (void)unsetFavoriteRoomWithUserType:(NSString *)userType
+                               userId:(NSString *)userId
+                             building:(NSString *)building
+                               number:(NSString *)number
+                              success:(void(^)(id jsonData))success
+                              failure:(void(^)(NSError *error))failure
+                              timeout:(void(^)(void))timeout {
+    NSString *url = [URLManager sharedInstance].unsetFavoriteURL;
+    
+    NSDictionary *params =
+    @{@"type": userType,
+      @"id": userId,
+      @"building": [building stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
+      @"number": [number stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]};
+    
+    [[HttpPackage sharedInstance]
+     httpRequestWithMethod:POST
+     url:url
+     parameters:params
+     success:success
+     failure:failure
+     timeout:timeout];
+}
+
+#pragma mark - Room Booking API
+
+- (void)bookRoomWithRoomBuilding:(NSString *)roomBuilding
+                      roomNumber:(NSString *)roomNumber
+                   applicantType:(NSString *)applicantType
+                     applicantId:(NSString *)applicantId
+                       facultyId:(NSString *)facultyId
+                   timeIntervals:(NSString *)timeIntervals
+                         success:(void(^)(id jsonData))success
+                         failure:(void(^)(NSError *error))failure
+                         timeout:(void(^)(void))timeout{
+    NSString *url = [URLManager sharedInstance].bookRoomURL;
+    
+    NSDictionary *params =
+    @{@"roomBuilding": [roomBuilding stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
+      @"roomNumber": [roomNumber stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
+      @"applicantType": applicantType,
+      @"applicantId": applicantId,
+      @"facultyId": facultyId,
+      @"timeIntervals": timeIntervals};
+    
+    [[HttpPackage sharedInstance]
+     httpRequestWithMethod:POST
+     url:url
+     parameters:params
+     success:success
+     failure:failure
+     timeout:timeout];
+}
+
 @end

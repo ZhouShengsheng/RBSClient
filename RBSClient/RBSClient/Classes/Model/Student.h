@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Faculty.h"
 
 @interface Student : NSObject <NSCoding>
 
@@ -18,5 +19,9 @@
 @property (assign, nonatomic) BOOL gender;
 @property (copy, nonatomic) NSString *dormRoomNumber;
 @property (copy, nonatomic) NSString *phone;
+
+@property (strong, nonatomic) Faculty *supervisor;
+
+- (instancetype)initWithJsonData:(id)jsonData;
 
 @end

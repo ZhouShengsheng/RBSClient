@@ -26,9 +26,18 @@
 }
 
 - (void)initUrls {
+    // User.
     _loginURL = [self formUrlWithRoute:@"/user/login"];
+    
+    // Room.
     _roomListURL = [self formUrlWithRoute:@"/room/list"];
     _searchRoomListURL = [self formUrlWithRoute:@"/room/search"];
+    _roomInfoURL = [self formUrlWithRoute:@"/room/info"];
+    _setFavoriteURL = [self formUrlWithRoute:@"/room/set_favorite"];
+    _unsetFavoriteURL = [self formUrlWithRoute:@"/room/unset_favorite"];
+    
+    // Room book.
+    _bookRoomURL = [self formUrlWithRoute:@"/room_booking/book"];
 }
 
 @end

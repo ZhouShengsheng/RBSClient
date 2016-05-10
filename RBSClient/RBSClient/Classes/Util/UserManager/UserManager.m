@@ -206,4 +206,21 @@
     }
 }
 
+- (id)currentUser {
+    switch (self.userType) {
+        case USER_TYPE_UNKNOWN: {
+            return nil;
+        }
+        case USER_TYPE_ADMIN: {
+            return self.admin;
+        }
+        case USER_TYPE_FACULTY: {
+            return self.faculty;
+        }
+        case USER_TYPE_STUDENT: {
+            return self.student;
+        }
+    }
+}
+
 @end

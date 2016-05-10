@@ -22,7 +22,7 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    self.title = @"我的收藏";
+    self.title = @"收藏";
 }
 
 #pragma mark - Table view data source

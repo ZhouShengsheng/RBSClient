@@ -14,6 +14,7 @@
 #import "Venders.h"
 #import "RoomScreenViewController.h"
 #import "RoomSearchViewController.h"
+#import "RoomInfoViewController.h"
 
 @interface RoomListViewController ()
 
@@ -70,22 +71,8 @@
         }
     }
     
-    NSMutableArray *timeIntervalList = [NSMutableArray array];
-    for (TimeInterval *timeInterval in self.tempRoomScreen.timeIntervalList) {
-        NSString *from = [NSString stringWithFormat:@"%@ %@:00",
-                          [timeInterval date], [timeInterval fromTime]];
-        NSString *to = [NSString stringWithFormat:@"%@ %@:00",
-                        [timeInterval date], [timeInterval toTime]];
-        NSArray *fromTo = @[from, to];
-        [timeIntervalList addObject:fromTo];
-    }
-    
-    NSData *jsonData = [NSJSONSerialization
-                        dataWithJSONObject:timeIntervalList
-                        options:NSJSONWritingPrettyPrinted
-                        error:nil];
-    NSString *timeIntervals = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-    timeIntervals = [timeIntervals stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+    NSString *timeIntervals =
+    [TimeInterval timeIntervalJsonStringFromOrderedSet:self.tempRoomScreen.timeIntervalList];
     
     [[APIManager sharedInstance]
      getRoomListWithBuilding:building
@@ -181,7 +168,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    DDLogError(@"clicked %ld", (long)indexPath.row);
+    Room *room = self.roomList[indexPath.row];
+    RoomInfoViewController *vc = [RoomInfoViewController new];
+    vc.building = room.building;
+    vc.number = room.number;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - Header and footer actions

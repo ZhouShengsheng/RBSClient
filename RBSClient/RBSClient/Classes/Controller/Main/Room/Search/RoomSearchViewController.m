@@ -9,6 +9,7 @@
 #import "RoomSearchViewController.h"
 #import "APIManager.h"
 #import "RoomListCell.h"
+#import "RoomInfoViewController.h"
 
 @interface RoomSearchViewController () <UISearchBarDelegate>
 
@@ -68,6 +69,8 @@
 
 #pragma mark - RecyclableViewController protocol methods
 - (void)initializeView {
+    self.title = @"搜索教室";
+    
     // Search bar.
     self.searchBar = [[UISearchBar alloc]
                       init];
@@ -84,6 +87,7 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"RoomListCell" bundle:nil]
          forCellReuseIdentifier:@"RoomListCell"];
     self.tableView.tableFooterView = [UIView new];
+    self.tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
     
     // Init header and footer.
     self.header = [UIHelper refreshHeaderWithTarget:self action:@selector(refresh)];
@@ -139,11 +143,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    DDLogError(@"clicked %ld", (long)indexPath.row);
-}
-
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
-    [self.searchBar resignFirstResponder];
+    Room *room = self.roomList[indexPath.row];
+    RoomInfoViewController *vc = [RoomInfoViewController new];
+    vc.building = room.building;
+    vc.number = room.number;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - Search bar delegate

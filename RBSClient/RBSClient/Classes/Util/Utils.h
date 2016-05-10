@@ -13,6 +13,7 @@
 #import "GlobalConstants.h"
 #import "NSDate+Timestamp.h"
 #import "UIColor+Util.h"
+#import "UIFont+Util.h"
 #import "NSString+Digest.h"
 #import "LanguageManager.h"
 #import "UINavigationBar+Addition.h"
@@ -21,5 +22,6 @@
 #import "RecyclableViewController.h"
 #import "UIHelper.h"
 #import "AppTools.h"
+#import "UIHelper.h"
 
 #endif /* Utils_h */

@@ -32,12 +32,17 @@
 
 #pragma mark - RecyclableViewController protocol methods
 - (void)initializeView {
-    // Title.
-    self.title = @"添加时间段";
-    
     // Add button.
+    NSString *buttonTitle;
+    if (self.isEdit) {
+        buttonTitle = @"修改";
+        self.title = @"修改时间段";
+    } else {
+        buttonTitle = @"添加";
+        self.title = @"添加时间段";
+    }
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc]
-                                  initWithTitle:@"添加"
+                                  initWithTitle:buttonTitle
                                   style:UIBarButtonItemStylePlain
                                   target:self
                                   action:@selector(addTimeInterval)];
@@ -83,6 +88,8 @@
         cell.rightUtilityButtons = [self rightButtons];
         cell.delegate = self;
     }
+    
+    cell.textLabel.font = [UIFont simpleDescriptionFont];
     
     cell.tag = indexPath.section;
     switch (indexPath.section) {

@@ -17,4 +17,6 @@
 @property (assign, nonatomic) NSUInteger capacity;
 @property (assign, nonatomic) BOOL hasMultiMedia;
 
+@property (assign, nonatomic) BOOL isFavorite;
+
 @end

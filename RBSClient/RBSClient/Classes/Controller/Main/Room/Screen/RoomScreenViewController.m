@@ -9,6 +9,7 @@
 #import "RoomScreenViewController.h"
 #import "CheckableCell.h"
 #import "AddTimeIntervalViewController.h"
+#import "TimeIntervalCell.h"
 
 @interface RoomScreenViewController () <SWTableViewCellDelegate, BEMCheckBoxDelegate>
 
@@ -35,7 +36,13 @@
     
     [[self rdv_tabBarController] setTabBarHidden:YES animated:YES];
     
-    // Check added time interval and edited time interval.
+    [self checkTimeInterval];
+}
+
+/**
+ *  Check added time interval and edited time interval.
+ */
+- (void)checkTimeInterval {
     RoomScreen *roomScreen = [RoomScreen sharedInstance];
     if (roomScreen.addedTimeInterval) {
         [self.tempRoomScreen.timeIntervalList addObject:roomScreen.addedTimeInterval];
@@ -52,6 +59,7 @@
 }
 
 #pragma mark - RecyclableViewController protocol methods
+
 - (void)initializeView {
     // Title.
     self.title = @"筛选教室";
@@ -59,6 +67,8 @@
     // Table view.
     [self.tableView registerNib:[UINib nibWithNibName:@"CheckableCell" bundle:nil]
          forCellReuseIdentifier:@"CheckableCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"TimeIntervalCell" bundle:nil]
+         forCellReuseIdentifier:@"TimeIntervalCell"];
     self.tableView.sectionIndexColor = [UIColor colorWithWhite:0 alpha:0];
     self.tableView.sectionIndexBackgroundColor = [UIColor colorWithWhite:0 alpha:0];
     
@@ -203,22 +213,32 @@
         }
         // 空闲时间段
         case 3: {
-            SWTableViewCell *cell = (SWTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"TimeIntervalCell"];
+            TimeIntervalCell *cell = (TimeIntervalCell *)[tableView dequeueReusableCellWithIdentifier:@"TimeIntervalCell"];
             
-            if (cell == nil) {
-                cell = [[SWTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"TimeIntervalCell"];
+            if (cell.rightUtilityButtons == nil) {
                 cell.rightUtilityButtons = [self timeIntervalCellRightButtons];
                 cell.delegate = self;
             }
             
             TimeInterval *timeInterval = self.tempRoomScreen.timeIntervalList[indexPath.row];
-            cell.textLabel.text = [timeInterval description];
+            [cell displayTimeInterval:timeInterval];
             
             return cell;
         }
     }
     
     return nil;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    //[tableView deselectRowAtIndexPath:indexPath animated:NO];
+    if (indexPath.section == 3) {
+        SWTableViewCell *cell = (SWTableViewCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+        [cell showRightUtilityButtonsAnimated:YES];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [tableView deselectRowAtIndexPath:indexPath animated:NO];
+        });
+    }
 }
 
 #pragma mark - Swipeable table view cell
@@ -231,7 +251,7 @@
     NSMutableArray *rightUtilityButtons = [NSMutableArray new];
     [rightUtilityButtons sw_addUtilityButtonWithColor:
      [UIColor colorWithRed:0.78f green:0.78f blue:0.8f alpha:1.0]
-                                                title:@"编辑"];
+                                                title:@"修改"];
     [rightUtilityButtons sw_addUtilityButtonWithColor:
      [UIColor colorWithRed:1.0f green:0.231f blue:0.188 alpha:1.0f]
                                                 title:@"删除"];

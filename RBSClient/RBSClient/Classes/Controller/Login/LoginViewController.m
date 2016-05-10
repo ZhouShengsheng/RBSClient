@@ -45,7 +45,7 @@
  */
 - (void)initView {
     GlobalConstants *constants = [GlobalConstants sharedInstance];
-    UIImage *appImage = [UIImage imageNamed:@"launchScreenTopImageAdmin"];
+    UIImage *appImage = [UIImage imageNamed:@"launchScreenTopImage"];
     self.appImageView = [[UIImageView alloc]
                          initWithFrame:CGRectMake((constants.screenWidth - appImage.size.width)/2,
                                                   (constants.screenHeight - appImage.size.height)/2 - 100,
@@ -199,27 +199,17 @@
         // Save user logged in.
         UserManager *userManager = [UserManager sharedInstance];
         if (self.facultyCheckBox.on) {
-            Faculty *faculty = [Faculty new];
-            faculty.facultyId = jsonData[@"id"];
-            faculty.idDigest = jsonData[@"idDigest"];
+            Faculty *faculty = [[Faculty alloc] initWithJsonData:jsonData];
             faculty.password = self.passwordTextField.text;
-            faculty.name = jsonData[@"name"];
-            faculty.gender = [jsonData[@"gender"] boolValue];
-            faculty.designation = jsonData[@"designation"];
-            faculty.office = jsonData[@"office"];
-            faculty.phone = jsonData[@"phone"];
             userManager.faculty = faculty;
             userManager.userType = USER_TYPE_FACULTY;
         } else {
-            Student *student = [Student new];
-            student.studentId = jsonData[@"id"];
-            student.idDigest = jsonData[@"idDigest"];
+            Student *student = [[Student alloc] initWithJsonData:jsonData];
             student.password = self.passwordTextField.text;
-            student.name = jsonData[@"name"];
-            student.gender = [jsonData[@"gender"] boolValue];
-            student.className = jsonData[@"classname"];
-            student.dormRoomNumber = jsonData[@"dormroomnumber"];
-            student.phone = jsonData[@"phone"];
+            
+            Faculty *faculty = [[Faculty alloc] initWithJsonData:jsonData[@"supervisor"]];
+            student.supervisor = faculty;
+            
             userManager.student = student;
             userManager.userType = USER_TYPE_STUDENT;
         }

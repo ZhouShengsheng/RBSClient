@@ -24,5 +24,6 @@
 #import "RDVTabBarController.h"
 #import "BEMCheckBox.h"
 #import "ActionSheetDatePicker.h"
+#import "UIPlaceHolderTextView.h"
 
 #endif /* Venders_h */

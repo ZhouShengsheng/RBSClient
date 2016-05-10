@@ -10,6 +10,19 @@
 
 @implementation Faculty
 
+- (instancetype)initWithJsonData:(id)jsonData {
+    if (self = [super init]) {
+        self.facultyId = jsonData[@"id"];
+        self.idDigest = jsonData[@"idDigest"];
+        self.name = jsonData[@"name"];
+        self.gender = [jsonData[@"gender"] boolValue];
+        self.designation = jsonData[@"designation"];
+        self.office = jsonData[@"office"];
+        self.phone = jsonData[@"phone"];
+    }
+    return self;
+}
+
 - (void)encodeWithCoder:(NSCoder *)aCoder {
     [aCoder encodeObject:self.facultyId forKey:@"facultyId"];
     [aCoder encodeObject:self.idDigest forKey:@"idDigest"];
@@ -33,6 +46,11 @@
         self.phone = [aDecoder decodeObjectForKey:@"phone"];
     }
     return self;
+}
+
+- (NSString *)description {
+    return [NSString stringWithFormat:@"%@ %@",
+            self.name, self.designation];
 }
 
 @end

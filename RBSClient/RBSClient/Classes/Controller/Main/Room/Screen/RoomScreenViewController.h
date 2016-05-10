@@ -11,7 +11,6 @@
 #import "Utils.h"
 #import "Models.h"
 
-@interface RoomScreenViewController : UITableViewController
-<RecyclableViewController>
+@interface RoomScreenViewController : UITableViewController <RecyclableViewController>
 
 @end

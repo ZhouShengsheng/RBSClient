@@ -7,6 +7,7 @@
 //
 
 #import "TimeInterval.h"
+#import "Utils.h"
 
 @interface TimeInterval ()
 
@@ -17,14 +18,65 @@
 
 @implementation TimeInterval
 
+- (void)commonInit {
+    self.dateFormat = [[NSDateFormatter alloc] init];
+    [self.dateFormat setDateFormat:@"yyyy-MM-dd"];
+    self.timeFormat = [[NSDateFormatter alloc] init];
+    [self.timeFormat setDateFormat:@"HH:mm"];
+}
+
 - (instancetype)init {
+    return [self initWithFrom:nil to:nil];
+}
+
+- (instancetype)initWithFrom:(NSDate *)from to:(NSDate *)to {
     if (self = [super init]) {
-        self.dateFormat = [[NSDateFormatter alloc] init];
-        [self.dateFormat setDateFormat:@"yyyy-MM-dd"];
-        self.timeFormat = [[NSDateFormatter alloc] init];
-        [self.timeFormat setDateFormat:@"HH:mm"];
+        [self commonInit];
+        self.from = from;
+        self.to = to;
     }
     return self;
+}
+
++ (NSMutableOrderedSet *)timeIntervalListFromJsonData:(id)jsonData {
+    NSMutableOrderedSet *timeIntervalList = [NSMutableOrderedSet orderedSet];
+    NSArray *jsonArray = (NSArray *)jsonData;
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm"];
+
+    for (NSArray *timeInterval in jsonArray) {
+        NSDate *from = [dateFormatter
+                        dateFromString:[timeInterval[0] substringWithRange: NSMakeRange(0, 16)]];
+        NSDate *to = [dateFormatter
+                      dateFromString:[timeInterval[1] substringWithRange: NSMakeRange(0, 16)]];
+        TimeInterval *interval = [[TimeInterval alloc]
+                                  initWithFrom:from
+                                  to:to];
+        [timeIntervalList addObject:interval];
+    }
+    
+    return timeIntervalList;
+}
+
++ (NSString *)timeIntervalJsonStringFromOrderedSet:(NSOrderedSet *)timeIntervalList {
+    NSMutableArray *timeIntervalStrList = [NSMutableArray array];
+    for (TimeInterval *timeInterval in timeIntervalList) {
+        NSString *from = [NSString stringWithFormat:@"%@ %@:00",
+                          [timeInterval date], [timeInterval fromTime]];
+        NSString *to = [NSString stringWithFormat:@"%@ %@:00",
+                        [timeInterval date], [timeInterval toTime]];
+        NSArray *fromTo = @[from, to];
+        [timeIntervalStrList addObject:fromTo];
+    }
+    
+    NSData *jsonData = [NSJSONSerialization
+                        dataWithJSONObject:timeIntervalStrList
+                        options:NSJSONWritingPrettyPrinted
+                        error:nil];
+    NSString *timeIntervals = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    timeIntervals = [timeIntervals stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+    return timeIntervals;
 }
 
 - (NSString *)date {
@@ -37,6 +89,11 @@
 
 - (NSString *)toTime {
     return [self.timeFormat stringFromDate:self.to];
+}
+
+- (BOOL)isEqualToTimeInterval:(TimeInterval *)timeInterval {
+    //DDLogError(@"%@ == %@", self, timeInterval);
+    return [[self description] isEqualToString:[timeInterval description]];
 }
 
 - (NSString *)description {
