@@ -10,4 +10,9 @@
 
 @interface LoginViewController : UIViewController
 
+/**
+ *  Logout.
+ */
+- (void)logout;
+
 @end

@@ -22,6 +22,8 @@
 
 @property (strong, nonatomic) Faculty *supervisor;
 
+@property (copy, nonatomic) NSString *genderStr;
+
 - (instancetype)initWithJsonData:(id)jsonData;
 
 @end

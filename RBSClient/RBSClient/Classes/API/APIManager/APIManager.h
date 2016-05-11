@@ -24,6 +24,30 @@
               failure:(void(^)(NSError *error))failure
               timeout:(void(^)(void))timeout;
 
+/**
+ *  Update user info.
+ */
+- (void)updateUserInfoWithType:(NSString *)type
+                        userId:(NSString *)userId
+                   designation:(NSString *)designation
+                        office:(NSString *)office
+                dormRoomNumber:(NSString *)dormRoomNumber
+                         phone:(NSString *)phone
+                       success:(void(^)(id jsonData))success
+                       failure:(void(^)(NSError *error))failure
+                       timeout:(void(^)(void))timeout;
+
+/**
+ *  Change password.
+ */
+- (void)changePasswordWithType:(NSString *)type
+                        userId:(NSString *)userId
+                      password:(NSString *)password
+                   newPassword:(NSString *)newPassword
+                       success:(void(^)(id jsonData))success
+                       failure:(void(^)(NSError *error))failure
+                       timeout:(void(^)(void))timeout;
+
 #pragma mark - Room API
 
 /**
@@ -119,5 +143,24 @@
                          success:(void(^)(id jsonData))success
                          failure:(void(^)(NSError *error))failure
                          timeout:(void(^)(void))timeout;
+
+#pragma mark - Supervisor API
+
+/**
+ *  Check the faculty is the student's supervisor.
+ */
+- (void)checkIsSupervisorWithStudentId:(NSString *)studentId
+                             facultyId:(NSString *)facultyId
+                               success:(void(^)(id jsonData))success
+                               failure:(void(^)(NSError *error))failure
+                               timeout:(void(^)(void))timeout;
+
+/**
+ *  Get supervisor list.
+ */
+- (void)getSupervisorListWithStudentId:(NSString *)studentId
+                               success:(void(^)(id jsonData))success
+                               failure:(void(^)(NSError *error))failure
+                               timeout:(void(^)(void))timeout;
 
 @end

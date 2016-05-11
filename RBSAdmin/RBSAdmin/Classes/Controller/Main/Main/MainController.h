@@ -20,4 +20,9 @@
  */
 - (void)setupRootViewController;
 
+/**
+ *  Remove root view controller.
+ */
+- (void)removeRootViewController;
+
 @end

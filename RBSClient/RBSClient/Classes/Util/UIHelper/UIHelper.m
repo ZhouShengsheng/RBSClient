@@ -54,4 +54,17 @@
     checkBox.offAnimationType = BEMAnimationTypeFlat;
 }
 
++ (PopupView *)popupViewWithMessage:(NSString*)message {
+    PopupView *popupView = [PopupView new];
+    KGModal *kgModal = [KGModal sharedInstance];
+    kgModal.closeButtonType = KGModalCloseButtonTypeNone;
+    kgModal.modalBackgroundColor = [UIColor whiteColor];
+    [kgModal showWithContentViewController:popupView andAnimated:YES];
+    
+    popupView.msg_title.text = message;
+    [popupView.confirm setTitle:@"确认" forState:UIControlStateNormal];
+    [popupView.cancel setTitle:@"取消" forState:UIControlStateNormal];
+    return popupView;
+}
+
 @end

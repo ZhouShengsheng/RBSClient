@@ -46,6 +46,66 @@
      timeout:timeout];
 }
 
+- (void)updateUserInfoWithType:(NSString *)type
+                        userId:(NSString *)userId
+                   designation:(NSString *)designation
+                        office:(NSString *)office
+                dormRoomNumber:(NSString *)dormRoomNumber
+                         phone:(NSString *)phone
+                       success:(void(^)(id jsonData))success
+                       failure:(void(^)(NSError *error))failure
+                       timeout:(void(^)(void))timeout {
+    NSString *url = [URLManager sharedInstance].updateUserInfoURL;
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"type"] = type;
+    params[@"id"] = userId;
+    if (designation) {
+        params[@"designation"] = designation;
+    }
+    if (office) {
+        params[@"office"] = office;
+    }
+    if (phone) {
+        params[@"phone"] = phone;
+    }
+    if (dormRoomNumber) {
+        params[@"dormRoomNumber"] = dormRoomNumber;
+    }
+    
+    [[HttpPackage sharedInstance]
+     httpRequestWithMethod:POST
+     url:url
+     parameters:params
+     success:success
+     failure:failure
+     timeout:timeout];
+}
+
+- (void)changePasswordWithType:(NSString *)type
+                        userId:(NSString *)userId
+                      password:(NSString *)password
+                   newPassword:(NSString *)newPassword
+                       success:(void(^)(id jsonData))success
+                       failure:(void(^)(NSError *error))failure
+                       timeout:(void(^)(void))timeout {
+    NSString *url = [URLManager sharedInstance].changePasswordURL;
+    
+    NSDictionary *params =
+    @{@"type": type,
+      @"id": userId,
+      @"password": [password SHA1],
+      @"newPassword": [newPassword SHA1]};
+    
+    [[HttpPackage sharedInstance]
+     httpRequestWithMethod:POST
+     url:url
+     parameters:params
+     success:success
+     failure:failure
+     timeout:timeout];
+}
+
 #pragma mark - Room API
 
 - (void)getRoomListWithBuilding:(NSString *)building
@@ -232,6 +292,49 @@
       @"applicantId": applicantId,
       @"facultyId": facultyId,
       @"timeIntervals": timeIntervals};
+    
+    [[HttpPackage sharedInstance]
+     httpRequestWithMethod:POST
+     url:url
+     parameters:params
+     success:success
+     failure:failure
+     timeout:timeout];
+}
+
+#pragma mark - Supervisor API
+
+/**
+ *  Check the faculty is the student's supervisor.
+ */
+- (void)checkIsSupervisorWithStudentId:(NSString *)studentId
+                             facultyId:(NSString *)facultyId
+                               success:(void(^)(id jsonData))success
+                               failure:(void(^)(NSError *error))failure
+                               timeout:(void(^)(void))timeout {
+    NSString *url = [URLManager sharedInstance].checkSupervisorURL;
+    
+    NSDictionary *params =
+    @{@"studentId": studentId,
+      @"facultyId": facultyId};
+    
+    [[HttpPackage sharedInstance]
+     httpRequestWithMethod:POST
+     url:url
+     parameters:params
+     success:success
+     failure:failure
+     timeout:timeout];
+}
+
+- (void)getSupervisorListWithStudentId:(NSString *)studentId
+                               success:(void(^)(id jsonData))success
+                               failure:(void(^)(NSError *error))failure
+                               timeout:(void(^)(void))timeout {
+    NSString *url = [URLManager sharedInstance].supervisorListURL;
+    
+    NSDictionary *params =
+    @{@"studentId": studentId};
     
     [[HttpPackage sharedInstance]
      httpRequestWithMethod:POST

@@ -89,6 +89,7 @@
 }
 
 #pragma mark - RecyclableViewController protocol methods
+
 - (void)initializeView {
     // Title.
     self.title = [NSString stringWithFormat:@"%@%@", self.building, self.number];

@@ -137,6 +137,28 @@
                      }];
 }
 
+- (void)logout {
+    switch ([UserManager sharedInstance].userType) {
+        case USER_TYPE_UNKNOWN: {
+            [self.facultyCheckBox setOn:YES animated:NO];
+            break;
+        }
+        case USER_TYPE_ADMIN: {
+            [self.facultyCheckBox setOn:YES animated:NO];
+            break;
+        }
+        case USER_TYPE_FACULTY: {
+            [self.facultyCheckBox setOn:YES animated:NO];
+            break;
+        }
+        case USER_TYPE_STUDENT: {
+            [self.studentCheckBox setOn:YES animated:NO];
+            break;
+        }
+    }
+    [self showLoginGroup];
+}
+
 /**
  *  Set up views for login.
  */
@@ -217,7 +239,9 @@
         [userManager saveUserData];
     }
     
-    [[MainController sharedInstance] setupRootViewController];
+    MainController *mainController = [MainController sharedInstance];
+    mainController.loginController = self;
+    [mainController setupRootViewController];
 }
 
 /**

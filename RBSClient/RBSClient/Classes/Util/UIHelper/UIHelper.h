@@ -48,4 +48,9 @@
  */
 + (void)customizeCheckBox:(BEMCheckBox *)checkBox;
 
+/**
+ *  Create popup view with message.
+ */
++ (PopupView *)popupViewWithMessage:(NSString*)message;
+
 @end

@@ -9,6 +9,7 @@
 #import "UserManager.h"
 #import "Utils.h"
 #import "APIManager.h"
+#import "MainController.h"
 
 #define kUserInfo @"USER_INFO"
 
@@ -30,7 +31,7 @@
     return self;
 }
 
--(void)saveUserData {
+- (void)saveUserData {
     AppTools *appTools = [AppTools sharedInstance];
     switch (self.userType) {
         case USER_TYPE_UNKNOWN: {
@@ -189,6 +190,40 @@
     }
 }
 
+- (NSString *)password {
+    switch (self.userType) {
+        case USER_TYPE_UNKNOWN: {
+            return @"";
+        }
+        case USER_TYPE_ADMIN: {
+            return self.admin.password;
+        }
+        case USER_TYPE_FACULTY: {
+            return self.faculty.password;
+        }
+        case USER_TYPE_STUDENT: {
+            return self.student.password;
+        }
+    }
+}
+
+- (void)setPassword:(NSString *)password {
+    switch (self.userType) {
+        case USER_TYPE_UNKNOWN: {
+            break;
+        }
+        case USER_TYPE_ADMIN: {
+            self.admin.password = password;
+        }
+        case USER_TYPE_FACULTY: {
+            self.faculty.password = password;
+        }
+        case USER_TYPE_STUDENT: {
+            self.student.password = password;
+        }
+    }
+}
+
 - (NSString *)userTypeStr {
     switch (self.userType) {
         case USER_TYPE_UNKNOWN: {
@@ -221,6 +256,104 @@
             return self.student;
         }
     }
+}
+
+- (NSString *)userName {
+    switch (self.userType) {
+        case USER_TYPE_UNKNOWN: {
+            return nil;
+        }
+        case USER_TYPE_ADMIN: {
+            return self.admin.name;
+        }
+        case USER_TYPE_FACULTY: {
+            return self.faculty.name;
+        }
+        case USER_TYPE_STUDENT: {
+            return self.student.name;
+        }
+    }
+}
+
+- (NSArray *)officeOrDorm {
+    switch (self.userType) {
+        case USER_TYPE_UNKNOWN: {
+            return @[@"未知", @"未知"];
+        }
+        case USER_TYPE_ADMIN: {
+            return @[@"办公室", self.admin.office];
+        }
+        case USER_TYPE_FACULTY: {
+            return @[@"办公室", self.faculty.office];
+            break;
+        }
+        case USER_TYPE_STUDENT: {
+            return @[@"寝室", self.student.dormRoomNumber];
+            break;
+        }
+    }
+}
+
+- (NSArray *)designationOrClass {
+    switch (self.userType) {
+        case USER_TYPE_UNKNOWN: {
+            return @[@"未知", @"未知"];
+        }
+        case USER_TYPE_ADMIN: {
+            return @[@"职称", self.admin.designation];
+        }
+        case USER_TYPE_FACULTY: {
+            return @[@"职称", self.faculty.designation];
+            break;
+        }
+        case USER_TYPE_STUDENT: {
+            return @[@"班级", self.student.className];
+            break;
+        }
+    }
+}
+
+- (NSString *)genderStr {
+    switch (self.userType) {
+        case USER_TYPE_UNKNOWN: {
+            return @"男";
+        }
+        case USER_TYPE_ADMIN: {
+            return self.admin.genderStr;
+        }
+        case USER_TYPE_FACULTY: {
+            return self.faculty.genderStr;
+        }
+        case USER_TYPE_STUDENT: {
+            return self.student.genderStr;
+        }
+    }
+}
+
+- (NSString *)phone {
+    switch (self.userType) {
+        case USER_TYPE_UNKNOWN: {
+            return @"";
+        }
+        case USER_TYPE_ADMIN: {
+            return self.admin.phone;
+        }
+        case USER_TYPE_FACULTY: {
+            return self.faculty.phone;
+        }
+        case USER_TYPE_STUDENT: {
+            return self.student.phone;
+        }
+    }
+}
+
+- (void)logout {
+    [[MainController sharedInstance] removeRootViewController];
+    self.userType = USER_TYPE_UNKNOWN;
+    self.admin = nil;
+    self.faculty = nil;
+    self.student = nil;
+    [self saveUserData];
 }
 
 @end

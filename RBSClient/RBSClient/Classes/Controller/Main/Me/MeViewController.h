@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Venders.h"
 #import "Utils.h"
+#import "Models.h"
 
-@interface MeViewController : UITableViewController
+@interface MeViewController : UITableViewController  <RecyclableViewController>
 
 @end

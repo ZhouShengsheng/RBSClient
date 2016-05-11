@@ -45,6 +45,12 @@
 //    }
 }
 
+- (void)removeRootViewController {
+    self.tabBarController = nil;
+    [AppDelegate delegate].window.rootViewController = self.loginController;
+    [self.loginController logout];
+}
+
 - (void)setupViewControllers {
     UIStoryboard *roomStoryboard = [UIStoryboard storyboardWithName:@"Room"
                                                              bundle:[NSBundle mainBundle]];

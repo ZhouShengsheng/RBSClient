@@ -28,6 +28,18 @@ typedef NS_ENUM(NSUInteger, UserType) {
 @property(strong, nonatomic) Faculty *faculty;
 @property(strong, nonatomic) Student *student;
 
+// User info.
+@property(strong, readonly, nonatomic) id currentUser;
+@property(copy, readonly, nonatomic) NSString *userId;
+@property(copy, readonly, nonatomic) NSString *userIdDigest;
+@property(copy, nonatomic) NSString *password;
+@property(copy, readonly, nonatomic) NSString *userTypeStr;
+@property(copy, readonly, nonatomic) NSString *userName;
+@property(copy, readonly, nonatomic) NSArray *officeOrDorm;
+@property(copy, readonly, nonatomic) NSArray *designationOrClass;
+@property(copy, readonly, nonatomic) NSString *genderStr;
+@property(copy, readonly, nonatomic) NSString *phone;
+
 + (instancetype)sharedInstance;
 
 /**
@@ -39,26 +51,11 @@ typedef NS_ENUM(NSUInteger, UserType) {
 /**
  *  Save user data.
  */
--(void)saveUserData;
+- (void)saveUserData;
 
 /**
- *  Get user id.
+ *  Logout.
  */
-- (NSString *)userId;
-
-/**
- *  Get user id digest.
- */
-- (NSString *)userIdDigest;
-
-/**
- *  Get user type as string.
- */
-- (NSString *)userTypeStr;
-
-/**
- *  Get current user.
- */
-- (id)currentUser;
+- (void)logout;
 
 @end

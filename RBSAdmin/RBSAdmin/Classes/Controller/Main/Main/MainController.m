@@ -45,6 +45,10 @@
 //    }
 }
 
+- (void)removeRootViewController {
+    
+}
+
 - (void)setupViewControllers {
     UIStoryboard *roomStoryboard = [UIStoryboard storyboardWithName:@"Room"
                                                              bundle:[NSBundle mainBundle]];

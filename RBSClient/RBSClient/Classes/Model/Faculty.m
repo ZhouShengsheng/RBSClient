@@ -48,6 +48,10 @@
     return self;
 }
 
+- (NSString *)genderStr {
+    return self.gender ? @"男" : @"女";
+}
+
 - (NSString *)description {
     return [NSString stringWithFormat:@"%@ %@",
             self.name, self.designation];

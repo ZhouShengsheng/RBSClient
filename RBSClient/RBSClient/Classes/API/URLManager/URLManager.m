@@ -28,6 +28,8 @@
 - (void)initUrls {
     // User.
     _loginURL = [self formUrlWithRoute:@"/user/login"];
+    _updateUserInfoURL = [self formUrlWithRoute:@"/user/update"];
+    _changePasswordURL = [self formUrlWithRoute:@"/user/change_password"];
     
     // Room.
     _roomListURL = [self formUrlWithRoute:@"/room/list"];
@@ -40,6 +42,10 @@
     
     // Room book.
     _bookRoomURL = [self formUrlWithRoute:@"/room_booking/book"];
+    
+    // Supervisor.
+    _checkSupervisorURL = [self formUrlWithRoute:@"/supervisor/check"];
+    _supervisorListURL = [self formUrlWithRoute:@"/supervisor/list"];
 }
 
 @end

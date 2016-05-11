@@ -25,6 +25,16 @@ static const NSString *server = @"http://www.zss-rbs.site:8080/RBSServer";
  */
 @property(copy, readonly, nonatomic) NSString *loginURL;
 
+/**
+ *  Update user info url.
+ */
+@property(copy, readonly, nonatomic) NSString *updateUserInfoURL;
+
+/**
+ *  Change password url.
+ */
+@property(copy, readonly, nonatomic) NSString *changePasswordURL;
+
 #pragma mark - Room
 
 /**
@@ -67,6 +77,17 @@ static const NSString *server = @"http://www.zss-rbs.site:8080/RBSServer";
  *  Unset favorite url.
  */
 @property(copy, readonly, nonatomic) NSString *bookRoomURL;
+
+#pragma mark - Supervisor
+/**
+ *  Check supervisor url.
+ */
+@property(copy, readonly, nonatomic) NSString *checkSupervisorURL;
+
+/**
+ *  Get supervisor list url.
+ */
+@property(copy, readonly, nonatomic) NSString *supervisorListURL;
 
 + (instancetype)sharedInstance;
 

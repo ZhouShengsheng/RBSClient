@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		ADEE41FAE1D4C8795F3A9E85 /* Pods_RBSClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DC2D40FEC963746DBBB740C /* Pods_RBSClient.framework */; };
+		F9146DAB1CE309230070FFEC /* UserProfileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F9146DAA1CE309230070FFEC /* UserProfileCell.m */; };
+		F9146DAD1CE309370070FFEC /* UserProfileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9146DAC1CE309370070FFEC /* UserProfileCell.xib */; };
+		F9146DB61CE384DC0070FFEC /* ChangePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9146DB51CE384DC0070FFEC /* ChangePasswordViewController.m */; };
+		F9146DBB1CE38C070070FFEC /* SupervisorListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F9146DB91CE38C070070FFEC /* SupervisorListCell.m */; };
+		F9146DBC1CE38C070070FFEC /* SupervisorListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9146DBA1CE38C070070FFEC /* SupervisorListCell.xib */; };
+		F9146DC21CE38E220070FFEC /* SupervisorListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9146DC11CE38E220070FFEC /* SupervisorListViewController.m */; };
 		F93B80E31CE0CBCE00EE0B77 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F93B80571CE0CBCE00EE0B77 /* Assets.xcassets */; };
 		F93B80E41CE0CBCE00EE0B77 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F93B80581CE0CBCE00EE0B77 /* main.m */; };
 		F93B80E51CE0CBCE00EE0B77 /* APIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F93B805D1CE0CBCE00EE0B77 /* APIManager.m */; };
@@ -63,6 +69,11 @@
 		F93B81181CE0CBDB00EE0B77 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F93B81171CE0CBDB00EE0B77 /* Info.plist */; };
 		F93B81211CE0D16A00EE0B77 /* FavoriteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F93B81201CE0D16A00EE0B77 /* FavoriteViewController.m */; };
 		F93B81231CE0D17600EE0B77 /* Favorite.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F93B81221CE0D17600EE0B77 /* Favorite.storyboard */; };
+		F98334721CE2DAF200AA0A55 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F98334711CE2DAF200AA0A55 /* MessageUI.framework */; };
+		F983347D1CE2F1E300AA0A55 /* PopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = F983347B1CE2F1E300AA0A55 /* PopupView.m */; };
+		F983347E1CE2F1E300AA0A55 /* PopupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F983347C1CE2F1E300AA0A55 /* PopupView.xib */; };
+		F98334821CE2F3E000AA0A55 /* KGModal.m in Sources */ = {isa = PBXBuildFile; fileRef = F98334811CE2F3E000AA0A55 /* KGModal.m */; };
+		F98334871CE306A500AA0A55 /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F98334861CE306A500AA0A55 /* UserProfileViewController.m */; };
 		F9C0021A1CE17580004F338F /* RoomInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9C002191CE17580004F338F /* RoomInfoViewController.m */; };
 		F9C0021E1CE175BA004F338F /* RoomBasicInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F9C0021D1CE175BA004F338F /* RoomBasicInfoCell.m */; };
 		F9C002201CE17A5D004F338F /* RoomBasicInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9C0021F1CE17A5D004F338F /* RoomBasicInfoCell.xib */; };
@@ -100,6 +111,16 @@
 		479AAE3387D5B14129D569D6 /* Pods-RBSClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RBSClient.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-RBSClient/Pods-RBSClient.debug.xcconfig"; sourceTree = "<group>"; };
 		7DC2D40FEC963746DBBB740C /* Pods_RBSClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RBSClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E36978883B9D67022929E333 /* Pods-RBSClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RBSClient.release.xcconfig"; path = "../Pods/Target Support Files/Pods-RBSClient/Pods-RBSClient.release.xcconfig"; sourceTree = "<group>"; };
+		F9146DA91CE309230070FFEC /* UserProfileCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfileCell.h; sourceTree = "<group>"; };
+		F9146DAA1CE309230070FFEC /* UserProfileCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfileCell.m; sourceTree = "<group>"; };
+		F9146DAC1CE309370070FFEC /* UserProfileCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserProfileCell.xib; sourceTree = "<group>"; };
+		F9146DB41CE384DC0070FFEC /* ChangePasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangePasswordViewController.h; sourceTree = "<group>"; };
+		F9146DB51CE384DC0070FFEC /* ChangePasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangePasswordViewController.m; sourceTree = "<group>"; };
+		F9146DB81CE38C070070FFEC /* SupervisorListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SupervisorListCell.h; sourceTree = "<group>"; };
+		F9146DB91CE38C070070FFEC /* SupervisorListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SupervisorListCell.m; sourceTree = "<group>"; };
+		F9146DBA1CE38C070070FFEC /* SupervisorListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SupervisorListCell.xib; sourceTree = "<group>"; };
+		F9146DC01CE38E220070FFEC /* SupervisorListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SupervisorListViewController.h; sourceTree = "<group>"; };
+		F9146DC11CE38E220070FFEC /* SupervisorListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SupervisorListViewController.m; sourceTree = "<group>"; };
 		F93B80571CE0CBCE00EE0B77 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F93B80581CE0CBCE00EE0B77 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F93B805C1CE0CBCE00EE0B77 /* APIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIManager.h; sourceTree = "<group>"; };
@@ -204,6 +225,14 @@
 		F93B811F1CE0D16A00EE0B77 /* FavoriteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FavoriteViewController.h; path = Favorite/FavoriteViewController.h; sourceTree = "<group>"; };
 		F93B81201CE0D16A00EE0B77 /* FavoriteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FavoriteViewController.m; path = Favorite/FavoriteViewController.m; sourceTree = "<group>"; };
 		F93B81221CE0D17600EE0B77 /* Favorite.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Favorite.storyboard; path = Favorite/Favorite.storyboard; sourceTree = "<group>"; };
+		F98334711CE2DAF200AA0A55 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		F983347A1CE2F1E300AA0A55 /* PopupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopupView.h; sourceTree = "<group>"; };
+		F983347B1CE2F1E300AA0A55 /* PopupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopupView.m; sourceTree = "<group>"; };
+		F983347C1CE2F1E300AA0A55 /* PopupView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopupView.xib; sourceTree = "<group>"; };
+		F98334801CE2F3E000AA0A55 /* KGModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGModal.h; sourceTree = "<group>"; };
+		F98334811CE2F3E000AA0A55 /* KGModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGModal.m; sourceTree = "<group>"; };
+		F98334851CE306A500AA0A55 /* UserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfileViewController.h; sourceTree = "<group>"; };
+		F98334861CE306A500AA0A55 /* UserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfileViewController.m; sourceTree = "<group>"; };
 		F9C002181CE17580004F338F /* RoomInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomInfoViewController.h; sourceTree = "<group>"; };
 		F9C002191CE17580004F338F /* RoomInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoomInfoViewController.m; sourceTree = "<group>"; };
 		F9C0021C1CE175BA004F338F /* RoomBasicInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomBasicInfoCell.h; sourceTree = "<group>"; };
@@ -238,6 +267,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F98334721CE2DAF200AA0A55 /* MessageUI.framework in Frameworks */,
 				ADEE41FAE1D4C8795F3A9E85 /* Pods_RBSClient.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -262,6 +292,7 @@
 		6F04CFA418FD4549C14CFC59 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F98334711CE2DAF200AA0A55 /* MessageUI.framework */,
 				7DC2D40FEC963746DBBB740C /* Pods_RBSClient.framework */,
 			);
 			name = Frameworks;
@@ -274,6 +305,50 @@
 				E36978883B9D67022929E333 /* Pods-RBSClient.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		F9146DB31CE384C60070FFEC /* ChangePassword */ = {
+			isa = PBXGroup;
+			children = (
+				F9146DB41CE384DC0070FFEC /* ChangePasswordViewController.h */,
+				F9146DB51CE384DC0070FFEC /* ChangePasswordViewController.m */,
+			);
+			path = ChangePassword;
+			sourceTree = "<group>";
+		};
+		F9146DB71CE38BEC0070FFEC /* SupervisorListCell */ = {
+			isa = PBXGroup;
+			children = (
+				F9146DB81CE38C070070FFEC /* SupervisorListCell.h */,
+				F9146DB91CE38C070070FFEC /* SupervisorListCell.m */,
+				F9146DBA1CE38C070070FFEC /* SupervisorListCell.xib */,
+			);
+			path = SupervisorListCell;
+			sourceTree = "<group>";
+		};
+		F9146DBD1CE38DC30070FFEC /* Supervisor */ = {
+			isa = PBXGroup;
+			children = (
+				F9146DBE1CE38DD50070FFEC /* SupervisorList */,
+				F9146DBF1CE38E090070FFEC /* Search */,
+			);
+			path = Supervisor;
+			sourceTree = "<group>";
+		};
+		F9146DBE1CE38DD50070FFEC /* SupervisorList */ = {
+			isa = PBXGroup;
+			children = (
+				F9146DC01CE38E220070FFEC /* SupervisorListViewController.h */,
+				F9146DC11CE38E220070FFEC /* SupervisorListViewController.m */,
+			);
+			path = SupervisorList;
+			sourceTree = "<group>";
+		};
+		F9146DBF1CE38E090070FFEC /* Search */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Search;
 			sourceTree = "<group>";
 		};
 		F93B80561CE0CBCE00EE0B77 /* Supporting Files */ = {
@@ -412,6 +487,9 @@
 				F93B80771CE0CBCE00EE0B77 /* Me.storyboard */,
 				F93B80781CE0CBCE00EE0B77 /* MeViewController.h */,
 				F93B80791CE0CBCE00EE0B77 /* MeViewController.m */,
+				F98334841CE3069500AA0A55 /* UserProfile */,
+				F9146DB31CE384C60070FFEC /* ChangePassword */,
+				F9146DBD1CE38DC30070FFEC /* Supervisor */,
 			);
 			path = Me;
 			sourceTree = "<group>";
@@ -579,6 +657,8 @@
 				F93B80BD1CE0CBCE00EE0B77 /* SSPullController */,
 				F93B80BE1CE0CBCE00EE0B77 /* SSTouchEvent */,
 				F93B80C61CE0CBCE00EE0B77 /* TopAlertView */,
+				F983347F1CE2F3E000AA0A55 /* KGModal */,
+				F98334791CE2F1E300AA0A55 /* PopupView */,
 				F93B80D21CE0CBCE00EE0B77 /* YYAddings */,
 				F9C0023E1CE1C9CC004F338F /* UIPlaceHolderTextView */,
 			);
@@ -686,9 +766,11 @@
 				F9C002251CE18252004F338F /* TimeIntervalCell */,
 				F93B80DB1CE0CBCE00EE0B77 /* CheckableCell */,
 				F93B80DF1CE0CBCE00EE0B77 /* RoomListCell */,
+				F9146DB71CE38BEC0070FFEC /* SupervisorListCell */,
 				F9C0021B1CE1759F004F338F /* RoomBasicInfoCell */,
 				F9C0022F1CE1B89D004F338F /* SimpleDescriptionCell */,
 				F9C002331CE1B9E0004F338F /* TextInputCell */,
+				F98334881CE306E300AA0A55 /* UserProfileCell */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -721,6 +803,44 @@
 				F93B81201CE0D16A00EE0B77 /* FavoriteViewController.m */,
 			);
 			name = Favorite;
+			sourceTree = "<group>";
+		};
+		F98334791CE2F1E300AA0A55 /* PopupView */ = {
+			isa = PBXGroup;
+			children = (
+				F983347A1CE2F1E300AA0A55 /* PopupView.h */,
+				F983347B1CE2F1E300AA0A55 /* PopupView.m */,
+				F983347C1CE2F1E300AA0A55 /* PopupView.xib */,
+			);
+			path = PopupView;
+			sourceTree = "<group>";
+		};
+		F983347F1CE2F3E000AA0A55 /* KGModal */ = {
+			isa = PBXGroup;
+			children = (
+				F98334801CE2F3E000AA0A55 /* KGModal.h */,
+				F98334811CE2F3E000AA0A55 /* KGModal.m */,
+			);
+			path = KGModal;
+			sourceTree = "<group>";
+		};
+		F98334841CE3069500AA0A55 /* UserProfile */ = {
+			isa = PBXGroup;
+			children = (
+				F98334851CE306A500AA0A55 /* UserProfileViewController.h */,
+				F98334861CE306A500AA0A55 /* UserProfileViewController.m */,
+			);
+			path = UserProfile;
+			sourceTree = "<group>";
+		};
+		F98334881CE306E300AA0A55 /* UserProfileCell */ = {
+			isa = PBXGroup;
+			children = (
+				F9146DA91CE309230070FFEC /* UserProfileCell.h */,
+				F9146DAA1CE309230070FFEC /* UserProfileCell.m */,
+				F9146DAC1CE309370070FFEC /* UserProfileCell.xib */,
+			);
+			path = UserProfileCell;
 			sourceTree = "<group>";
 		};
 		F9C002171CE174BF004F338F /* Info */ = {
@@ -945,8 +1065,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9146DAD1CE309370070FFEC /* UserProfileCell.xib in Resources */,
 				F93B80E91CE0CBCE00EE0B77 /* LaunchScreen.xib in Resources */,
 				F93B810C1CE0CBCE00EE0B77 /* FontAwesome.ttf in Resources */,
+				F9146DBC1CE38C070070FFEC /* SupervisorListCell.xib in Resources */,
 				F93B80E31CE0CBCE00EE0B77 /* Assets.xcassets in Resources */,
 				F93B80EF1CE0CBCE00EE0B77 /* Me.storyboard in Resources */,
 				F93B81231CE0D17600EE0B77 /* Favorite.storyboard in Resources */,
@@ -958,6 +1080,7 @@
 				F9C0022A1CE1826B004F338F /* TimeIntervalCell.xib in Resources */,
 				F93B81181CE0CBDB00EE0B77 /* Info.plist in Resources */,
 				F93B80EA1CE0CBCE00EE0B77 /* Login.storyboard in Resources */,
+				F983347E1CE2F1E300AA0A55 /* PopupView.xib in Resources */,
 				F9C0023B1CE1BA10004F338F /* TextInputCell.xib in Resources */,
 				F9C0023D1CE1C38B004F338F /* SimpleDescriptionCell.xib in Resources */,
 			);
@@ -1035,13 +1158,17 @@
 				F93B81051CE0CBCE00EE0B77 /* CustomizeNavigationController.m in Sources */,
 				F93B80F71CE0CBCE00EE0B77 /* Room.m in Sources */,
 				F93B81081CE0CBCE00EE0B77 /* SSTouchEventController.m in Sources */,
+				F9146DBB1CE38C070070FFEC /* SupervisorListCell.m in Sources */,
 				F93B80F01CE0CBCE00EE0B77 /* MeViewController.m in Sources */,
 				F93B80F91CE0CBCE00EE0B77 /* Student.m in Sources */,
 				F93B80FA1CE0CBCE00EE0B77 /* TimeInterval.m in Sources */,
 				F93B81061CE0CBCE00EE0B77 /* LanguageManager.m in Sources */,
+				F983347D1CE2F1E300AA0A55 /* PopupView.m in Sources */,
 				F93B81121CE0CBCE00EE0B77 /* UIView+YYAdd.m in Sources */,
+				F98334821CE2F3E000AA0A55 /* KGModal.m in Sources */,
 				F93B810B1CE0CBCE00EE0B77 /* FAImageView.m in Sources */,
 				F93B81101CE0CBCE00EE0B77 /* NSString+YYAdd.m in Sources */,
+				F9146DAB1CE309230070FFEC /* UserProfileCell.m in Sources */,
 				F93B80ED1CE0CBCE00EE0B77 /* BookingListViewController.m in Sources */,
 				F93B80E51CE0CBCE00EE0B77 /* APIManager.m in Sources */,
 				F93B80F81CE0CBCE00EE0B77 /* RoomScreen.m in Sources */,
@@ -1051,6 +1178,7 @@
 				F93B80FF1CE0CBCE00EE0B77 /* UINavigationBar+Shadow.m in Sources */,
 				F93B81021CE0CBCE00EE0B77 /* UIHelper.m in Sources */,
 				F9C002291CE1826B004F338F /* TimeIntervalCell.m in Sources */,
+				F9146DB61CE384DC0070FFEC /* ChangePasswordViewController.m in Sources */,
 				F9C002421CE1C9EE004F338F /* UIPlaceHolderTextView.m in Sources */,
 				F93B81031CE0CBCE00EE0B77 /* UserManager.m in Sources */,
 				F93B80F11CE0CBCE00EE0B77 /* RoomListViewController.m in Sources */,
@@ -1069,7 +1197,9 @@
 				F9C002231CE180D5004F338F /* UIFont+Util.m in Sources */,
 				F93B810E1CE0CBCE00EE0B77 /* UIFont+FontAwesome.m in Sources */,
 				F93B810F1CE0CBCE00EE0B77 /* MozTopAlertView.m in Sources */,
+				F9146DC21CE38E220070FFEC /* SupervisorListViewController.m in Sources */,
 				F9C0021E1CE175BA004F338F /* RoomBasicInfoCell.m in Sources */,
+				F98334871CE306A500AA0A55 /* UserProfileViewController.m in Sources */,
 				F93B81211CE0D16A00EE0B77 /* FavoriteViewController.m in Sources */,
 				F93B80E61CE0CBCE00EE0B77 /* HttpPackage.m in Sources */,
 				F93B81131CE0CBCE00EE0B77 /* CheckableCell.m in Sources */,

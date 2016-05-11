@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PopupView">
+            <connections>
+                <outlet property="cancel" destination="IqB-NO-0yF" id="zH1-PH-70L"/>
+                <outlet property="confirm" destination="5j7-Fo-HbM" id="KF3-k1-Ws9"/>
+                <outlet property="msg_title" destination="Rn1-bf-Y5z" id="Sus-dU-Uq6"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="400" height="135"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title Label" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rn1-bf-Y5z">
+                    <rect key="frame" x="15" y="10" width="370" height="60"/>
+                    <animations/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                    <size key="shadowOffset" width="0.0" height="0.0"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IqB-NO-0yF">
+                    <rect key="frame" x="15" y="85" width="175" height="40"/>
+                    <animations/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="jmU-Tq-1K6"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                    <state key="normal" title="Cancel">
+                        <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="cancel:" destination="-1" eventType="touchUpInside" id="cXO-ZY-gpC"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5j7-Fo-HbM">
+                    <rect key="frame" x="210" y="85" width="175" height="40"/>
+                    <animations/>
+                    <color key="backgroundColor" red="0.93725496529999996" green="0.392156899" blue="0.43529415129999999" alpha="1" colorSpace="deviceRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="uhc-XA-DVJ"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                    <state key="normal" title="OK">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="confirm:" destination="-1" eventType="touchUpInside" id="agV-oO-ayg"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dbb-sJ-cg0">
+                    <rect key="frame" x="200" y="67.5" width="0.0" height="0.0"/>
+                    <animations/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <animations/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="centerX" secondItem="Dbb-sJ-cg0" secondAttribute="centerX" id="9yc-Ub-6T3"/>
+                <constraint firstItem="Rn1-bf-Y5z" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="Ie8-a5-NTs"/>
+                <constraint firstItem="IqB-NO-0yF" firstAttribute="top" secondItem="Rn1-bf-Y5z" secondAttribute="bottom" constant="15" id="MwT-ew-Oc8"/>
+                <constraint firstItem="Dbb-sJ-cg0" firstAttribute="leading" secondItem="IqB-NO-0yF" secondAttribute="trailing" constant="10" id="OEl-Dh-ZxC"/>
+                <constraint firstItem="5j7-Fo-HbM" firstAttribute="top" secondItem="Rn1-bf-Y5z" secondAttribute="bottom" constant="15" id="PWA-zE-adC"/>
+                <constraint firstAttribute="trailing" secondItem="Rn1-bf-Y5z" secondAttribute="trailing" constant="15" id="QEd-iJ-IZ6"/>
+                <constraint firstAttribute="centerY" secondItem="Dbb-sJ-cg0" secondAttribute="centerY" id="QH1-7V-8Tq"/>
+                <constraint firstItem="Rn1-bf-Y5z" firstAttribute="leading" secondItem="IqB-NO-0yF" secondAttribute="leading" id="Uvp-GS-F6L"/>
+                <constraint firstAttribute="bottom" secondItem="IqB-NO-0yF" secondAttribute="bottom" constant="10" id="X02-7P-mz7"/>
+                <constraint firstItem="5j7-Fo-HbM" firstAttribute="leading" secondItem="Dbb-sJ-cg0" secondAttribute="trailing" constant="10" id="bby-oy-LXI"/>
+                <constraint firstItem="5j7-Fo-HbM" firstAttribute="trailing" secondItem="Rn1-bf-Y5z" secondAttribute="trailing" id="ioW-xW-4C2"/>
+                <constraint firstAttribute="bottom" secondItem="5j7-Fo-HbM" secondAttribute="bottom" constant="10" id="jmC-8G-osB"/>
+                <constraint firstItem="Rn1-bf-Y5z" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="10" id="klP-Xf-v2L"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="282" y="205.75"/>
+        </view>
+    </objects>
+</document>

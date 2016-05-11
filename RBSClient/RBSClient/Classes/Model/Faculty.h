@@ -19,6 +19,8 @@
 @property (copy, nonatomic) NSString *office;
 @property (copy, nonatomic) NSString *phone;
 
+@property (copy, nonatomic) NSString *genderStr;
+
 - (instancetype)initWithJsonData:(id)jsonData;
 
 @end

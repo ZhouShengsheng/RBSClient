@@ -54,9 +54,13 @@
     return self;
 }
 
+- (NSString *)genderStr {
+    return self.gender ? @"男" : @"女";
+}
+
 - (NSString *)description {
-    return [NSString stringWithFormat:@"%@ %@ %@",
-            self.name, @"学生", self.studentId];
+    return [NSString stringWithFormat:@"%@ %@ %@ %@",
+            self.name, @"学生", self.studentId, self.className];
 }
 
 @end

@@ -25,5 +25,7 @@
 #import "BEMCheckBox.h"
 #import "ActionSheetDatePicker.h"
 #import "UIPlaceHolderTextView.h"
+#import "PopupView.h"
+#import "KGModal.h"
 
 #endif /* Venders_h */

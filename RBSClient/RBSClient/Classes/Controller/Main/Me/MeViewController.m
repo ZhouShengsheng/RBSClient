@@ -7,6 +7,12 @@
 //
 
 #import "MeViewController.h"
+#import "UserManager.h"
+#import "SimpleDescriptionCell.h"
+#import "MainController.h"
+#import "UserProfileViewController.h"
+#import "ChangePasswordViewController.h"
+#import "SupervisorListViewController.h"
 
 @interface MeViewController ()
 
@@ -17,81 +23,141 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    self.title = @"周圣盛";
+    [self initializeView];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [[self rdv_tabBarController] setTabBarHidden:NO animated:YES];
+}
+
+#pragma mark - RecyclableViewController protocol methods
+
+- (void)initializeView {
+    // Title.
+    self.title = [UserManager sharedInstance].userName;
+    
+    // Table view.
+    [self.tableView registerNib:[UINib nibWithNibName:@"SimpleDescriptionCell" bundle:nil]
+         forCellReuseIdentifier:@"SimpleDescriptionCell"];
+    self.tableView.tableFooterView = [UIView new];
+    
+    // Book button.
+    UIBarButtonItem *logoutButton = [[UIBarButtonItem alloc]
+                                     initWithTitle:@"注销登录"
+                                     style:UIBarButtonItemStylePlain
+                                     target:self
+                                     action:@selector(logout)];
+    self.navigationItem.rightBarButtonItem = logoutButton;
+    
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 0;
+    return 4;
 }
 
-/*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
     
-    // Configure the cell...
-    
+    SimpleDescriptionCell *cell = [tableView
+                                    dequeueReusableCellWithIdentifier:@"SimpleDescriptionCell"
+                                    forIndexPath:indexPath];
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    cell.selectionStyle = UITableViewCellSelectionStyleDefault;
+    switch (indexPath.row) {
+        case 0: {
+            [cell displayDescription:@"个人信息"];
+            break;
+        }
+        case 1: {
+            [cell displayDescription:@"修改密码"];
+            break;
+        }
+        case 2: {
+            switch ([UserManager sharedInstance].userType) {
+                case USER_TYPE_UNKNOWN: {
+                    [cell displayDescription:@"上级管理"];
+                    break;
+                }
+                case USER_TYPE_ADMIN: {
+                    [cell displayDescription:@"申请审核"];
+                    break;
+                }
+                case USER_TYPE_FACULTY: {
+                    [cell displayDescription:@"学生申请审核"];
+                    break;
+                }
+                case USER_TYPE_STUDENT: {
+                    [cell displayDescription:@"上级管理"];
+                    break;
+                }
+            }
+            break;
+        }
+        case 3: {
+            [cell displayDescription:@"申请历史"];
+            break;
+        }
+    }
     return cell;
 }
-*/
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    
+    switch (indexPath.row) {
+        // 个人信息
+        case 0: {
+            UserProfileViewController *vc = [UserProfileViewController new];
+            [self.navigationController pushViewController:vc animated:YES];
+            break;
+        }
+        // 修改密码
+        case 1: {
+            ChangePasswordViewController *vc = [ChangePasswordViewController new];
+            [self.navigationController pushViewController:vc animated:YES];
+             break;
+        }
+        // 上级管理/学生申请审核
+        case 2: {
+            switch ([UserManager sharedInstance].userType) {
+                case USER_TYPE_UNKNOWN: {
+                    break;
+                }
+                case USER_TYPE_ADMIN: {
+                    break;
+                }
+                case USER_TYPE_FACULTY: {
+                    // 学生申请审核
+                    break;
+                }
+                case USER_TYPE_STUDENT: {
+                    // 上级管理
+                    SupervisorListViewController *vc = [SupervisorListViewController new];
+                    [self.navigationController pushViewController:vc animated:YES];
+                    break;
+                }
+            }
+        }
+        // 申请历史
+        case 3: {
+            
+        }
+    }
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+#pragma mark - Logout
+
+- (void)logout {
+    PopupView *logoutPopup = [UIHelper popupViewWithMessage:@"是否确认注销登录？"];
+    logoutPopup.confirmButtonPressedBlock = ^(void){
+        [[UserManager sharedInstance] logout];
+    };
 }
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
