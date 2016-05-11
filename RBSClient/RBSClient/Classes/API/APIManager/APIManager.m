@@ -170,6 +170,48 @@
      timeout:timeout];
 }
 
+- (void)clearFavoriteRoomWithUserType:(NSString *)userType
+                               userId:(NSString *)userId
+                              success:(void(^)(id jsonData))success
+                              failure:(void(^)(NSError *error))failure
+                              timeout:(void(^)(void))timeout {
+    NSString *url = [URLManager sharedInstance].clearFavoriteURL;
+    
+    NSDictionary *params =
+    @{@"type": userType,
+      @"id": userId};
+    
+    [[HttpPackage sharedInstance]
+     httpRequestWithMethod:POST
+     url:url
+     parameters:params
+     success:success
+     failure:failure
+     timeout:timeout];
+}
+
+- (void)getFavoriteRoomListWithUserType:(NSString *)userType
+                                 userId:(NSString *)userId
+                              fromIndex:(NSUInteger)fromIndex
+                                success:(void(^)(id jsonData))success
+                                failure:(void(^)(NSError *error))failure
+                                timeout:(void(^)(void))timeout {
+    NSString *url = [URLManager sharedInstance].favoriteListURL;
+    
+    NSDictionary *params =
+    @{@"type": userType,
+      @"id": userId,
+      @"fromIndex": @(fromIndex)};
+    
+    [[HttpPackage sharedInstance]
+     httpRequestWithMethod:POST
+     url:url
+     parameters:params
+     success:success
+     failure:failure
+     timeout:timeout];
+}
+
 #pragma mark - Room Booking API
 
 - (void)bookRoomWithRoomBuilding:(NSString *)roomBuilding

@@ -35,6 +35,8 @@
     _roomInfoURL = [self formUrlWithRoute:@"/room/info"];
     _setFavoriteURL = [self formUrlWithRoute:@"/room/set_favorite"];
     _unsetFavoriteURL = [self formUrlWithRoute:@"/room/unset_favorite"];
+    _clearFavoriteURL = [self formUrlWithRoute:@"/room/clear_favorite"];
+    _favoriteListURL = [self formUrlWithRoute:@"/room/favorite_list"];
     
     // Room book.
     _bookRoomURL = [self formUrlWithRoute:@"/room_booking/book"];

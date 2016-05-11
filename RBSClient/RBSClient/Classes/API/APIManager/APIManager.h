@@ -86,6 +86,25 @@
                               failure:(void(^)(NSError *error))failure
                               timeout:(void(^)(void))timeout;
 
+/**
+ *  Clear favorite.
+ */
+- (void)clearFavoriteRoomWithUserType:(NSString *)userType
+                               userId:(NSString *)userId
+                              success:(void(^)(id jsonData))success
+                              failure:(void(^)(NSError *error))failure
+                              timeout:(void(^)(void))timeout;
+
+/**
+ *  Get favorite list.
+ */
+- (void)getFavoriteRoomListWithUserType:(NSString *)userType
+                                 userId:(NSString *)userId
+                              fromIndex:(NSUInteger)fromIndex
+                                success:(void(^)(id jsonData))success
+                                failure:(void(^)(NSError *error))failure
+                                timeout:(void(^)(void))timeout;
+
 #pragma mark - Room Booking API
 
 /**

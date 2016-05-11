@@ -52,6 +52,16 @@ static const NSString *server = @"http://www.zss-rbs.site:8080/RBSServer";
  */
 @property(copy, readonly, nonatomic) NSString *unsetFavoriteURL;
 
+/**
+ *  Clear favorite url.
+ */
+@property(copy, readonly, nonatomic) NSString *clearFavoriteURL;
+
+/**
+ *  Get favorite list url.
+ */
+@property(copy, readonly, nonatomic) NSString *favoriteListURL;
+
 #pragma mark - Room booking
 /**
  *  Unset favorite url.

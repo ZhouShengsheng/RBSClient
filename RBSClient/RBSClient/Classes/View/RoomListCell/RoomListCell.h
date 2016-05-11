@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "Models.h"
+#import "Venders.h"
 
-@interface RoomListCell : UITableViewCell
+@interface RoomListCell : SWTableViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *buildingNumberLabel;
 @property (weak, nonatomic) IBOutlet UILabel *infoLabel;

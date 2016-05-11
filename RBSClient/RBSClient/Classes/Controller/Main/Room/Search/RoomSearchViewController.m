@@ -77,8 +77,13 @@
     self.searchBar.placeholder = @"请输入教室楼栋或编号";
     self.navigationItem.titleView = self.searchBar;
     self.searchBar.showsCancelButton = YES;
+    
     self.searchBar.delegate = self;
     [self.searchBar becomeFirstResponder];
+    
+    id barButtonAppearanceInSearchBar = [UIBarButtonItem
+                                         appearanceWhenContainedIn:[UISearchBar class], nil];
+    [barButtonAppearanceInSearchBar setTitle:@"取消"];
     
     // Init room list array.
     self.roomList = [NSMutableArray array];
@@ -162,5 +167,6 @@
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
     [searchBar resignFirstResponder];
 }
+
 
 @end

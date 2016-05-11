@@ -209,9 +209,11 @@
          building:self.building
          number:self.number
          success:^(id jsonData) {
-             if ([jsonData[@"message"] isEqualToString:@"Successfully set favorite."]) {
-                 self.room.isFavorite = YES;
-                 [self updateFavoriteButton];
+             if ([jsonData isKindOfClass:NSDictionary.class]) {
+                 if ([jsonData[@"message"] isEqualToString:@"Successfully set favorite."]) {
+                     self.room.isFavorite = YES;
+                     [self updateFavoriteButton];
+                 }
              }
          }
          failure:^(NSError *error) {
@@ -228,9 +230,11 @@
          building:self.building
          number:self.number
          success:^(id jsonData) {
-             if ([jsonData[@"message"] isEqualToString:@"Successfully unset favorite."]) {
-                 self.room.isFavorite = NO;
-                 [self updateFavoriteButton];
+             if ([jsonData isKindOfClass:NSDictionary.class]) {
+                 if ([jsonData[@"message"] isEqualToString:@"Successfully unset favorite."]) {
+                     self.room.isFavorite = NO;
+                     [self updateFavoriteButton];
+                 }
              }
          }
          failure:^(NSError *error) {
