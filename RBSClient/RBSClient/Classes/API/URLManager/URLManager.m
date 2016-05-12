@@ -42,10 +42,15 @@
     
     // Room book.
     _bookRoomURL = [self formUrlWithRoute:@"/room_booking/book"];
+    _studentBookingListURL = [self formUrlWithRoute:@"/room_booking/student_booking_list"];
+    _roomBookingInfoURL = [self formUrlWithRoute:@"/room_booking/info"];
     
     // Supervisor.
     _checkSupervisorURL = [self formUrlWithRoute:@"/supervisor/check"];
     _supervisorListURL = [self formUrlWithRoute:@"/supervisor/list"];
+    _addSupervisorURL = [self formUrlWithRoute:@"/supervisor/add"];
+    _removeSupervisorURL = [self formUrlWithRoute:@"/supervisor/delete"];
+    _searchSupervisorURL = [self formUrlWithRoute:@"/supervisor/search"];
 }
 
 @end

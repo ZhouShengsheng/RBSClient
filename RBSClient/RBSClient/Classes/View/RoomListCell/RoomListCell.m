@@ -7,7 +7,6 @@
 //
 
 #import "RoomListCell.h"
-#import "Utils.h"
 
 @implementation RoomListCell
 

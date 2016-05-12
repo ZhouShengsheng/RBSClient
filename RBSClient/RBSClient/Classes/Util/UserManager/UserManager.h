@@ -40,6 +40,9 @@ typedef NS_ENUM(NSUInteger, UserType) {
 @property(copy, readonly, nonatomic) NSString *genderStr;
 @property(copy, readonly, nonatomic) NSString *phone;
 
+// Selected supervisor.
+@property(strong, nonatomic) Faculty *selectedSupervisor;
+
 + (instancetype)sharedInstance;
 
 /**

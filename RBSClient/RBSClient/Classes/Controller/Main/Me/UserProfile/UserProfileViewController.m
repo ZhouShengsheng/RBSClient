@@ -77,12 +77,11 @@
          if ([jsonData isKindOfClass:NSDictionary.class]) {
              NSString *message = jsonData[@"message"];
              if ([message isEqualToString:@"Yes."]) {
-                 self.barButton.title = @"移除";
                  self.isSupervisor = YES;
              } else {
-                 self.barButton.title = @"添加";
                  self.isSupervisor = NO;
              }
+             [self updateBarButton];
          }
      }
      failure:^(NSError *error) {
@@ -91,6 +90,14 @@
      timeout:^{
          
      }];
+}
+
+- (void)updateBarButton {
+    if (self.isSupervisor) {
+        self.barButton.title = @"移除";
+    } else {
+        self.barButton.title = @"添加";
+    }
 }
 
 #pragma mark - Table view data source
@@ -179,99 +186,195 @@
 
 - (void)barButtonAction {
     if (self.faculty) {
-        // 添加上级
-        
-    } else {
-        // 修改个人信息
-        UserManager *userManager = [UserManager sharedInstance];
-        
-        // Parameters.
-        NSString *designation = nil;
-        NSString *office = nil;
-        NSString *dormRoomNumber = nil;
-        NSString *phone = self.phoneCell.value;
-        
-        switch (userManager.userType) {
-            case USER_TYPE_UNKNOWN: {
-                return ;
-            }
-            case USER_TYPE_ADMIN: {
-            }
-            case USER_TYPE_FACULTY: {
-                designation = self.designationOrClassCell.value;
-                office = self.officeOrDormCell.value;
-                break;
-            }
-            case USER_TYPE_STUDENT: {
-                dormRoomNumber = self.officeOrDormCell.value;
-                break;
-            }
+        if (self.isSupervisor) {
+            [self removeSupervisor];
+        } else {
+            [self addSupervisor];
         }
-        
-        // Configure hud.
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        hud.mode = MBProgressHUDModeIndeterminate;
-        hud.labelText = @"正在保存个人信息...";
-        
-        [[APIManager sharedInstance]
-         updateUserInfoWithType:userManager.userTypeStr
-         userId:userManager.userId
-         designation:designation
-         office:office
-         dormRoomNumber:dormRoomNumber
-         phone:phone
-         success:^(id jsonData) {
-             if ([jsonData isKindOfClass:NSDictionary.class]) {
-                 NSString *message = jsonData[@"message"];
-                 if ([message isEqualToString:@"User updated."]) {
-                     [UIHelper showTopSuccessView:@"个人信息保存成功！"
-                             fromViewController:self.navigationController];
-                     [self.navigationController popViewControllerAnimated:YES];
-                     
-                     switch (userManager.userType) {
-                         case USER_TYPE_UNKNOWN: {
-                             return ;
-                         }
-                         case USER_TYPE_ADMIN: {
-                             Faculty *admin = userManager.admin;
-                             admin.designation = designation;
-                             admin.office = office;
-                             break;
-                         }
-                         case USER_TYPE_FACULTY: {
-                             Faculty *faculty = userManager.faculty;
-                             faculty.designation = designation;
-                             faculty.office = office;
-                             break;
-                         }
-                         case USER_TYPE_STUDENT: {
-                             Student *student = userManager.student;
-                             student.dormRoomNumber = dormRoomNumber;
-                             student.phone = phone;
-                             break;
-                         }
+    } else {
+        [self updateUserProfile];
+    }
+}
+
+/**
+ *  Add supervisor.
+ */
+- (void)addSupervisor {
+    // Configure hud.
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.mode = MBProgressHUDModeIndeterminate;
+    hud.labelText = @"正在添加上级...";
+    
+    [[APIManager sharedInstance]
+     addSupervisorWithStudentId:[UserManager sharedInstance].userId
+     facultyId:self.faculty.facultyId
+     success:^(id jsonData) {
+         if ([jsonData isKindOfClass:NSDictionary.class]) {
+             NSString *message = jsonData[@"message"];
+             if ([message isEqualToString:@"Successfully added supervisor."]) {
+                 [UIHelper showTopSuccessView:@"添加上级成功！"
+                           fromViewController:self.navigationController];
+                 self.isSupervisor = YES;
+                 [self updateBarButton];
+             } else {
+                 [UIHelper showTopAlertView:@"服务器错误！请稍后重试！"
+                         fromViewController:self.navigationController];
+             }
+         } else {
+             [UIHelper showTopAlertView:@"服务器错误！请稍后重试！"
+                     fromViewController:self.navigationController];
+         }
+         [hud hide:YES];
+     }
+     failure:^(NSError *error) {
+         [UIHelper showTopAlertView:@"服务器错误！请稍后重试！"
+                 fromViewController:self.navigationController];
+         [hud hide:YES];
+     }
+     timeout:^{
+         [UIHelper showTopAlertView:@"等待超时！请稍后重试！"
+                 fromViewController:self.navigationController];
+         [hud hide:YES];
+     }];
+}
+
+/**
+ *  Remove supervisor.
+ */
+- (void)removeSupervisor {
+    // Configure hud.
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.mode = MBProgressHUDModeIndeterminate;
+    hud.labelText = @"正在移除上级...";
+    
+    [[APIManager sharedInstance]
+     removeSupervisorWithStudentId:[UserManager sharedInstance].userId
+     facultyId:self.faculty.facultyId
+     success:^(id jsonData) {
+         if ([jsonData isKindOfClass:NSDictionary.class]) {
+             NSString *message = jsonData[@"message"];
+             if ([message isEqualToString:@"Successfully deleted supervisor."]) {
+                 [UIHelper showTopSuccessView:@"移除上级成功！"
+                           fromViewController:self.navigationController];
+                 self.isSupervisor = NO;
+                 [self updateBarButton];
+             } else if([message isEqualToString:@"Class supervisor cannot be deleted."]) {
+                 [UIHelper showTopAlertView:@"辅导员不可移除！"
+                         fromViewController:self.navigationController];
+             } else {
+                 [UIHelper showTopAlertView:@"服务器错误！请稍后重试！"
+                         fromViewController:self.navigationController];
+             }
+         } else {
+             [UIHelper showTopAlertView:@"服务器错误！请稍后重试！"
+                     fromViewController:self.navigationController];
+         }
+         [hud hide:YES];
+     }
+     failure:^(NSError *error) {
+         [UIHelper showTopAlertView:@"服务器错误！请稍后重试！"
+                 fromViewController:self.navigationController];
+         [hud hide:YES];
+     }
+     timeout:^{
+         [UIHelper showTopAlertView:@"等待超时！请稍后重试！"
+                 fromViewController:self.navigationController];
+         [hud hide:YES];
+     }];
+}
+
+/**
+ *  Update user profile.
+ */
+- (void)updateUserProfile {
+    UserManager *userManager = [UserManager sharedInstance];
+    
+    // Parameters.
+    NSString *designation = nil;
+    NSString *office = nil;
+    NSString *dormRoomNumber = nil;
+    NSString *phone = self.phoneCell.value;
+    
+    switch (userManager.userType) {
+        case USER_TYPE_UNKNOWN: {
+            return ;
+        }
+        case USER_TYPE_ADMIN: {
+        }
+        case USER_TYPE_FACULTY: {
+            designation = self.designationOrClassCell.value;
+            office = self.officeOrDormCell.value;
+            break;
+        }
+        case USER_TYPE_STUDENT: {
+            dormRoomNumber = self.officeOrDormCell.value;
+            break;
+        }
+    }
+    
+    // Configure hud.
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.mode = MBProgressHUDModeIndeterminate;
+    hud.labelText = @"正在保存个人信息...";
+    
+    [[APIManager sharedInstance]
+     updateUserInfoWithType:userManager.userTypeStr
+     userId:userManager.userId
+     designation:designation
+     office:office
+     dormRoomNumber:dormRoomNumber
+     phone:phone
+     success:^(id jsonData) {
+         if ([jsonData isKindOfClass:NSDictionary.class]) {
+             NSString *message = jsonData[@"message"];
+             if ([message isEqualToString:@"User updated."]) {
+                 [UIHelper showTopSuccessView:@"个人信息保存成功！"
+                           fromViewController:self.navigationController];
+                 [self.navigationController popViewControllerAnimated:YES];
+                 
+                 switch (userManager.userType) {
+                     case USER_TYPE_UNKNOWN: {
+                         return ;
                      }
-                 } else {
-                     [UIHelper showTopAlertView:@"服务器错误！请稍后重试！"
-                             fromViewController:self.navigationController];
+                     case USER_TYPE_ADMIN: {
+                         Faculty *admin = userManager.admin;
+                         admin.designation = designation;
+                         admin.office = office;
+                         break;
+                     }
+                     case USER_TYPE_FACULTY: {
+                         Faculty *faculty = userManager.faculty;
+                         faculty.designation = designation;
+                         faculty.office = office;
+                         break;
+                     }
+                     case USER_TYPE_STUDENT: {
+                         Student *student = userManager.student;
+                         student.dormRoomNumber = dormRoomNumber;
+                         student.phone = phone;
+                         break;
+                     }
                  }
              } else {
                  [UIHelper showTopAlertView:@"服务器错误！请稍后重试！"
                          fromViewController:self.navigationController];
              }
-             [hud hide:YES];
-         }
-         failure:^(NSError *error) {
+         } else {
              [UIHelper showTopAlertView:@"服务器错误！请稍后重试！"
                      fromViewController:self.navigationController];
-             [hud hide:YES];
          }
-         timeout:^{
-             [UIHelper showTopAlertView:@"服务器错误！请稍后重试！"
-                     fromViewController:self.navigationController];
-             [hud hide:YES];
-         }];
-    }
+         [hud hide:YES];
+     }
+     failure:^(NSError *error) {
+         [UIHelper showTopAlertView:@"服务器错误！请稍后重试！"
+                 fromViewController:self.navigationController];
+         [hud hide:YES];
+     }
+     timeout:^{
+         [UIHelper showTopAlertView:@"等待超时！请稍后重试！"
+                 fromViewController:self.navigationController];
+         [hud hide:YES];
+     }];
 }
 
 @end

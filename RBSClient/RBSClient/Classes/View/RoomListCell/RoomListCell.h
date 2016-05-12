@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Models.h"
 #import "Venders.h"
+#import "Utils.h"
 
 @interface RoomListCell : SWTableViewCell
 

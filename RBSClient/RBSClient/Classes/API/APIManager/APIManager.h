@@ -138,11 +138,28 @@
                       roomNumber:(NSString *)roomNumber
                    applicantType:(NSString *)applicantType
                      applicantId:(NSString *)applicantId
+                      bookReason:(NSString *)bookReason
                        facultyId:(NSString *)facultyId
                    timeIntervals:(NSString *)timeIntervals
                          success:(void(^)(id jsonData))success
                          failure:(void(^)(NSError *error))failure
                          timeout:(void(^)(void))timeout;
+
+/**
+ *  Get student booking list.
+ */
+- (void)getStudentBookingWithFacultyId:(NSString *)facultyId
+                               success:(void(^)(id jsonData))success
+                               failure:(void(^)(NSError *error))failure
+                               timeout:(void(^)(void))timeout;
+
+/**
+ *  Get detailed booking info.
+ */
+- (void)getRoomBookingInfoWithGroupId:(NSString *)groupId
+                              success:(void(^)(id jsonData))success
+                              failure:(void(^)(NSError *error))failure
+                              timeout:(void(^)(void))timeout;
 
 #pragma mark - Supervisor API
 
@@ -162,5 +179,33 @@
                                success:(void(^)(id jsonData))success
                                failure:(void(^)(NSError *error))failure
                                timeout:(void(^)(void))timeout;
+
+/**
+ *  Add supervisor.
+ */
+- (void)addSupervisorWithStudentId:(NSString *)studentId
+                         facultyId:(NSString *)facultyId
+                           success:(void(^)(id jsonData))success
+                           failure:(void(^)(NSError *error))failure
+                           timeout:(void(^)(void))timeout;
+
+/**
+ *  Remove supervisor.
+ */
+- (void)removeSupervisorWithStudentId:(NSString *)studentId
+                            facultyId:(NSString *)facultyId
+                              success:(void(^)(id jsonData))success
+                              failure:(void(^)(NSError *error))failure
+                              timeout:(void(^)(void))timeout;
+
+/**
+ *  Search supervisor.
+ */
+- (void)searchSupervisorWithCondition:(NSString *)condition
+                              success:(void(^)(id jsonData))success
+                              failure:(void(^)(NSError *error))failure
+                              timeout:(void(^)(void))timeout;
+
+
 
 @end

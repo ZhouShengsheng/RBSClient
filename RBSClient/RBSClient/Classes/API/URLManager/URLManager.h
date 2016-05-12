@@ -78,6 +78,16 @@ static const NSString *server = @"http://www.zss-rbs.site:8080/RBSServer";
  */
 @property(copy, readonly, nonatomic) NSString *bookRoomURL;
 
+/**
+ *  Student booking list url.
+ */
+@property(copy, readonly, nonatomic) NSString *studentBookingListURL;
+
+/**
+ *  Detailed booking info url.
+ */
+@property(copy, readonly, nonatomic) NSString *roomBookingInfoURL;
+
 #pragma mark - Supervisor
 /**
  *  Check supervisor url.
@@ -88,6 +98,21 @@ static const NSString *server = @"http://www.zss-rbs.site:8080/RBSServer";
  *  Get supervisor list url.
  */
 @property(copy, readonly, nonatomic) NSString *supervisorListURL;
+
+/**
+ *  Add supervisor url.
+ */
+@property(copy, readonly, nonatomic) NSString *addSupervisorURL;
+
+/**
+ *  Remove supervisor url.
+ */
+@property(copy, readonly, nonatomic) NSString *removeSupervisorURL;
+
+/**
+ *  Search supervisor url.
+ */
+@property(copy, readonly, nonatomic) NSString *searchSupervisorURL;
 
 + (instancetype)sharedInstance;
 

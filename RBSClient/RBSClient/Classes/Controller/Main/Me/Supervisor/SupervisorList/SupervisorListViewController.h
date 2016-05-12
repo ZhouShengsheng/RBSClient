@@ -13,4 +13,7 @@
 
 @interface SupervisorListViewController : UITableViewController <RecyclableViewController>
 
+// Will select supervisor.
+@property(assign, nonatomic) BOOL willSelectSupervisor;
+
 @end

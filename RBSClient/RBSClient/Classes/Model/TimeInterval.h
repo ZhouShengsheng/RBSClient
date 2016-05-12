@@ -22,6 +22,11 @@
 + (NSMutableOrderedSet *)timeIntervalListFromJsonData:(id)jsonData;
 
 /**
+ *  Generate ordered set from json string.
+ */
++ (NSMutableOrderedSet *)timeIntervalListFromJsonString:(NSString *)jsonString;
+
+/**
  *  Generate json string from time interval list.
  */
 + (NSString *)timeIntervalJsonStringFromOrderedSet:(NSOrderedSet *)timeIntervalList;

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="StudentBookingCell" rowHeight="61" id="KGk-i7-Jjw" customClass="StudentBookingCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="61"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="287" height="60.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="软件楼306" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Leq-XF-Rdq">
+                        <rect key="frame" x="20" y="8" width="74" height="18"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="18" id="CkY-ck-I8U"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="周圣盛 8000112164 软工121 " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ys9-Ez-cig">
+                        <rect key="frame" x="102" y="8" width="192" height="18"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="18" id="NJQ-GU-5a3"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2016-06-05 08:00-10:00 ..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n2I-6j-w7c">
+                        <rect key="frame" x="20" y="34" width="267" height="18"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="18" id="SKp-ve-zyC"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="ys9-Ez-cig" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="0e8-0e-baC"/>
+                    <constraint firstItem="ys9-Ez-cig" firstAttribute="leading" secondItem="Leq-XF-Rdq" secondAttribute="trailing" constant="8" id="6Aq-pU-0LM"/>
+                    <constraint firstItem="n2I-6j-w7c" firstAttribute="top" secondItem="ys9-Ez-cig" secondAttribute="bottom" constant="8" id="EgZ-WA-4uq"/>
+                    <constraint firstItem="n2I-6j-w7c" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="NGq-NE-UPU"/>
+                    <constraint firstItem="Leq-XF-Rdq" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="cSs-ea-E3L"/>
+                    <constraint firstAttribute="trailing" secondItem="n2I-6j-w7c" secondAttribute="trailing" id="jlI-Po-qNi"/>
+                    <constraint firstItem="Leq-XF-Rdq" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="yy8-up-YsT"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="roomLabel" destination="Leq-XF-Rdq" id="NDw-CL-voz"/>
+                <outlet property="studentLabel" destination="ys9-Ez-cig" id="ZNY-Wr-Q2b"/>
+                <outlet property="timeIntervalLabel" destination="n2I-6j-w7c" id="SW4-Ng-OPz"/>
+            </connections>
+            <point key="canvasLocation" x="245" y="350.5"/>
+        </tableViewCell>
+    </objects>
+</document>

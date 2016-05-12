@@ -1,21 +1,21 @@
 //
-//  SupervisorListViewController.m
+//  StudentBookingViewController.m
 //  RBSClient
 //
-//  Created by Shengsheng on 11/5/16.
+//  Created by Shengsheng on 12/5/16.
 //  Copyright © 2016 NTU. All rights reserved.
 //
 
-#import "SupervisorListViewController.h"
-#import "UserProfileViewController.h"
-#import "SupervisorSearchViewController.h"
-#import "SupervisorListCell.h"
+#import "StudentBookingViewController.h"
 #import "APIManager.h"
 #import "UserManager.h"
+#import "StudentBooking.h"
+#import "StudentBookingCell.h"
+#import "ReviewStudentBookingViewController.h"
 
-@interface SupervisorListViewController ()
+@interface StudentBookingViewController ()
 
-@property (strong, nonatomic) NSMutableArray<Faculty *> *supervisorList;
+@property (strong, nonatomic) NSMutableArray<StudentBooking *> *studentBookingList;
 @property (assign, nonatomic) BOOL noMoreData;
 
 @property (strong, nonatomic) MJRefreshNormalHeader *header;
@@ -23,11 +23,11 @@
 
 @end
 
-@implementation SupervisorListViewController
+@implementation StudentBookingViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     [self initializeView];
 }
 
@@ -42,7 +42,7 @@
  */
 - (void)loadData {
     [[APIManager sharedInstance]
-     getSupervisorListWithStudentId:[UserManager sharedInstance].userId
+     getStudentBookingWithFacultyId:[UserManager sharedInstance].userId
      success:^(id jsonData) {
          if ([jsonData isKindOfClass:NSDictionary.class]) {
              [self.header endRefreshing];
@@ -58,7 +58,7 @@
              [self.footer endRefreshing];
          }
          for (NSUInteger i = 0; i < count; i++) {
-             [self.supervisorList addObject:[[Faculty alloc] initWithJsonData:array[i]]];
+             [self.studentBookingList addObject:[[StudentBooking alloc] initWithJsonData:array[i]]];
          }
          [self.tableView reloadData];
          [self.header endRefreshing];
@@ -78,22 +78,14 @@
 
 - (void)initializeView {
     // Title.
-    self.title = @"上级列表";
-    
-    // Navigation bar buttons.
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc]
-                                     initWithTitle:@"添加"
-                                     style:UIBarButtonItemStylePlain
-                                     target:self
-                                     action:@selector(addSupervisor)];
-    self.navigationItem.rightBarButtonItem = addButton;
+    self.title = @"学生申请列表";
     
     // Init supervisor list array.
-    self.supervisorList = [NSMutableArray array];
+    self.studentBookingList = [NSMutableArray array];
     
     // Register table view cell.
-    [self.tableView registerNib:[UINib nibWithNibName:@"SupervisorListCell" bundle:nil]
-         forCellReuseIdentifier:@"SupervisorListCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"StudentBookingCell" bundle:nil]
+         forCellReuseIdentifier:@"StudentBookingCell"];
     self.tableView.tableFooterView = [UIView new];
     
     // Init header and footer.
@@ -111,28 +103,27 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.supervisorList.count;
+    return self.studentBookingList.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    SupervisorListCell *cell = (SupervisorListCell *)[tableView dequeueReusableCellWithIdentifier:@"SupervisorListCell" forIndexPath:indexPath];
-    
-    [cell displayWithFaculty:self.supervisorList[indexPath.row]];
-    
+    StudentBookingCell *cell = (StudentBookingCell *)[tableView
+                                                      dequeueReusableCellWithIdentifier:@"StudentBookingCell"
+                                                      forIndexPath:indexPath];
+    [cell displayWithStudentBooking:self.studentBookingList[indexPath.row]];
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 61;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (self.willSelectSupervisor) {
-        Faculty *supervisor = self.supervisorList[indexPath.row];
-        [UserManager sharedInstance].selectedSupervisor = supervisor;
-        [self.navigationController popViewControllerAnimated:YES];
-    } else {
-        UserProfileViewController *vc = [UserProfileViewController new];
-        vc.faculty = self.supervisorList[indexPath.row];
-        [self.navigationController pushViewController:vc animated:YES];
-    }
+    // Enter detailed room booking view.
+    ReviewStudentBookingViewController *vc = [ReviewStudentBookingViewController new];
+    vc.studentBookingGroupId = self.studentBookingList[indexPath.row].groupId;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - Header and footer actions
@@ -144,7 +135,7 @@
     self.noMoreData = NO;
     self.tableView.mj_footer = nil;
     
-    [self.supervisorList removeAllObjects];
+    [self.studentBookingList removeAllObjects];
     [self.tableView reloadData];
     
     // Load data from server.
@@ -160,16 +151,6 @@
     } else {
         [self loadData];
     }
-}
-
-#pragma mark - Button actions
-
-/**
- *  Add supervisor.
- */
-- (void)addSupervisor {
-    SupervisorSearchViewController *vc = [SupervisorSearchViewController new];
-    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end

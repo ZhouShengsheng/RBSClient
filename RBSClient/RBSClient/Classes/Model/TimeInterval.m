@@ -59,6 +59,30 @@
     return timeIntervalList;
 }
 
++ (NSMutableOrderedSet *)timeIntervalListFromJsonString:(NSString *)jsonString {
+    NSData *data = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+    id jsonData = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+    NSArray *jsonArray = (NSArray *)jsonData;
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm"];
+    
+    NSMutableOrderedSet *timeIntervalList = [NSMutableOrderedSet orderedSet];
+    for (NSArray *timeIntervalStringArray in jsonArray) {
+        NSString *timeIntervalString = timeIntervalStringArray.firstObject;
+        NSDate *from = [dateFormatter
+                        dateFromString:[timeIntervalString substringWithRange: NSMakeRange(0, 16)]];
+        NSDate *to = [dateFormatter
+                      dateFromString:[timeIntervalString substringWithRange: NSMakeRange(20, 16)]];
+        TimeInterval *interval = [[TimeInterval alloc]
+                                  initWithFrom:from
+                                  to:to];
+        [timeIntervalList addObject:interval];
+    }
+    //DDLogError(@"timeIntervalList: %@", timeIntervalList);
+    return timeIntervalList;
+}
+
 + (NSString *)timeIntervalJsonStringFromOrderedSet:(NSOrderedSet *)timeIntervalList {
     NSMutableArray *timeIntervalStrList = [NSMutableArray array];
     for (TimeInterval *timeInterval in timeIntervalList) {

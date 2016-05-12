@@ -61,16 +61,16 @@
     params[@"type"] = type;
     params[@"id"] = userId;
     if (designation) {
-        params[@"designation"] = designation;
+        params[@"designation"] = [designation stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     }
     if (office) {
-        params[@"office"] = office;
+        params[@"office"] = [office stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     }
     if (phone) {
-        params[@"phone"] = phone;
+        params[@"phone"] = [phone stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     }
     if (dormRoomNumber) {
-        params[@"dormRoomNumber"] = dormRoomNumber;
+        params[@"dormRoomNumber"] = [dormRoomNumber stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     }
     
     [[HttpPackage sharedInstance]
@@ -278,6 +278,7 @@
                       roomNumber:(NSString *)roomNumber
                    applicantType:(NSString *)applicantType
                      applicantId:(NSString *)applicantId
+                      bookReason:(NSString *)bookReason
                        facultyId:(NSString *)facultyId
                    timeIntervals:(NSString *)timeIntervals
                          success:(void(^)(id jsonData))success
@@ -290,6 +291,7 @@
       @"roomNumber": [roomNumber stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
       @"applicantType": applicantType,
       @"applicantId": applicantId,
+      @"bookReason": [bookReason stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
       @"facultyId": facultyId,
       @"timeIntervals": timeIntervals};
     
@@ -302,11 +304,44 @@
      timeout:timeout];
 }
 
+- (void)getStudentBookingWithFacultyId:(NSString *)facultyId
+                               success:(void(^)(id jsonData))success
+                               failure:(void(^)(NSError *error))failure
+                               timeout:(void(^)(void))timeout {
+    NSString *url = [URLManager sharedInstance].studentBookingListURL;
+    
+    NSDictionary *params =
+    @{@"facultyId": facultyId};
+    
+    [[HttpPackage sharedInstance]
+     httpRequestWithMethod:POST
+     url:url
+     parameters:params
+     success:success
+     failure:failure
+     timeout:timeout];
+}
+
+- (void)getRoomBookingInfoWithGroupId:(NSString *)groupId
+                              success:(void(^)(id jsonData))success
+                              failure:(void(^)(NSError *error))failure
+                              timeout:(void(^)(void))timeout {
+    NSString *url = [URLManager sharedInstance].roomBookingInfoURL;
+    
+    NSDictionary *params =
+    @{@"groupId": groupId};
+    
+    [[HttpPackage sharedInstance]
+     httpRequestWithMethod:POST
+     url:url
+     parameters:params
+     success:success
+     failure:failure
+     timeout:timeout];
+}
+
 #pragma mark - Supervisor API
 
-/**
- *  Check the faculty is the student's supervisor.
- */
 - (void)checkIsSupervisorWithStudentId:(NSString *)studentId
                              facultyId:(NSString *)facultyId
                                success:(void(^)(id jsonData))success
@@ -335,6 +370,64 @@
     
     NSDictionary *params =
     @{@"studentId": studentId};
+    
+    [[HttpPackage sharedInstance]
+     httpRequestWithMethod:POST
+     url:url
+     parameters:params
+     success:success
+     failure:failure
+     timeout:timeout];
+}
+
+- (void)addSupervisorWithStudentId:(NSString *)studentId
+                         facultyId:(NSString *)facultyId
+                           success:(void(^)(id jsonData))success
+                           failure:(void(^)(NSError *error))failure
+                           timeout:(void(^)(void))timeout {
+    NSString *url = [URLManager sharedInstance].addSupervisorURL;
+    
+    NSDictionary *params =
+    @{@"studentId": studentId,
+      @"facultyId": facultyId};
+    
+    [[HttpPackage sharedInstance]
+     httpRequestWithMethod:POST
+     url:url
+     parameters:params
+     success:success
+     failure:failure
+     timeout:timeout];
+}
+
+- (void)removeSupervisorWithStudentId:(NSString *)studentId
+                            facultyId:(NSString *)facultyId
+                              success:(void(^)(id jsonData))success
+                              failure:(void(^)(NSError *error))failure
+                              timeout:(void(^)(void))timeout {
+    NSString *url = [URLManager sharedInstance].removeSupervisorURL;
+    
+    NSDictionary *params =
+    @{@"studentId": studentId,
+      @"facultyId": facultyId};
+    
+    [[HttpPackage sharedInstance]
+     httpRequestWithMethod:POST
+     url:url
+     parameters:params
+     success:success
+     failure:failure
+     timeout:timeout];
+}
+
+- (void)searchSupervisorWithCondition:(NSString *)condition
+                              success:(void(^)(id jsonData))success
+                              failure:(void(^)(NSError *error))failure
+                              timeout:(void(^)(void))timeout {
+    NSString *url = [URLManager sharedInstance].searchSupervisorURL;
+    
+    NSDictionary *params =
+    @{@"condition": [condition stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]};
     
     [[HttpPackage sharedInstance]
      httpRequestWithMethod:POST

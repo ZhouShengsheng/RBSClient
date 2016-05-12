@@ -13,6 +13,7 @@
 #import "UserProfileViewController.h"
 #import "ChangePasswordViewController.h"
 #import "SupervisorListViewController.h"
+#import "StudentBookingViewController.h"
 
 @interface MeViewController ()
 
@@ -134,6 +135,8 @@
                 }
                 case USER_TYPE_FACULTY: {
                     // 学生申请审核
+                    StudentBookingViewController *vc = [StudentBookingViewController new];
+                    [self.navigationController pushViewController:vc animated:YES];
                     break;
                 }
                 case USER_TYPE_STUDENT: {

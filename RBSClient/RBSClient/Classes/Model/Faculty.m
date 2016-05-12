@@ -53,8 +53,8 @@
 }
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"%@ %@",
-            self.name, self.designation];
+    return [NSString stringWithFormat:@"%@ %@ %@",
+            self.name, self.designation, self.facultyId];
 }
 
 @end

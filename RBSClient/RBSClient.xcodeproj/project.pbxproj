@@ -74,6 +74,15 @@
 		F983347E1CE2F1E300AA0A55 /* PopupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F983347C1CE2F1E300AA0A55 /* PopupView.xib */; };
 		F98334821CE2F3E000AA0A55 /* KGModal.m in Sources */ = {isa = PBXBuildFile; fileRef = F98334811CE2F3E000AA0A55 /* KGModal.m */; };
 		F98334871CE306A500AA0A55 /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F98334861CE306A500AA0A55 /* UserProfileViewController.m */; };
+		F9B8052E1CE41829004DD148 /* SupervisorSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9B8052D1CE41829004DD148 /* SupervisorSearchViewController.m */; };
+		F9B805321CE42809004DD148 /* StudentBookingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9B805311CE42809004DD148 /* StudentBookingViewController.m */; };
+		F9B805371CE42A57004DD148 /* StudentBookingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F9B805351CE42A57004DD148 /* StudentBookingCell.m */; };
+		F9B805381CE42A57004DD148 /* StudentBookingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9B805361CE42A57004DD148 /* StudentBookingCell.xib */; };
+		F9B8053B1CE47C0D004DD148 /* StudentBooking.m in Sources */ = {isa = PBXBuildFile; fileRef = F9B8053A1CE47C0D004DD148 /* StudentBooking.m */; };
+		F9B8053E1CE4B417004DD148 /* RoomBooking.m in Sources */ = {isa = PBXBuildFile; fileRef = F9B8053D1CE4B417004DD148 /* RoomBooking.m */; };
+		F9B805421CE4C59B004DD148 /* ReviewStudentBookingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9B805411CE4C59B004DD148 /* ReviewStudentBookingViewController.m */; };
+		F9B8054C1CE4CE75004DD148 /* BookingProgressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F9B8054A1CE4CE75004DD148 /* BookingProgressCell.m */; };
+		F9B8054D1CE4CE75004DD148 /* BookingProgressCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9B8054B1CE4CE75004DD148 /* BookingProgressCell.xib */; };
 		F9C0021A1CE17580004F338F /* RoomInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9C002191CE17580004F338F /* RoomInfoViewController.m */; };
 		F9C0021E1CE175BA004F338F /* RoomBasicInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F9C0021D1CE175BA004F338F /* RoomBasicInfoCell.m */; };
 		F9C002201CE17A5D004F338F /* RoomBasicInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9C0021F1CE17A5D004F338F /* RoomBasicInfoCell.xib */; };
@@ -233,6 +242,22 @@
 		F98334811CE2F3E000AA0A55 /* KGModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGModal.m; sourceTree = "<group>"; };
 		F98334851CE306A500AA0A55 /* UserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfileViewController.h; sourceTree = "<group>"; };
 		F98334861CE306A500AA0A55 /* UserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfileViewController.m; sourceTree = "<group>"; };
+		F9B8052C1CE41829004DD148 /* SupervisorSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SupervisorSearchViewController.h; sourceTree = "<group>"; };
+		F9B8052D1CE41829004DD148 /* SupervisorSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SupervisorSearchViewController.m; sourceTree = "<group>"; };
+		F9B805301CE42809004DD148 /* StudentBookingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StudentBookingViewController.h; sourceTree = "<group>"; };
+		F9B805311CE42809004DD148 /* StudentBookingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudentBookingViewController.m; sourceTree = "<group>"; };
+		F9B805341CE42A57004DD148 /* StudentBookingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StudentBookingCell.h; sourceTree = "<group>"; };
+		F9B805351CE42A57004DD148 /* StudentBookingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudentBookingCell.m; sourceTree = "<group>"; };
+		F9B805361CE42A57004DD148 /* StudentBookingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StudentBookingCell.xib; sourceTree = "<group>"; };
+		F9B805391CE47C0D004DD148 /* StudentBooking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StudentBooking.h; sourceTree = "<group>"; };
+		F9B8053A1CE47C0D004DD148 /* StudentBooking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudentBooking.m; sourceTree = "<group>"; };
+		F9B8053C1CE4B417004DD148 /* RoomBooking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomBooking.h; sourceTree = "<group>"; };
+		F9B8053D1CE4B417004DD148 /* RoomBooking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoomBooking.m; sourceTree = "<group>"; };
+		F9B805401CE4C59B004DD148 /* ReviewStudentBookingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviewStudentBookingViewController.h; sourceTree = "<group>"; };
+		F9B805411CE4C59B004DD148 /* ReviewStudentBookingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewStudentBookingViewController.m; sourceTree = "<group>"; };
+		F9B805491CE4CE75004DD148 /* BookingProgressCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookingProgressCell.h; sourceTree = "<group>"; };
+		F9B8054A1CE4CE75004DD148 /* BookingProgressCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookingProgressCell.m; sourceTree = "<group>"; };
+		F9B8054B1CE4CE75004DD148 /* BookingProgressCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookingProgressCell.xib; sourceTree = "<group>"; };
 		F9C002181CE17580004F338F /* RoomInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomInfoViewController.h; sourceTree = "<group>"; };
 		F9C002191CE17580004F338F /* RoomInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoomInfoViewController.m; sourceTree = "<group>"; };
 		F9C0021C1CE175BA004F338F /* RoomBasicInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomBasicInfoCell.h; sourceTree = "<group>"; };
@@ -347,6 +372,8 @@
 		F9146DBF1CE38E090070FFEC /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				F9B8052C1CE41829004DD148 /* SupervisorSearchViewController.h */,
+				F9B8052D1CE41829004DD148 /* SupervisorSearchViewController.m */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -490,6 +517,7 @@
 				F98334841CE3069500AA0A55 /* UserProfile */,
 				F9146DB31CE384C60070FFEC /* ChangePassword */,
 				F9146DBD1CE38DC30070FFEC /* Supervisor */,
+				F9B8052F1CE427F6004DD148 /* StudentBooking */,
 			);
 			path = Me;
 			sourceTree = "<group>";
@@ -557,6 +585,10 @@
 				F93B808F1CE0CBCE00EE0B77 /* RoomScreen.m */,
 				F93B80921CE0CBCE00EE0B77 /* TimeInterval.h */,
 				F93B80931CE0CBCE00EE0B77 /* TimeInterval.m */,
+				F9B805391CE47C0D004DD148 /* StudentBooking.h */,
+				F9B8053A1CE47C0D004DD148 /* StudentBooking.m */,
+				F9B8053C1CE4B417004DD148 /* RoomBooking.h */,
+				F9B8053D1CE4B417004DD148 /* RoomBooking.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -771,6 +803,8 @@
 				F9C0022F1CE1B89D004F338F /* SimpleDescriptionCell */,
 				F9C002331CE1B9E0004F338F /* TextInputCell */,
 				F98334881CE306E300AA0A55 /* UserProfileCell */,
+				F9B805331CE42A41004DD148 /* StudentBookingCell */,
+				F9B805481CE4CE69004DD148 /* BookingProgressCell */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -841,6 +875,45 @@
 				F9146DAC1CE309370070FFEC /* UserProfileCell.xib */,
 			);
 			path = UserProfileCell;
+			sourceTree = "<group>";
+		};
+		F9B8052F1CE427F6004DD148 /* StudentBooking */ = {
+			isa = PBXGroup;
+			children = (
+				F9B805301CE42809004DD148 /* StudentBookingViewController.h */,
+				F9B805311CE42809004DD148 /* StudentBookingViewController.m */,
+				F9B8053F1CE4C576004DD148 /* Review */,
+			);
+			path = StudentBooking;
+			sourceTree = "<group>";
+		};
+		F9B805331CE42A41004DD148 /* StudentBookingCell */ = {
+			isa = PBXGroup;
+			children = (
+				F9B805341CE42A57004DD148 /* StudentBookingCell.h */,
+				F9B805351CE42A57004DD148 /* StudentBookingCell.m */,
+				F9B805361CE42A57004DD148 /* StudentBookingCell.xib */,
+			);
+			path = StudentBookingCell;
+			sourceTree = "<group>";
+		};
+		F9B8053F1CE4C576004DD148 /* Review */ = {
+			isa = PBXGroup;
+			children = (
+				F9B805401CE4C59B004DD148 /* ReviewStudentBookingViewController.h */,
+				F9B805411CE4C59B004DD148 /* ReviewStudentBookingViewController.m */,
+			);
+			path = Review;
+			sourceTree = "<group>";
+		};
+		F9B805481CE4CE69004DD148 /* BookingProgressCell */ = {
+			isa = PBXGroup;
+			children = (
+				F9B805491CE4CE75004DD148 /* BookingProgressCell.h */,
+				F9B8054A1CE4CE75004DD148 /* BookingProgressCell.m */,
+				F9B8054B1CE4CE75004DD148 /* BookingProgressCell.xib */,
+			);
+			path = BookingProgressCell;
 			sourceTree = "<group>";
 		};
 		F9C002171CE174BF004F338F /* Info */ = {
@@ -1071,6 +1144,7 @@
 				F9146DBC1CE38C070070FFEC /* SupervisorListCell.xib in Resources */,
 				F93B80E31CE0CBCE00EE0B77 /* Assets.xcassets in Resources */,
 				F93B80EF1CE0CBCE00EE0B77 /* Me.storyboard in Resources */,
+				F9B8054D1CE4CE75004DD148 /* BookingProgressCell.xib in Resources */,
 				F93B81231CE0D17600EE0B77 /* Favorite.storyboard in Resources */,
 				F9C002201CE17A5D004F338F /* RoomBasicInfoCell.xib in Resources */,
 				F93B81161CE0CBCE00EE0B77 /* RoomListCell.xib in Resources */,
@@ -1083,6 +1157,7 @@
 				F983347E1CE2F1E300AA0A55 /* PopupView.xib in Resources */,
 				F9C0023B1CE1BA10004F338F /* TextInputCell.xib in Resources */,
 				F9C0023D1CE1C38B004F338F /* SimpleDescriptionCell.xib in Resources */,
+				F9B805381CE42A57004DD148 /* StudentBookingCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1156,17 +1231,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				F93B81051CE0CBCE00EE0B77 /* CustomizeNavigationController.m in Sources */,
+				F9B8053B1CE47C0D004DD148 /* StudentBooking.m in Sources */,
 				F93B80F71CE0CBCE00EE0B77 /* Room.m in Sources */,
 				F93B81081CE0CBCE00EE0B77 /* SSTouchEventController.m in Sources */,
 				F9146DBB1CE38C070070FFEC /* SupervisorListCell.m in Sources */,
 				F93B80F01CE0CBCE00EE0B77 /* MeViewController.m in Sources */,
 				F93B80F91CE0CBCE00EE0B77 /* Student.m in Sources */,
 				F93B80FA1CE0CBCE00EE0B77 /* TimeInterval.m in Sources */,
+				F9B805371CE42A57004DD148 /* StudentBookingCell.m in Sources */,
 				F93B81061CE0CBCE00EE0B77 /* LanguageManager.m in Sources */,
 				F983347D1CE2F1E300AA0A55 /* PopupView.m in Sources */,
 				F93B81121CE0CBCE00EE0B77 /* UIView+YYAdd.m in Sources */,
 				F98334821CE2F3E000AA0A55 /* KGModal.m in Sources */,
 				F93B810B1CE0CBCE00EE0B77 /* FAImageView.m in Sources */,
+				F9B8053E1CE4B417004DD148 /* RoomBooking.m in Sources */,
 				F93B81101CE0CBCE00EE0B77 /* NSString+YYAdd.m in Sources */,
 				F9146DAB1CE309230070FFEC /* UserProfileCell.m in Sources */,
 				F93B80ED1CE0CBCE00EE0B77 /* BookingListViewController.m in Sources */,
@@ -1186,11 +1264,13 @@
 				F93B80E71CE0CBCE00EE0B77 /* URLManager.m in Sources */,
 				F9C002321CE1B8B5004F338F /* SimpleDescriptionCell.m in Sources */,
 				F93B81011CE0CBCE00EE0B77 /* GlobalConstants.m in Sources */,
+				F9B8054C1CE4CE75004DD148 /* BookingProgressCell.m in Sources */,
 				F93B81151CE0CBCE00EE0B77 /* RoomListCell.m in Sources */,
 				F9C0021A1CE17580004F338F /* RoomInfoViewController.m in Sources */,
 				F93B810A1CE0CBCE00EE0B77 /* SSTouchLabel.m in Sources */,
 				F93B810D1CE0CBCE00EE0B77 /* NSString+FontAwesome.m in Sources */,
 				F93B80EB1CE0CBCE00EE0B77 /* LoginViewController.m in Sources */,
+				F9B8052E1CE41829004DD148 /* SupervisorSearchViewController.m in Sources */,
 				F93B81001CE0CBCE00EE0B77 /* DDLog.m in Sources */,
 				F93B80F51CE0CBCE00EE0B77 /* AddTimeIntervalViewController.m in Sources */,
 				F93B80EE1CE0CBCE00EE0B77 /* MainController.m in Sources */,
@@ -1205,6 +1285,8 @@
 				F93B81131CE0CBCE00EE0B77 /* CheckableCell.m in Sources */,
 				F93B80F31CE0CBCE00EE0B77 /* RoomScreenViewController.m in Sources */,
 				F93B81111CE0CBCE00EE0B77 /* UIImage+YYWebImage.m in Sources */,
+				F9B805421CE4C59B004DD148 /* ReviewStudentBookingViewController.m in Sources */,
+				F9B805321CE42809004DD148 /* StudentBookingViewController.m in Sources */,
 				F93B81071CE0CBCE00EE0B77 /* SimpleHttp.m in Sources */,
 				F93B80FB1CE0CBCE00EE0B77 /* AppTools.m in Sources */,
 				F93B80E41CE0CBCE00EE0B77 /* main.m in Sources */,

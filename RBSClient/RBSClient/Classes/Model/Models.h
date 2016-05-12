@@ -14,5 +14,6 @@
 #import "Room.h"
 #import "TimeInterval.h"
 #import "RoomScreen.h"
+#import "StudentBooking.h"
 
 #endif /* Models_h */

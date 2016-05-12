@@ -1,19 +1,20 @@
 //
-//  SupervisorListViewController.m
+//  SupervisorSearchViewController.m
 //  RBSClient
 //
-//  Created by Shengsheng on 11/5/16.
+//  Created by Shengsheng on 12/5/16.
 //  Copyright © 2016 NTU. All rights reserved.
 //
 
-#import "SupervisorListViewController.h"
-#import "UserProfileViewController.h"
 #import "SupervisorSearchViewController.h"
+#import "UserProfileViewController.h"
 #import "SupervisorListCell.h"
 #import "APIManager.h"
 #import "UserManager.h"
 
-@interface SupervisorListViewController ()
+@interface SupervisorSearchViewController () <UISearchBarDelegate>
+
+@property(strong, nonatomic) UISearchBar *searchBar;
 
 @property (strong, nonatomic) NSMutableArray<Faculty *> *supervisorList;
 @property (assign, nonatomic) BOOL noMoreData;
@@ -23,7 +24,7 @@
 
 @end
 
-@implementation SupervisorListViewController
+@implementation SupervisorSearchViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -42,7 +43,7 @@
  */
 - (void)loadData {
     [[APIManager sharedInstance]
-     getSupervisorListWithStudentId:[UserManager sharedInstance].userId
+     searchSupervisorWithCondition:self.searchBar.text
      success:^(id jsonData) {
          if ([jsonData isKindOfClass:NSDictionary.class]) {
              [self.header endRefreshing];
@@ -77,31 +78,36 @@
 #pragma mark - RecyclableViewController protocol methods
 
 - (void)initializeView {
-    // Title.
-    self.title = @"上级列表";
+    self.title = @"搜索上级";
     
-    // Navigation bar buttons.
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc]
-                                     initWithTitle:@"添加"
-                                     style:UIBarButtonItemStylePlain
-                                     target:self
-                                     action:@selector(addSupervisor)];
-    self.navigationItem.rightBarButtonItem = addButton;
+    // Search bar.
+    self.searchBar = [[UISearchBar alloc]
+                      init];
+    self.searchBar.placeholder = @"请输入教职工姓名";
+    self.navigationItem.titleView = self.searchBar;
+    self.searchBar.showsCancelButton = YES;
     
-    // Init supervisor list array.
+    self.searchBar.delegate = self;
+    [self.searchBar becomeFirstResponder];
+    
+    id barButtonAppearanceInSearchBar = [UIBarButtonItem
+                                         appearanceWhenContainedIn:[UISearchBar class], nil];
+    [barButtonAppearanceInSearchBar setTitle:@"取消"];
+    
+    // Init room list array.
     self.supervisorList = [NSMutableArray array];
     
     // Register table view cell.
     [self.tableView registerNib:[UINib nibWithNibName:@"SupervisorListCell" bundle:nil]
          forCellReuseIdentifier:@"SupervisorListCell"];
     self.tableView.tableFooterView = [UIView new];
+    self.tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
     
     // Init header and footer.
     self.header = [UIHelper refreshHeaderWithTarget:self action:@selector(refresh)];
     self.tableView.mj_header = self.header;
     
     self.footer = [UIHelper refreshFooterWithTarget:self action:@selector(loadMore)];
-    [self.header beginRefreshing];
 }
 
 #pragma mark - Table view data source
@@ -124,15 +130,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (self.willSelectSupervisor) {
-        Faculty *supervisor = self.supervisorList[indexPath.row];
-        [UserManager sharedInstance].selectedSupervisor = supervisor;
-        [self.navigationController popViewControllerAnimated:YES];
-    } else {
-        UserProfileViewController *vc = [UserProfileViewController new];
-        vc.faculty = self.supervisorList[indexPath.row];
-        [self.navigationController pushViewController:vc animated:YES];
-    }
+    UserProfileViewController *vc = [UserProfileViewController new];
+    vc.faculty = self.supervisorList[indexPath.row];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - Header and footer actions
@@ -162,14 +162,17 @@
     }
 }
 
-#pragma mark - Button actions
+#pragma mark - Search bar delegate
 
-/**
- *  Add supervisor.
- */
-- (void)addSupervisor {
-    SupervisorSearchViewController *vc = [SupervisorSearchViewController new];
-    [self.navigationController pushViewController:vc animated:YES];
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    DDLogError(@"%s", __func__);
+    DDLogError(@"searchCondition: %@", searchBar.text);
+    [searchBar resignFirstResponder];
+    [self.header beginRefreshing];
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    [searchBar resignFirstResponder];
 }
 
 @end

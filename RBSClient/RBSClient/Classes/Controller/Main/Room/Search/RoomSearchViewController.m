@@ -68,6 +68,7 @@
 }
 
 #pragma mark - RecyclableViewController protocol methods
+
 - (void)initializeView {
     self.title = @"搜索教室";
     

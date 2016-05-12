@@ -8,6 +8,7 @@
 
 #import "RoomBookingViewController.h"
 #import "AddTimeIntervalViewController.h"
+#import "SupervisorListViewController.h"
 #import "SimpleDescriptionCell.h"
 #import "TextInputCell.h"
 #import "TimeIntervalCell.h"
@@ -37,6 +38,7 @@
     [[self rdv_tabBarController] setTabBarHidden:YES animated:YES];
     
     [self checkTimeInterval];
+    [self checkSupervisor];
 }
 
 /**
@@ -55,6 +57,18 @@
     if (roomScreen.editedTimeInterval) {
         roomScreen.editedTimeInterval.overlapped = NO;
         roomScreen.editedTimeInterval = nil;
+        [self.tableView reloadData];
+    }
+}
+
+/**
+ *  Check selected supervisor.
+ */
+- (void)checkSupervisor {
+    UserManager *userManager = [UserManager sharedInstance];
+    if (userManager.selectedSupervisor) {
+        self.supervisor = userManager.selectedSupervisor;
+        userManager.selectedSupervisor = nil;
         [self.tableView reloadData];
     }
 }
@@ -215,8 +229,18 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    //[tableView deselectRowAtIndexPath:indexPath animated:NO];
-    if (indexPath.section == 4) {
+    if (indexPath.section == 2) {
+        // Supervisor.
+        if (!self.supervisor) {
+            return ;
+        }
+        [UserManager sharedInstance].selectedSupervisor = nil;
+        SupervisorListViewController *vc = [SupervisorListViewController new];
+        vc.willSelectSupervisor = YES;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    else if (indexPath.section == 4) {
+        // Time interval.
         SWTableViewCell *cell = (SWTableViewCell *)[self.tableView cellForRowAtIndexPath:indexPath];
         [cell showRightUtilityButtonsAnimated:YES];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -311,9 +335,11 @@
     
     // Prepare data.
     UserManager *userManager = [UserManager sharedInstance];
-    NSString *facultyId = nil;
+    NSString *facultyId;
     if (userManager.userType == USER_TYPE_STUDENT) {
         facultyId = userManager.student.supervisor.facultyId;
+    } else {
+        facultyId = userManager.faculty.facultyId;
     }
     NSString *timeIntervals =
     [TimeInterval timeIntervalJsonStringFromOrderedSet:self.timeIntervalList];
@@ -329,6 +355,7 @@
      roomNumber:self.room.number
      applicantType:userManager.userTypeStr
      applicantId:userManager.userId
+     bookReason:self.bookReasonTextView.text
      facultyId:facultyId
      timeIntervals:timeIntervals
      success:^(id jsonData) {
@@ -349,7 +376,7 @@
                  [self.tableView reloadData];
              } else if ([message isEqualToString:@"Successfully booked."]) {
                  // 创建申请成功
-                 [UIHelper showTopAlertView:@"创建申请成功！请等待审核。"
+                 [UIHelper showTopSuccessView:@"创建申请成功！请等待审核。"
                          fromViewController:self.navigationController];
                  [self.navigationController popViewControllerAnimated:YES];
              }
