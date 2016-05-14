@@ -14,6 +14,7 @@
 #import "ChangePasswordViewController.h"
 #import "SupervisorListViewController.h"
 #import "StudentBookingViewController.h"
+#import "DetailedBookingListViewController.h"
 
 @interface MeViewController ()
 
@@ -60,6 +61,13 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    UserType userType = [UserManager sharedInstance].userType;
+    if (userType == USER_TYPE_UNKNOWN) {
+        return 0;
+    }
+    if (userType == USER_TYPE_ADMIN) {
+        return 2;
+    }
     return 4;
 }
 
@@ -146,10 +154,25 @@
                     break;
                 }
             }
+            break;
         }
         // 申请历史
         case 3: {
-            
+            DetailedBookingListViewController *vc = [DetailedBookingListViewController new];
+            vc.title = @"申请历史";
+            vc.bookingType = BOOKING_TYPE_HISTORY;
+            vc.parentNavigationController = self.navigationController;
+            vc.willAutoLoadData = YES;
+            [self.navigationController pushViewController:vc animated:YES];
+            // Send local notification.
+            UILocalNotification* local = [[UILocalNotification alloc] init];
+            if (local)
+            {
+                local.fireDate = [NSDate new];
+                local.alertBody = @"Hey this is my first local notification!!!";
+                local.timeZone = [NSTimeZone defaultTimeZone];
+                [[UIApplication sharedApplication] scheduleLocalNotification:local];
+            }
         }
     }
 }
@@ -158,7 +181,7 @@
 
 - (void)logout {
     PopupView *logoutPopup = [UIHelper popupViewWithMessage:@"是否确认注销登录？"];
-    logoutPopup.confirmButtonPressedBlock = ^(void){
+    logoutPopup.confirmButtonPressedBlock = ^(void) {
         [[UserManager sharedInstance] logout];
     };
 }

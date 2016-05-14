@@ -11,17 +11,22 @@
 @interface UIColor (Util)
 
 /**
- *  Label text color, RGBA(249, 78, 106, 255).
+ *  Theme color.
  */
 + (UIColor *)themeColor;
 
 /**
- *  RGBA(249, 78, 106, 255).
+ *  Alert color.
  */
 + (UIColor *)alertColor;
 
 /**
- *  RGBA(155, 155, 155, 100).
+ *  Warning color.
+ */
++ (UIColor *)warningColor;
+
+/**
+ *  Tab bar unselected color.
  */
 + (UIColor *)unselectedColor;
 
@@ -30,20 +35,13 @@
  */
 + (UIColor *)buttonBgColor;
 
-+ (UIColor *)bgColor;
-
 /**
- *  Label text color, RGBA(74, 74, 74, 255).
+ *  Label text color.
  */
 + (UIColor *)labelTextColor;
 
 /**
- *  Label text color, RGBA(155, 155, 155, 100).
- */
-+ (UIColor *)followBorderColor;
-
-/**
- *  Segmented control vertical divider color, RGBA(151, 151, 151, 100).
+ *  Segmented control vertical divider color.
  */
 + (UIColor *)segmentedControllDividerColor;
 

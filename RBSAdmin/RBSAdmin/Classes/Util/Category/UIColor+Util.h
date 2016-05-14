@@ -21,6 +21,11 @@
 + (UIColor *)alertColor;
 
 /**
+ *  RGBA(249, 78, 106, 255).
+ */
++ (UIColor *)warningColor;
+
+/**
  *  RGBA(155, 155, 155, 100).
  */
 + (UIColor *)unselectedColor;

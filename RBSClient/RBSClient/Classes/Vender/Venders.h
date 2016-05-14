@@ -27,5 +27,6 @@
 #import "UIPlaceHolderTextView.h"
 #import "PopupView.h"
 #import "KGModal.h"
+#import "HMSegmentedControl.h"
 
 #endif /* Venders_h */

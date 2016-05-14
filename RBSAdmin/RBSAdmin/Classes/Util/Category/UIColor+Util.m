@@ -40,6 +40,10 @@
                            alpha:1];
 }
 
++ (UIColor *)warningColor {
+    return [UIColor colorWithHue:28 saturation:85 brightness:90 alpha:1];
+}
+
 + (UIColor *)unselectedColor {
     return [UIColor colorWithRed:155/255.0
                            green:155/255.0

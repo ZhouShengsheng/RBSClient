@@ -73,10 +73,16 @@ static const NSString *server = @"http://www.zss-rbs.site:8080/RBSServer";
 @property(copy, readonly, nonatomic) NSString *favoriteListURL;
 
 #pragma mark - Room booking
+
 /**
- *  Unset favorite url.
+ *  Book room url.
  */
 @property(copy, readonly, nonatomic) NSString *bookRoomURL;
+
+/**
+ *  Cancel booking room url.
+ */
+@property(copy, readonly, nonatomic) NSString *cancelBookingURL;
 
 /**
  *  Student booking list url.
@@ -87,6 +93,46 @@ static const NSString *server = @"http://www.zss-rbs.site:8080/RBSServer";
  *  Detailed booking info url.
  */
 @property(copy, readonly, nonatomic) NSString *roomBookingInfoURL;
+
+/**
+ *  Approve room booking url.
+ */
+@property(copy, readonly, nonatomic) NSString *approveRoomBookingURL;
+
+/**
+ *  Decline room booking url.
+ */
+@property(copy, readonly, nonatomic) NSString *declineRoomBookingURL;
+
+/**
+ *  Processing room booking list url.
+ */
+@property(copy, readonly, nonatomic) NSString *processingRoomBookingListURL;
+
+/**
+ *  Approved room booking list url.
+ */
+@property(copy, readonly, nonatomic) NSString *approvedRoomBookingListURL;
+
+/**
+ *  Declined room booking list url.
+ */
+@property(copy, readonly, nonatomic) NSString *declinedRoomBookingListURL;
+
+/**
+ *  History room booking list url.
+ */
+@property(copy, readonly, nonatomic) NSString *historyRoomBookingListURL;
+
+/**
+ *  Admin room booking proccessing list url.
+ */
+@property(copy, readonly, nonatomic) NSString *adminRoomBookingProcessingListURL;
+
+/**
+ *  Admin room booking proccessed list url.
+ */
+@property(copy, readonly, nonatomic) NSString *adminRoomBookingProcessedListURL;
 
 #pragma mark - Supervisor
 /**

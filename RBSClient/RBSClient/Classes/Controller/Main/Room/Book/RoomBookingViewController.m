@@ -337,7 +337,7 @@
     UserManager *userManager = [UserManager sharedInstance];
     NSString *facultyId;
     if (userManager.userType == USER_TYPE_STUDENT) {
-        facultyId = userManager.student.supervisor.facultyId;
+        facultyId = self.supervisor.facultyId;
     } else {
         facultyId = userManager.faculty.facultyId;
     }

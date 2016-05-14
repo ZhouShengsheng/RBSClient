@@ -106,12 +106,6 @@
     //[self.navigationController setNavigationBarHidden:NO animated:YES];
     [[self rdv_tabBarController] setTabBarHidden:YES animated:YES];
     
-    // Book button.
-    UIBarButtonItem *bookButton = [[UIBarButtonItem alloc]
-                                   initWithTitle:@"申请"
-                                   style:UIBarButtonItemStylePlain
-                                   target:self
-                                   action:@selector(bookRoom)];
     // Favorite button.
     self.favoriteButton = [UIButton buttonWithType:UIButtonTypeSystem];
     [self.favoriteButton setImage:[UIImage imageNamed:@"icon_not_favorite"]
@@ -122,9 +116,20 @@
                             action:@selector(favorite)
                   forControlEvents:UIControlEventTouchUpInside];
     self.favoriteButton.tintColor = [UIColor alertColor];
-    UIBarButtonItem *button = [[UIBarButtonItem alloc]
+    UIBarButtonItem *favoriteButton = [[UIBarButtonItem alloc]
                                initWithCustomView:self.favoriteButton];
-    self.navigationItem.rightBarButtonItems = @[bookButton, button];
+    if ([UserManager sharedInstance].userType == USER_TYPE_ADMIN) {
+        // Admin can only set favorite.
+        self.navigationItem.rightBarButtonItem = favoriteButton;
+    } else {
+        // Book button.
+        UIBarButtonItem *bookButton = [[UIBarButtonItem alloc]
+                                       initWithTitle:@"申请"
+                                       style:UIBarButtonItemStylePlain
+                                       target:self
+                                       action:@selector(bookRoom)];
+        self.navigationItem.rightBarButtonItems = @[bookButton, favoriteButton];
+    }
     
     // Init header.
     self.header = [UIHelper refreshHeaderWithTarget:self action:@selector(refresh)];

@@ -35,6 +35,9 @@
     [super viewDidAppear:animated];
     
     [[self rdv_tabBarController] setTabBarHidden:YES animated:YES];
+    if (self.header) {
+        [self.header beginRefreshing];
+    }
 }
 
 /**
@@ -93,7 +96,7 @@
     self.tableView.mj_header = self.header;
     
     self.footer = [UIHelper refreshFooterWithTarget:self action:@selector(loadMore)];
-    [self.header beginRefreshing];
+    //[self.header beginRefreshing];
 }
 
 #pragma mark - Table view data source

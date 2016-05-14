@@ -47,6 +47,7 @@
          if ([jsonData isKindOfClass:NSDictionary.class]) {
              [self.header endRefreshing];
              [self.footer endRefreshing];
+             [UIHelper showServerErrorAlertViewWithViewController:self.navigationController];
              return ;
          }
          NSArray *array = (NSArray *)jsonData;
@@ -67,10 +68,12 @@
      failure:^(NSError *error) {
          [self.header endRefreshing];
          [self.footer endRefreshing];
+         [UIHelper showServerErrorAlertViewWithViewController:self.navigationController];
      }
      timeout:^{
          [self.header endRefreshing];
          [self.footer endRefreshing];
+         [UIHelper showTimeoutAlertViewWithViewController:self.navigationController];
      }];
 }
 

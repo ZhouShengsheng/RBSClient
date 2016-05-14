@@ -12,4 +12,6 @@
 
 + (UIFont *)simpleDescriptionFont;
 
++ (UIFont *)buttonFont;
+
 @end

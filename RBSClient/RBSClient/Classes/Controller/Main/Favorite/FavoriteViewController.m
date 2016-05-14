@@ -285,45 +285,47 @@
  *  Clear favorite rooms.
  */
 - (void)clearFavorite {
-    // Configure hud.
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.mode = MBProgressHUDModeIndeterminate;
-    hud.labelText = @"正在清空收藏...";
-    
-    UserManager *userManager = [UserManager sharedInstance];
-    [[APIManager sharedInstance]
-     clearFavoriteRoomWithUserType:userManager.userTypeStr
-     userId:userManager.userId
-     success:^(id jsonData) {
-         if ([jsonData isKindOfClass:NSDictionary.class]) {
-             if ([jsonData[@"message"] isEqualToString:@"Successfully cleared favorite."]) {
-                 [self.roomList removeAllObjects];
-                 [self.tableView reloadData];
-                 
-                 [UIHelper showTopSuccessView:@"清空成功！"
-                        fromViewController:self.navigationController];
+    PopupView *logoutPopup = [UIHelper popupViewWithMessage:@"是否确认确认清空收藏？"];
+    logoutPopup.confirmButtonPressedBlock = ^(void) {
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.mode = MBProgressHUDModeIndeterminate;
+        hud.labelText = @"正在清空收藏...";
+        
+        UserManager *userManager = [UserManager sharedInstance];
+        [[APIManager sharedInstance]
+         clearFavoriteRoomWithUserType:userManager.userTypeStr
+         userId:userManager.userId
+         success:^(id jsonData) {
+             if ([jsonData isKindOfClass:NSDictionary.class]) {
+                 if ([jsonData[@"message"] isEqualToString:@"Successfully cleared favorite."]) {
+                     [self.roomList removeAllObjects];
+                     [self.tableView reloadData];
+                     
+                     [UIHelper showTopSuccessView:@"清空成功！"
+                               fromViewController:self.navigationController];
+                 } else {
+                     [UIHelper showTopAlertView:@"服务器错误！请稍后重试！"
+                             fromViewController:self.navigationController];
+                 }
              } else {
                  [UIHelper showTopAlertView:@"服务器错误！请稍后重试！"
                          fromViewController:self.navigationController];
              }
-         } else {
+             [hud hide:YES afterDelay:0.2];
+             
+         }
+         failure:^(NSError *error) {
              [UIHelper showTopAlertView:@"服务器错误！请稍后重试！"
                      fromViewController:self.navigationController];
+             [hud hide:YES afterDelay:0.2];
+             
          }
-         [hud hide:YES afterDelay:0.2];
-         
-     }
-     failure:^(NSError *error) {
-         [UIHelper showTopAlertView:@"服务器错误！请稍后重试！"
-                 fromViewController:self.navigationController];
-         [hud hide:YES afterDelay:0.2];
-         
-     }
-     timeout:^{
-         [UIHelper showTopAlertView:@"服务器错误！请稍后重试！"
-                 fromViewController:self.navigationController];
-         [hud hide:YES afterDelay:0.2];
-     }];
+         timeout:^{
+             [UIHelper showTopAlertView:@"服务器错误！请稍后重试！"
+                     fromViewController:self.navigationController];
+             [hud hide:YES afterDelay:0.2];
+         }];
+    };
 }
 
 @end

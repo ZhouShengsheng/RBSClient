@@ -96,27 +96,21 @@
                 [progs addObject:@"上级审核中"];
             } else if ([self.status isEqualToString:@"faculty_approved"]) {
                 [progs addObject:@"创建申请"];
-                [progs addObject:@"上级审核中"];
                 [progs addObject:@"上级审核通过"];
                 [progs addObject:@"管理员审核中"];
             } else if ([self.status isEqualToString:@"faculty_declined"]) {
                 [progs addObject:@"创建申请"];
-                [progs addObject:@"上级审核中"];
                 [progs addObject:@"上级已拒绝"];
                 [progs addObject:@"审核不通过"];
             } else if ([self.status isEqualToString:@"admin_approved"]) {
                 [progs addObject:@"创建申请"];
-                [progs addObject:@"上级审核中"];
                 [progs addObject:@"上级审核通过"];
-                [progs addObject:@"管理员审核中"];
                 [progs addObject:@"管理员审核通过"];
                 [progs addObject:@"审核通过"];
             } else if ([self.status isEqualToString:@"admin_declined"]) {
                 [progs addObject:@"创建申请"];
-                [progs addObject:@"上级审核中"];
                 [progs addObject:@"上级审核通过"];
-                [progs addObject:@"管理员审核中"];
-                [progs addObject:@"管理员已拒接"];
+                [progs addObject:@"管理员已拒绝"];
                 [progs addObject:@"审核不通过"];
             }
         } else {

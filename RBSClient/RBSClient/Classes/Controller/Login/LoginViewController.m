@@ -21,8 +21,11 @@
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loginIndicator;
+@property (weak, nonatomic) IBOutlet BEMCheckBox *adminCheckBox;
 @property (weak, nonatomic) IBOutlet BEMCheckBox *facultyCheckBox;
 @property (weak, nonatomic) IBOutlet BEMCheckBox *studentCheckBox;
+
+@property (assign, nonatomic) BOOL loginGroupShowed;
 
 @end
 
@@ -65,8 +68,10 @@
     self.passwordTextField.delegate = self;
     
     // Check box.
+    [UIHelper customizeCheckBox:self.adminCheckBox];
     [UIHelper customizeCheckBox:self.facultyCheckBox];
     [UIHelper customizeCheckBox:self.studentCheckBox];
+    self.adminCheckBox.delegate = self;
     self.facultyCheckBox.delegate = self;
     self.studentCheckBox.delegate = self;
 }
@@ -87,16 +92,16 @@
          } else {
              [self showLoginGroup];
              if ([message isEqualToString:@"初始用户。"]) {
-                 [self.facultyCheckBox setOn:YES animated:NO];
+                 [self.adminCheckBox setOn:YES animated:NO];
              } else {
                  [self loginFailWithMessage:message];
                  switch ([UserManager sharedInstance].userType) {
                      case USER_TYPE_UNKNOWN: {
-                         [self.facultyCheckBox setOn:YES animated:NO];
+                         [self.adminCheckBox setOn:YES animated:NO];
                          break;
                      }
                      case USER_TYPE_ADMIN: {
-                         [self.facultyCheckBox setOn:YES animated:NO];
+                         [self.adminCheckBox setOn:YES animated:NO];
                          break;
                      }
                      case USER_TYPE_FACULTY: {
@@ -117,6 +122,10 @@
  *  Show login group.
  */
 - (void)showLoginGroup {
+    if (self.loginGroupShowed) {
+        return ;
+    }
+    self.loginGroupShowed = YES;
     [UIView animateWithDuration:0.8f
                           delay:0.25f
                         options:UIViewAnimationOptionCurveEaseInOut
@@ -140,11 +149,11 @@
 - (void)logout {
     switch ([UserManager sharedInstance].userType) {
         case USER_TYPE_UNKNOWN: {
-            [self.facultyCheckBox setOn:YES animated:NO];
+            [self.adminCheckBox setOn:YES animated:NO];
             break;
         }
         case USER_TYPE_ADMIN: {
-            [self.facultyCheckBox setOn:YES animated:NO];
+            [self.adminCheckBox setOn:YES animated:NO];
             break;
         }
         case USER_TYPE_FACULTY: {
@@ -157,6 +166,7 @@
         }
     }
     [self showLoginGroup];
+    [self setUpLogin];
 }
 
 /**
@@ -180,16 +190,26 @@
     if (!self.loginButton.enabled) {
         return ;
     }
+    
+    // Type.
+    NSString *type;
+    if (self.facultyCheckBox.on) {
+        type = @"faculty";
+    } else if (self.studentCheckBox.on) {
+        type = @"student";
+    } else if (self.adminCheckBox.on) {
+        type = @"admin";
+    } else {
+        [UIHelper showTopAlertView:@"请选择身份类型！"
+                fromViewController:self];
+        return ;
+    }
+    
     [self.loginIndicator startAnimating];
     self.loginButton.enabled = NO;
     self.idTextField.enabled = NO;
     self.passwordTextField.enabled = NO;
-    NSString *type;
-    if (self.facultyCheckBox.on) {
-        type = @"faculty";
-    } else {
-        type = @"student";
-    }
+    
     [[APIManager sharedInstance]
      loginWithType:type
      userId:self.idTextField.text
@@ -225,7 +245,7 @@
             faculty.password = self.passwordTextField.text;
             userManager.faculty = faculty;
             userManager.userType = USER_TYPE_FACULTY;
-        } else {
+        } else if (self.studentCheckBox.on) {
             Student *student = [[Student alloc] initWithJsonData:jsonData];
             student.password = self.passwordTextField.text;
             
@@ -234,6 +254,11 @@
             
             userManager.student = student;
             userManager.userType = USER_TYPE_STUDENT;
+        } else {
+            Faculty *admin = [[Faculty alloc] initWithJsonData:jsonData];
+            admin.password = self.passwordTextField.text;
+            userManager.admin = admin;
+            userManager.userType = USER_TYPE_ADMIN;
         }
         
         [userManager saveUserData];
@@ -303,17 +328,15 @@
 - (void)didTapCheckBox:(BEMCheckBox *)checkBox {
     if (checkBox.on) {
         if (checkBox == self.facultyCheckBox) {
+            [self.adminCheckBox setOn:NO animated:YES];
             [self.studentCheckBox setOn:NO animated:YES];
+        } else if (checkBox == self.adminCheckBox) {
+            [self.studentCheckBox setOn:NO animated:YES];
+            [self.facultyCheckBox setOn:NO animated:YES];
         } else {
             [self.facultyCheckBox setOn:NO animated:YES];
+            [self.adminCheckBox setOn:NO animated:YES];
         }
-    } else {
-        if (checkBox == self.facultyCheckBox) {
-            [self.studentCheckBox setOn:YES animated:YES];
-        } else {
-            [self.facultyCheckBox setOn:YES animated:YES];
-        }
-    }
-}
+    }}
 
 @end

@@ -157,7 +157,7 @@
      }
      timeout:^{
          [hud hide:YES];
-         [UIHelper showTopAlertView:@"服务器错误！请稍后重试！"
+         [UIHelper showTopAlertView:@"请求超时！请稍后重试！"
                  fromViewController:self.navigationController];
      }];
 }

@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "Utils.h"
+#import "Venders.h"
+#import "Models.h"
 
-@interface BookingListViewController : UIViewController
+@interface BookingListViewController : UIViewController <RecyclableViewController>
 
 @end

@@ -242,45 +242,47 @@
  *  Remove supervisor.
  */
 - (void)removeSupervisor {
-    // Configure hud.
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.mode = MBProgressHUDModeIndeterminate;
-    hud.labelText = @"正在移除上级...";
-    
-    [[APIManager sharedInstance]
-     removeSupervisorWithStudentId:[UserManager sharedInstance].userId
-     facultyId:self.faculty.facultyId
-     success:^(id jsonData) {
-         if ([jsonData isKindOfClass:NSDictionary.class]) {
-             NSString *message = jsonData[@"message"];
-             if ([message isEqualToString:@"Successfully deleted supervisor."]) {
-                 [UIHelper showTopSuccessView:@"移除上级成功！"
-                           fromViewController:self.navigationController];
-                 self.isSupervisor = NO;
-                 [self updateBarButton];
-             } else if([message isEqualToString:@"Class supervisor cannot be deleted."]) {
-                 [UIHelper showTopAlertView:@"辅导员不可移除！"
-                         fromViewController:self.navigationController];
+    PopupView *logoutPopup = [UIHelper popupViewWithMessage:@"是否确认移除该上级？"];
+    logoutPopup.confirmButtonPressedBlock = ^(void) {
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.mode = MBProgressHUDModeIndeterminate;
+        hud.labelText = @"正在移除上级...";
+        
+        [[APIManager sharedInstance]
+         removeSupervisorWithStudentId:[UserManager sharedInstance].userId
+         facultyId:self.faculty.facultyId
+         success:^(id jsonData) {
+             if ([jsonData isKindOfClass:NSDictionary.class]) {
+                 NSString *message = jsonData[@"message"];
+                 if ([message isEqualToString:@"Successfully deleted supervisor."]) {
+                     [UIHelper showTopSuccessView:@"移除上级成功！"
+                               fromViewController:self.navigationController];
+                     self.isSupervisor = NO;
+                     [self updateBarButton];
+                 } else if([message isEqualToString:@"Class supervisor cannot be deleted."]) {
+                     [UIHelper showTopAlertView:@"辅导员不可移除！"
+                             fromViewController:self.navigationController];
+                 } else {
+                     [UIHelper showTopAlertView:@"服务器错误！请稍后重试！"
+                             fromViewController:self.navigationController];
+                 }
              } else {
                  [UIHelper showTopAlertView:@"服务器错误！请稍后重试！"
                          fromViewController:self.navigationController];
              }
-         } else {
+             [hud hide:YES];
+         }
+         failure:^(NSError *error) {
              [UIHelper showTopAlertView:@"服务器错误！请稍后重试！"
                      fromViewController:self.navigationController];
+             [hud hide:YES];
          }
-         [hud hide:YES];
-     }
-     failure:^(NSError *error) {
-         [UIHelper showTopAlertView:@"服务器错误！请稍后重试！"
-                 fromViewController:self.navigationController];
-         [hud hide:YES];
-     }
-     timeout:^{
-         [UIHelper showTopAlertView:@"等待超时！请稍后重试！"
-                 fromViewController:self.navigationController];
-         [hud hide:YES];
-     }];
+         timeout:^{
+             [UIHelper showTopAlertView:@"等待超时！请稍后重试！"
+                     fromViewController:self.navigationController];
+             [hud hide:YES];
+         }];
+    };
 }
 
 /**

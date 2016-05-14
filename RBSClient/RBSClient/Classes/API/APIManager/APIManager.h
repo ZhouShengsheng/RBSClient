@@ -146,6 +146,14 @@
                          timeout:(void(^)(void))timeout;
 
 /**
+ *  Cancel booking room.
+ */
+- (void)cancelBookingWithGroupId:(NSString *)groupId
+                         success:(void(^)(id jsonData))success
+                         failure:(void(^)(NSError *error))failure
+                         timeout:(void(^)(void))timeout;
+
+/**
  *  Get student booking list.
  */
 - (void)getStudentBookingWithFacultyId:(NSString *)facultyId
@@ -160,6 +168,83 @@
                               success:(void(^)(id jsonData))success
                               failure:(void(^)(NSError *error))failure
                               timeout:(void(^)(void))timeout;
+
+/**
+ *  Approve room booking.
+ */
+- (void)approveRoomBookingWithPersonType:(NSString *)personType
+                                personId:(NSString *)personId
+                                 GroupId:(NSString *)groupId
+                                 success:(void(^)(id jsonData))success
+                                 failure:(void(^)(NSError *error))failure
+                                 timeout:(void(^)(void))timeout;
+
+/**
+ *  Decline room booking.
+ */
+- (void)declineRoomBookingWithPersonType:(NSString *)personType
+                                personId:(NSString *)personId
+                                 GroupId:(NSString *)groupId
+                           declineReason:(NSString *)declineReason
+                                 success:(void(^)(id jsonData))success
+                                 failure:(void(^)(NSError *error))failure
+                                 timeout:(void(^)(void))timeout;
+
+/**
+ *  Get processing room booking list.
+ */
+- (void)getProcessingRoomBookingListWithApplicantType:(NSString *)applicantType
+                                          applicantId:(NSString *)applicantId
+                                            fromIndex:(NSUInteger)fromIndex
+                                              success:(void(^)(id jsonData))success
+                                              failure:(void(^)(NSError *error))failure
+                                              timeout:(void(^)(void))timeout;
+
+/**
+ *  Get approved room booking list.
+ */
+- (void)getApprovedRoomBookingListWithApplicantType:(NSString *)applicantType
+                                        applicantId:(NSString *)applicantId
+                                          fromIndex:(NSUInteger)fromIndex
+                                            success:(void(^)(id jsonData))success
+                                            failure:(void(^)(NSError *error))failure
+                                            timeout:(void(^)(void))timeout;
+
+/**
+ *  Get declined room booking list.
+ */
+- (void)getDeclinedRoomBookingListWithApplicantType:(NSString *)applicantType
+                                        applicantId:(NSString *)applicantId
+                                          fromIndex:(NSUInteger)fromIndex
+                                            success:(void(^)(id jsonData))success
+                                            failure:(void(^)(NSError *error))failure
+                                            timeout:(void(^)(void))timeout;
+
+/**
+ *  Get history room booking list.
+ */
+- (void)getHistoryRoomBookingListWithApplicantType:(NSString *)applicantType
+                                       applicantId:(NSString *)applicantId
+                                         fromIndex:(NSUInteger)fromIndex
+                                           success:(void(^)(id jsonData))success
+                                           failure:(void(^)(NSError *error))failure
+                                           timeout:(void(^)(void))timeout;
+
+/**
+ *  Get Admin room booking processing list.
+ */
+- (void)getAdminRoomBookingProcessingListWithFromIndex:(NSUInteger)fromIndex
+                                               success:(void(^)(id jsonData))success
+                                               failure:(void(^)(NSError *error))failure
+                                               timeout:(void(^)(void))timeout;
+
+/**
+ *  Get Admin room booking processed list.
+ */
+- (void)getAdminRoomBookingProcessedListWithFromIndex:(NSUInteger)fromIndex
+                                              success:(void(^)(id jsonData))success
+                                              failure:(void(^)(NSError *error))failure
+                                              timeout:(void(^)(void))timeout;
 
 #pragma mark - Supervisor API
 

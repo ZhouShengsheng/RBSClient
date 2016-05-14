@@ -11,6 +11,6 @@
 #import "Venders.h"
 #import "Models.h"
 
-@interface StudentBookingViewController : UITableViewController  <RecyclableViewController>
+@interface StudentBookingViewController : UITableViewController <RecyclableViewController>
 
 @end

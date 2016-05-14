@@ -304,6 +304,24 @@
      timeout:timeout];
 }
 
+- (void)cancelBookingWithGroupId:(NSString *)groupId
+                         success:(void(^)(id jsonData))success
+                         failure:(void(^)(NSError *error))failure
+                         timeout:(void(^)(void))timeout {
+    NSString *url = [URLManager sharedInstance].cancelBookingURL;
+    
+    NSDictionary *params =
+    @{@"groupId": groupId};
+    
+    [[HttpPackage sharedInstance]
+     httpRequestWithMethod:POST
+     url:url
+     parameters:params
+     success:success
+     failure:failure
+     timeout:timeout];
+}
+
 - (void)getStudentBookingWithFacultyId:(NSString *)facultyId
                                success:(void(^)(id jsonData))success
                                failure:(void(^)(NSError *error))failure
@@ -330,6 +348,176 @@
     
     NSDictionary *params =
     @{@"groupId": groupId};
+    
+    [[HttpPackage sharedInstance]
+     httpRequestWithMethod:POST
+     url:url
+     parameters:params
+     success:success
+     failure:failure
+     timeout:timeout];
+}
+
+- (void)approveRoomBookingWithPersonType:(NSString *)personType
+                                personId:(NSString *)personId
+                                 GroupId:(NSString *)groupId
+                                 success:(void(^)(id jsonData))success
+                                 failure:(void(^)(NSError *error))failure
+                                 timeout:(void(^)(void))timeout {
+    NSString *url = [URLManager sharedInstance].approveRoomBookingURL;
+    
+    NSDictionary *params =
+    @{@"personType": personType,
+      @"personId": personId,
+      @"groupId": groupId};
+    
+    [[HttpPackage sharedInstance]
+     httpRequestWithMethod:POST
+     url:url
+     parameters:params
+     success:success
+     failure:failure
+     timeout:timeout];
+}
+
+- (void)declineRoomBookingWithPersonType:(NSString *)personType
+                                personId:(NSString *)personId
+                                 GroupId:(NSString *)groupId
+                           declineReason:(NSString *)declineReason
+                                 success:(void(^)(id jsonData))success
+                                 failure:(void(^)(NSError *error))failure
+                                 timeout:(void(^)(void))timeout {
+    NSString *url = [URLManager sharedInstance].declineRoomBookingURL;
+    
+    NSDictionary *params =
+    @{@"personType": personType,
+      @"personId": personId,
+      @"groupId": groupId,
+      @"declineReason": [declineReason stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]};
+    
+    [[HttpPackage sharedInstance]
+     httpRequestWithMethod:POST
+     url:url
+     parameters:params
+     success:success
+     failure:failure
+     timeout:timeout];
+}
+
+- (void)getProcessingRoomBookingListWithApplicantType:(NSString *)applicantType
+                                          applicantId:(NSString *)applicantId
+                                            fromIndex:(NSUInteger)fromIndex
+                                              success:(void(^)(id jsonData))success
+                                              failure:(void(^)(NSError *error))failure
+                                              timeout:(void(^)(void))timeout {
+    NSString *url = [URLManager sharedInstance].processingRoomBookingListURL;
+    
+    NSDictionary *params =
+    @{@"applicantType": applicantType,
+      @"applicantId": applicantId,
+      @"fromIndex": @(fromIndex)};
+    
+    [[HttpPackage sharedInstance]
+     httpRequestWithMethod:POST
+     url:url
+     parameters:params
+     success:success
+     failure:failure
+     timeout:timeout];
+}
+
+- (void)getApprovedRoomBookingListWithApplicantType:(NSString *)applicantType
+                                        applicantId:(NSString *)applicantId
+                                          fromIndex:(NSUInteger)fromIndex
+                                            success:(void(^)(id jsonData))success
+                                            failure:(void(^)(NSError *error))failure
+                                            timeout:(void(^)(void))timeout {
+    NSString *url = [URLManager sharedInstance].approvedRoomBookingListURL;
+    
+    NSDictionary *params =
+    @{@"applicantType": applicantType,
+      @"applicantId": applicantId,
+      @"fromIndex": @(fromIndex)};
+    
+    [[HttpPackage sharedInstance]
+     httpRequestWithMethod:POST
+     url:url
+     parameters:params
+     success:success
+     failure:failure
+     timeout:timeout];
+}
+
+- (void)getDeclinedRoomBookingListWithApplicantType:(NSString *)applicantType
+                                        applicantId:(NSString *)applicantId
+                                          fromIndex:(NSUInteger)fromIndex
+                                            success:(void(^)(id jsonData))success
+                                            failure:(void(^)(NSError *error))failure
+                                            timeout:(void(^)(void))timeout {
+    NSString *url = [URLManager sharedInstance].declinedRoomBookingListURL;
+    
+    NSDictionary *params =
+    @{@"applicantType": applicantType,
+      @"applicantId": applicantId,
+      @"fromIndex": @(fromIndex)};
+    
+    [[HttpPackage sharedInstance]
+     httpRequestWithMethod:POST
+     url:url
+     parameters:params
+     success:success
+     failure:failure
+     timeout:timeout];
+}
+
+- (void)getHistoryRoomBookingListWithApplicantType:(NSString *)applicantType
+                                       applicantId:(NSString *)applicantId
+                                         fromIndex:(NSUInteger)fromIndex
+                                           success:(void(^)(id jsonData))success
+                                           failure:(void(^)(NSError *error))failure
+                                           timeout:(void(^)(void))timeout {
+    NSString *url = [URLManager sharedInstance].historyRoomBookingListURL;
+    
+    NSDictionary *params =
+    @{@"applicantType": applicantType,
+      @"applicantId": applicantId,
+      @"fromIndex": @(fromIndex)};
+    
+    [[HttpPackage sharedInstance]
+     httpRequestWithMethod:POST
+     url:url
+     parameters:params
+     success:success
+     failure:failure
+     timeout:timeout];
+}
+
+- (void)getAdminRoomBookingProcessingListWithFromIndex:(NSUInteger)fromIndex
+                                               success:(void(^)(id jsonData))success
+                                               failure:(void(^)(NSError *error))failure
+                                               timeout:(void(^)(void))timeout {
+    NSString *url = [URLManager sharedInstance].adminRoomBookingProcessingListURL;
+    
+    NSDictionary *params =
+    @{@"fromIndex": @(fromIndex)};
+    
+    [[HttpPackage sharedInstance]
+     httpRequestWithMethod:POST
+     url:url
+     parameters:params
+     success:success
+     failure:failure
+     timeout:timeout];
+}
+
+- (void)getAdminRoomBookingProcessedListWithFromIndex:(NSUInteger)fromIndex
+                                              success:(void(^)(id jsonData))success
+                                              failure:(void(^)(NSError *error))failure
+                                              timeout:(void(^)(void))timeout {
+    NSString *url = [URLManager sharedInstance].adminRoomBookingProcessedListURL;
+    
+    NSDictionary *params =
+    @{@"fromIndex": @(fromIndex)};
     
     [[HttpPackage sharedInstance]
      httpRequestWithMethod:POST

@@ -42,8 +42,17 @@
     
     // Room book.
     _bookRoomURL = [self formUrlWithRoute:@"/room_booking/book"];
+    _cancelBookingURL = [self formUrlWithRoute:@"/room_booking/cancel"];
     _studentBookingListURL = [self formUrlWithRoute:@"/room_booking/student_booking_list"];
     _roomBookingInfoURL = [self formUrlWithRoute:@"/room_booking/info"];
+    _approveRoomBookingURL = [self formUrlWithRoute:@"/room_booking/approve"];
+    _declineRoomBookingURL = [self formUrlWithRoute:@"/room_booking/decline"];
+    _processingRoomBookingListURL = [self formUrlWithRoute:@"/room_booking/processing_list"];
+    _approvedRoomBookingListURL = [self formUrlWithRoute:@"/room_booking/approved_list"];
+    _declinedRoomBookingListURL = [self formUrlWithRoute:@"/room_booking/declined_list"];
+    _historyRoomBookingListURL = [self formUrlWithRoute:@"/room_booking/history_list"];
+    _adminRoomBookingProcessingListURL = [self formUrlWithRoute:@"/room_booking/admin_processing_list"];
+    _adminRoomBookingProcessedListURL = [self formUrlWithRoute:@"/room_booking/admin_processed_list"];
     
     // Supervisor.
     _checkSupervisorURL = [self formUrlWithRoute:@"/supervisor/check"];

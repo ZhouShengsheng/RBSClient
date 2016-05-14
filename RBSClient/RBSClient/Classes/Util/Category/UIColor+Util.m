@@ -26,6 +26,7 @@
 }
 
 #pragma mark - Theme
+
 + (UIColor *)themeColor {
     return [UIColor colorWithRed:30/255.0
                            green:43/255.0
@@ -37,6 +38,13 @@
     return [UIColor colorWithRed:0.976
                            green:0.306
                             blue:0.416
+                           alpha:1];
+}
+
++ (UIColor *)warningColor {
+    return [UIColor colorWithRed:248/255.0
+                           green:135/255.0
+                            blue:16/255.0
                            alpha:1];
 }
 
@@ -54,21 +62,10 @@
                            alpha:1];
 }
 
-+ (UIColor *)bgColor {
-    return [UIColor colorWithRed:0.949 green:0.949 blue:0.949 alpha:1];
-}
-
 + (UIColor *)labelTextColor {
     return [UIColor colorWithRed:74/255.0
                            green:74/255.0
                             blue:74/255.0
-                           alpha:1];
-}
-
-+ (UIColor *)followBorderColor {
-    return [UIColor colorWithRed:155/255.0
-                           green:155/255.0
-                            blue:155/255.0
                            alpha:1];
 }
 

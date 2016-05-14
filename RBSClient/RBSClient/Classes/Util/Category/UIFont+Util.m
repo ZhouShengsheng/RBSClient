@@ -14,4 +14,8 @@
     return [UIFont fontWithName:@"HelveticaNeue-Light" size:15];
 }
 
++ (UIFont *)buttonFont {
+    return [UIFont fontWithName:@"HelveticaNeue-Medium" size:17];
+}
+
 @end

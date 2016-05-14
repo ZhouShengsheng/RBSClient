@@ -19,8 +19,8 @@
 - (void)displayProgress:(NSString *)progress;
 
 /**
- *  Hide progress image.
+ *  Hide or show process image.
  */
-- (void)hideProgressImage;
+- (void)setProcessImageHidden:(BOOL)hidden;
 
 @end

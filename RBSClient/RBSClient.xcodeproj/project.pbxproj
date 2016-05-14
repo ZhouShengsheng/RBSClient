@@ -24,7 +24,6 @@
 		F93B80EA1CE0CBCE00EE0B77 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F93B806B1CE0CBCE00EE0B77 /* Login.storyboard */; };
 		F93B80EB1CE0CBCE00EE0B77 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F93B806D1CE0CBCE00EE0B77 /* LoginViewController.m */; };
 		F93B80EC1CE0CBCE00EE0B77 /* Booking.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F93B80701CE0CBCE00EE0B77 /* Booking.storyboard */; };
-		F93B80ED1CE0CBCE00EE0B77 /* BookingListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F93B80721CE0CBCE00EE0B77 /* BookingListViewController.m */; };
 		F93B80EE1CE0CBCE00EE0B77 /* MainController.m in Sources */ = {isa = PBXBuildFile; fileRef = F93B80751CE0CBCE00EE0B77 /* MainController.m */; };
 		F93B80EF1CE0CBCE00EE0B77 /* Me.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F93B80771CE0CBCE00EE0B77 /* Me.storyboard */; };
 		F93B80F01CE0CBCE00EE0B77 /* MeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F93B80791CE0CBCE00EE0B77 /* MeViewController.m */; };
@@ -95,6 +94,15 @@
 		F9C0023B1CE1BA10004F338F /* TextInputCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9C002391CE1BA10004F338F /* TextInputCell.xib */; };
 		F9C0023D1CE1C38B004F338F /* SimpleDescriptionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9C0023C1CE1C38B004F338F /* SimpleDescriptionCell.xib */; };
 		F9C002421CE1C9EE004F338F /* UIPlaceHolderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = F9C002411CE1C9EE004F338F /* UIPlaceHolderTextView.m */; };
+		F9CE8A8F1CE5867F004D772F /* DeclineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9CE8A8D1CE5867F004D772F /* DeclineViewController.m */; };
+		F9CE8A901CE5867F004D772F /* DeclineViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9CE8A8E1CE5867F004D772F /* DeclineViewController.xib */; };
+		F9CE8A961CE5C378004D772F /* HMSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = F9CE8A931CE5C378004D772F /* HMSegmentedControl.m */; };
+		F9CE8A971CE5C378004D772F /* SSBadgeController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9CE8A951CE5C378004D772F /* SSBadgeController.m */; };
+		F9CE8A9F1CE5CB79004D772F /* BookingListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F9CE8A9D1CE5CB79004D772F /* BookingListCell.m */; };
+		F9CE8AA01CE5CB79004D772F /* BookingListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9CE8A9E1CE5CB79004D772F /* BookingListCell.xib */; };
+		F9CE8AAE1CE723C3004D772F /* DetailedBookingListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9CE8AAA1CE723C3004D772F /* DetailedBookingListViewController.m */; };
+		F9CE8AAF1CE723C3004D772F /* BookingListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9CE8AAC1CE723C3004D772F /* BookingListViewController.m */; };
+		F9CE8AB21CE7241B004D772F /* CredentialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9CE8AB11CE7241B004D772F /* CredentialViewController.m */; };
 		F9F121471C6DD65400F07165 /* RBSClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F9F121461C6DD65400F07165 /* RBSClientTests.m */; };
 		F9F121521C6DD65400F07165 /* RBSClientUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = F9F121511C6DD65400F07165 /* RBSClientUITests.m */; };
 /* End PBXBuildFile section */
@@ -145,8 +153,6 @@
 		F93B806C1CE0CBCE00EE0B77 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		F93B806D1CE0CBCE00EE0B77 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		F93B80701CE0CBCE00EE0B77 /* Booking.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Booking.storyboard; sourceTree = "<group>"; };
-		F93B80711CE0CBCE00EE0B77 /* BookingListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookingListViewController.h; sourceTree = "<group>"; };
-		F93B80721CE0CBCE00EE0B77 /* BookingListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookingListViewController.m; sourceTree = "<group>"; };
 		F93B80741CE0CBCE00EE0B77 /* MainController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainController.h; sourceTree = "<group>"; };
 		F93B80751CE0CBCE00EE0B77 /* MainController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainController.m; sourceTree = "<group>"; };
 		F93B80771CE0CBCE00EE0B77 /* Me.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Me.storyboard; sourceTree = "<group>"; };
@@ -278,7 +284,23 @@
 		F9C0023C1CE1C38B004F338F /* SimpleDescriptionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SimpleDescriptionCell.xib; sourceTree = "<group>"; };
 		F9C002401CE1C9EE004F338F /* UIPlaceHolderTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIPlaceHolderTextView.h; sourceTree = "<group>"; };
 		F9C002411CE1C9EE004F338F /* UIPlaceHolderTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIPlaceHolderTextView.m; sourceTree = "<group>"; };
-		F9F121291C6DD65400F07165 /* RBSClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RBSClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F9CE8A8C1CE5867F004D772F /* DeclineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeclineViewController.h; sourceTree = "<group>"; };
+		F9CE8A8D1CE5867F004D772F /* DeclineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeclineViewController.m; sourceTree = "<group>"; };
+		F9CE8A8E1CE5867F004D772F /* DeclineViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DeclineViewController.xib; sourceTree = "<group>"; };
+		F9CE8A921CE5C378004D772F /* HMSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMSegmentedControl.h; sourceTree = "<group>"; };
+		F9CE8A931CE5C378004D772F /* HMSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMSegmentedControl.m; sourceTree = "<group>"; };
+		F9CE8A941CE5C378004D772F /* SSBadgeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSBadgeController.h; sourceTree = "<group>"; };
+		F9CE8A951CE5C378004D772F /* SSBadgeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSBadgeController.m; sourceTree = "<group>"; };
+		F9CE8A9C1CE5CB79004D772F /* BookingListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookingListCell.h; sourceTree = "<group>"; };
+		F9CE8A9D1CE5CB79004D772F /* BookingListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookingListCell.m; sourceTree = "<group>"; };
+		F9CE8A9E1CE5CB79004D772F /* BookingListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookingListCell.xib; sourceTree = "<group>"; };
+		F9CE8AA91CE723C3004D772F /* DetailedBookingListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailedBookingListViewController.h; sourceTree = "<group>"; };
+		F9CE8AAA1CE723C3004D772F /* DetailedBookingListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailedBookingListViewController.m; sourceTree = "<group>"; };
+		F9CE8AAC1CE723C3004D772F /* BookingListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookingListViewController.m; sourceTree = "<group>"; };
+		F9CE8AAD1CE723C3004D772F /* BookingListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookingListViewController.h; sourceTree = "<group>"; };
+		F9CE8AB01CE7241B004D772F /* CredentialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CredentialViewController.h; sourceTree = "<group>"; };
+		F9CE8AB11CE7241B004D772F /* CredentialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CredentialViewController.m; sourceTree = "<group>"; };
+		F9F121291C6DD65400F07165 /* 教室通.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "教室通.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9F121421C6DD65400F07165 /* RBSClientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RBSClientTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9F121461C6DD65400F07165 /* RBSClientTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RBSClientTests.m; sourceTree = "<group>"; };
 		F9F121481C6DD65400F07165 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -493,8 +515,11 @@
 			isa = PBXGroup;
 			children = (
 				F93B80701CE0CBCE00EE0B77 /* Booking.storyboard */,
-				F93B80711CE0CBCE00EE0B77 /* BookingListViewController.h */,
-				F93B80721CE0CBCE00EE0B77 /* BookingListViewController.m */,
+				F9CE8AAC1CE723C3004D772F /* BookingListViewController.m */,
+				F9CE8AAD1CE723C3004D772F /* BookingListViewController.h */,
+				F9CE8AA81CE723C3004D772F /* Detail */,
+				F9B8053F1CE4C576004DD148 /* Review */,
+				F9CE8AAB1CE723C3004D772F /* Credential */,
 			);
 			path = Booking;
 			sourceTree = "<group>";
@@ -693,6 +718,7 @@
 				F98334791CE2F1E300AA0A55 /* PopupView */,
 				F93B80D21CE0CBCE00EE0B77 /* YYAddings */,
 				F9C0023E1CE1C9CC004F338F /* UIPlaceHolderTextView */,
+				F9CE8A911CE5C378004D772F /* HMSegmentedControl */,
 			);
 			path = Vender;
 			sourceTree = "<group>";
@@ -805,6 +831,7 @@
 				F98334881CE306E300AA0A55 /* UserProfileCell */,
 				F9B805331CE42A41004DD148 /* StudentBookingCell */,
 				F9B805481CE4CE69004DD148 /* BookingProgressCell */,
+				F9CE8A9B1CE5CB5F004D772F /* BookingListCell */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -882,7 +909,6 @@
 			children = (
 				F9B805301CE42809004DD148 /* StudentBookingViewController.h */,
 				F9B805311CE42809004DD148 /* StudentBookingViewController.m */,
-				F9B8053F1CE4C576004DD148 /* Review */,
 			);
 			path = StudentBooking;
 			sourceTree = "<group>";
@@ -902,8 +928,12 @@
 			children = (
 				F9B805401CE4C59B004DD148 /* ReviewStudentBookingViewController.h */,
 				F9B805411CE4C59B004DD148 /* ReviewStudentBookingViewController.m */,
+				F9CE8A8C1CE5867F004D772F /* DeclineViewController.h */,
+				F9CE8A8D1CE5867F004D772F /* DeclineViewController.m */,
+				F9CE8A8E1CE5867F004D772F /* DeclineViewController.xib */,
 			);
-			path = Review;
+			name = Review;
+			path = ../Me/StudentBooking/Review;
 			sourceTree = "<group>";
 		};
 		F9B805481CE4CE69004DD148 /* BookingProgressCell */ = {
@@ -983,6 +1013,45 @@
 			path = UIPlaceHolderTextView;
 			sourceTree = "<group>";
 		};
+		F9CE8A911CE5C378004D772F /* HMSegmentedControl */ = {
+			isa = PBXGroup;
+			children = (
+				F9CE8A921CE5C378004D772F /* HMSegmentedControl.h */,
+				F9CE8A931CE5C378004D772F /* HMSegmentedControl.m */,
+				F9CE8A941CE5C378004D772F /* SSBadgeController.h */,
+				F9CE8A951CE5C378004D772F /* SSBadgeController.m */,
+			);
+			path = HMSegmentedControl;
+			sourceTree = "<group>";
+		};
+		F9CE8A9B1CE5CB5F004D772F /* BookingListCell */ = {
+			isa = PBXGroup;
+			children = (
+				F9CE8A9C1CE5CB79004D772F /* BookingListCell.h */,
+				F9CE8A9D1CE5CB79004D772F /* BookingListCell.m */,
+				F9CE8A9E1CE5CB79004D772F /* BookingListCell.xib */,
+			);
+			path = BookingListCell;
+			sourceTree = "<group>";
+		};
+		F9CE8AA81CE723C3004D772F /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				F9CE8AA91CE723C3004D772F /* DetailedBookingListViewController.h */,
+				F9CE8AAA1CE723C3004D772F /* DetailedBookingListViewController.m */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		F9CE8AAB1CE723C3004D772F /* Credential */ = {
+			isa = PBXGroup;
+			children = (
+				F9CE8AB01CE7241B004D772F /* CredentialViewController.h */,
+				F9CE8AB11CE7241B004D772F /* CredentialViewController.m */,
+			);
+			path = Credential;
+			sourceTree = "<group>";
+		};
 		F9F121201C6DD65400F07165 = {
 			isa = PBXGroup;
 			children = (
@@ -998,7 +1067,7 @@
 		F9F1212A1C6DD65400F07165 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F9F121291C6DD65400F07165 /* RBSClient.app */,
+				F9F121291C6DD65400F07165 /* 教室通.app */,
 				F9F121421C6DD65400F07165 /* RBSClientTests.xctest */,
 				F9F1214D1C6DD65400F07165 /* RBSClientUITests.xctest */,
 			);
@@ -1052,7 +1121,7 @@
 			);
 			name = RBSClient;
 			productName = RBSClient;
-			productReference = F9F121291C6DD65400F07165 /* RBSClient.app */;
+			productReference = F9F121291C6DD65400F07165 /* 教室通.app */;
 			productType = "com.apple.product-type.application";
 		};
 		F9F121411C6DD65400F07165 /* RBSClientTests */ = {
@@ -1145,9 +1214,11 @@
 				F93B80E31CE0CBCE00EE0B77 /* Assets.xcassets in Resources */,
 				F93B80EF1CE0CBCE00EE0B77 /* Me.storyboard in Resources */,
 				F9B8054D1CE4CE75004DD148 /* BookingProgressCell.xib in Resources */,
+				F9CE8AA01CE5CB79004D772F /* BookingListCell.xib in Resources */,
 				F93B81231CE0D17600EE0B77 /* Favorite.storyboard in Resources */,
 				F9C002201CE17A5D004F338F /* RoomBasicInfoCell.xib in Resources */,
 				F93B81161CE0CBCE00EE0B77 /* RoomListCell.xib in Resources */,
+				F9CE8A901CE5867F004D772F /* DeclineViewController.xib in Resources */,
 				F93B81141CE0CBCE00EE0B77 /* CheckableCell.xib in Resources */,
 				F93B80F21CE0CBCE00EE0B77 /* Room.storyboard in Resources */,
 				F93B80EC1CE0CBCE00EE0B77 /* Booking.storyboard in Resources */,
@@ -1244,10 +1315,12 @@
 				F93B81121CE0CBCE00EE0B77 /* UIView+YYAdd.m in Sources */,
 				F98334821CE2F3E000AA0A55 /* KGModal.m in Sources */,
 				F93B810B1CE0CBCE00EE0B77 /* FAImageView.m in Sources */,
+				F9CE8AAE1CE723C3004D772F /* DetailedBookingListViewController.m in Sources */,
 				F9B8053E1CE4B417004DD148 /* RoomBooking.m in Sources */,
 				F93B81101CE0CBCE00EE0B77 /* NSString+YYAdd.m in Sources */,
 				F9146DAB1CE309230070FFEC /* UserProfileCell.m in Sources */,
-				F93B80ED1CE0CBCE00EE0B77 /* BookingListViewController.m in Sources */,
+				F9CE8A971CE5C378004D772F /* SSBadgeController.m in Sources */,
+				F9CE8AAF1CE723C3004D772F /* BookingListViewController.m in Sources */,
 				F93B80E51CE0CBCE00EE0B77 /* APIManager.m in Sources */,
 				F93B80F81CE0CBCE00EE0B77 /* RoomScreen.m in Sources */,
 				F93B80F41CE0CBCE00EE0B77 /* RoomSearchViewController.m in Sources */,
@@ -1255,8 +1328,11 @@
 				F93B81041CE0CBCE00EE0B77 /* CAAnimation+Blocks.m in Sources */,
 				F93B80FF1CE0CBCE00EE0B77 /* UINavigationBar+Shadow.m in Sources */,
 				F93B81021CE0CBCE00EE0B77 /* UIHelper.m in Sources */,
+				F9CE8A961CE5C378004D772F /* HMSegmentedControl.m in Sources */,
+				F9CE8A8F1CE5867F004D772F /* DeclineViewController.m in Sources */,
 				F9C002291CE1826B004F338F /* TimeIntervalCell.m in Sources */,
 				F9146DB61CE384DC0070FFEC /* ChangePasswordViewController.m in Sources */,
+				F9CE8AB21CE7241B004D772F /* CredentialViewController.m in Sources */,
 				F9C002421CE1C9EE004F338F /* UIPlaceHolderTextView.m in Sources */,
 				F93B81031CE0CBCE00EE0B77 /* UserManager.m in Sources */,
 				F93B80F11CE0CBCE00EE0B77 /* RoomListViewController.m in Sources */,
@@ -1292,6 +1368,7 @@
 				F93B80E41CE0CBCE00EE0B77 /* main.m in Sources */,
 				F93B80FD1CE0CBCE00EE0B77 /* NSString+Digest.m in Sources */,
 				F93B80F61CE0CBCE00EE0B77 /* Faculty.m in Sources */,
+				F9CE8A9F1CE5CB79004D772F /* BookingListCell.m in Sources */,
 				F93B81091CE0CBCE00EE0B77 /* SSTouchImageView.m in Sources */,
 				F93B80FE1CE0CBCE00EE0B77 /* UIColor+Util.m in Sources */,
 				F93B80E81CE0CBCE00EE0B77 /* AppDelegate.m in Sources */,
@@ -1420,7 +1497,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ntu.zss.RBSClient;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "教室通";
 			};
 			name = Debug;
 		};
@@ -1433,7 +1510,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ntu.zss.RBSClient;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "教室通";
 			};
 			name = Release;
 		};
