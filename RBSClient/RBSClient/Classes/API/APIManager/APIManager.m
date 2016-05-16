@@ -46,6 +46,26 @@
      timeout:timeout];
 }
 
+- (void)logoutWithType:(NSString *)type
+                userId:(NSString *)userId
+               success:(void(^)(id jsonData))success
+               failure:(void(^)(NSError *error))failure
+               timeout:(void(^)(void))timeout {
+    NSString *url = [URLManager sharedInstance].logoutURL;
+    
+    NSDictionary *params =
+    @{@"type": type,
+      @"id": userId};
+    
+    [[HttpPackage sharedInstance]
+     httpRequestWithMethod:POST
+     url:url
+     parameters:params
+     success:success
+     failure:failure
+     timeout:timeout];
+}
+
 - (void)updateUserInfoWithType:(NSString *)type
                         userId:(NSString *)userId
                    designation:(NSString *)designation
@@ -616,6 +636,30 @@
     
     NSDictionary *params =
     @{@"condition": [condition stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]};
+    
+    [[HttpPackage sharedInstance]
+     httpRequestWithMethod:POST
+     url:url
+     parameters:params
+     success:success
+     failure:failure
+     timeout:timeout];
+}
+
+#pragma mark - Push Notification API
+
+- (void)updateAPNTokenWithUserType:(NSString *)userType
+                            userId:(NSString *)userId
+                          apnToken:(NSString *)apnToken
+                           success:(void(^)(id jsonData))success
+                           failure:(void(^)(NSError *error))failure
+                           timeout:(void(^)(void))timeout {
+    NSString *url = [URLManager sharedInstance].updateAPNTokenURL;
+    
+    NSDictionary *params =
+    @{@"userType": userType,
+      @"userId": userId,
+      @"apnToken": apnToken};
     
     [[HttpPackage sharedInstance]
      httpRequestWithMethod:POST

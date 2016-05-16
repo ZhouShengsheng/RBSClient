@@ -55,8 +55,8 @@ static RoomScreen *_singletonObject = nil;
 }
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"楼栋: %@\n容量: %u\n多媒体: %@\n空闲时间段: %@\n",
-            self.buildingList, self.capacity, self.hasMultiMediaList, self.timeIntervalList];
+    return [NSString stringWithFormat:@"楼栋: %@\n容量: %lu\n多媒体: %@\n空闲时间段: %@\n",
+            self.buildingList, (unsigned long)self.capacity, self.hasMultiMediaList, self.timeIntervalList];
 }
 
 @end

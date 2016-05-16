@@ -65,13 +65,16 @@
     NSArray *jsonArray = (NSArray *)jsonData;
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm"];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
     
     NSMutableOrderedSet *timeIntervalList = [NSMutableOrderedSet orderedSet];
     for (NSArray *timeIntervalStringArray in jsonArray) {
         NSString *timeIntervalString = timeIntervalStringArray.firstObject;
+        //DDLogError(@"fromStr: %@", [timeIntervalString substringWithRange: NSMakeRange(0, 16)]);
         NSDate *from = [dateFormatter
                         dateFromString:[timeIntervalString substringWithRange: NSMakeRange(0, 16)]];
+        //DDLogError(@"fromDate: %@", from);
+        //DDLogError(@"toStr: %@", [timeIntervalString substringWithRange: NSMakeRange(20, 16)]);
         NSDate *to = [dateFormatter
                       dateFromString:[timeIntervalString substringWithRange: NSMakeRange(20, 16)]];
         TimeInterval *interval = [[TimeInterval alloc]

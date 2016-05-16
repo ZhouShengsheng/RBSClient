@@ -25,6 +25,15 @@
               timeout:(void(^)(void))timeout;
 
 /**
+ *  Logout.
+ */
+- (void)logoutWithType:(NSString *)type
+                userId:(NSString *)userId
+               success:(void(^)(id jsonData))success
+               failure:(void(^)(NSError *error))failure
+               timeout:(void(^)(void))timeout;
+
+/**
  *  Update user info.
  */
 - (void)updateUserInfoWithType:(NSString *)type
@@ -291,6 +300,16 @@
                               failure:(void(^)(NSError *error))failure
                               timeout:(void(^)(void))timeout;
 
+#pragma mark - Push Notification API
 
+/**
+ *  Update APN token.
+ */
+- (void)updateAPNTokenWithUserType:(NSString *)userType
+                            userId:(NSString *)userId
+                          apnToken:(NSString *)apnToken
+                           success:(void(^)(id jsonData))success
+                           failure:(void(^)(NSError *error))failure
+                           timeout:(void(^)(void))timeout;
 
 @end

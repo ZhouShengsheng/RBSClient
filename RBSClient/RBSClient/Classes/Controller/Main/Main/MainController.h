@@ -1,6 +1,6 @@
 //
 //  MainController.h
-//  RBSAdmin
+//  RBSClient
 //
 //  Created by Shengsheng on 7/5/16.
 //  Copyright © 2016 NTU. All rights reserved.
@@ -14,6 +14,7 @@
 
 @property (strong, nonatomic) RDVTabBarController *tabBarController;
 @property (strong, nonatomic) LoginViewController *loginController;
+@property (strong, nonatomic) NSDictionary *notificationData;
 
 + (instancetype)sharedInstance;
 

@@ -12,6 +12,7 @@
 #import "StudentBooking.h"
 #import "StudentBookingCell.h"
 #import "ReviewStudentBookingViewController.h"
+#import "NotificationBadgeController.h"
 
 @interface StudentBookingViewController ()
 
@@ -66,6 +67,10 @@
          [self.tableView reloadData];
          [self.header endRefreshing];
          self.tableView.mj_footer = self.footer;
+         
+         // Clear notification badage.
+         [[NotificationBadgeController sharedInstance]
+          clearValueWithBadgeName:[self notificationName]];
      }
      failure:^(NSError *error) {
          [self.header endRefreshing];
@@ -154,6 +159,13 @@
     } else {
         [self loadData];
     }
+}
+
+/**
+ *  Notification name.
+ */
+- (NSString *)notificationName {
+    return PushNotificationMeStudentBookingNotification;
 }
 
 @end

@@ -9,6 +9,8 @@
 #import "BookingListViewController.h"
 #import "DetailedBookingListViewController.h"
 #import "UserManager.h"
+#import "NotificationBadgeController.h"
+#import "PushNotificationManager.h"
 
 @interface BookingListViewController () <UIScrollViewDelegate, UIGestureRecognizerDelegate>
 
@@ -18,7 +20,7 @@
 
 @property(strong, nonatomic) HMSegmentedControl *segmentController;
 @property(strong, nonatomic) UIScrollView *contentScrollView;
-@property(strong, nonatomic) NSArray *controllers;
+@property(strong, nonatomic) NSArray<id<RecyclableViewController>> *controllers;
 
 @end
 
@@ -62,7 +64,7 @@
             // display the first view
             [self displaySelectedView:0];
             
-            //[self addBadgeNotificationObserver];
+            [self addBadgeNotificationObserver];
         }
     }
     else {
@@ -150,13 +152,11 @@
     
     [self updateScrollToTop:pageIndex];
     self.currentIndex = pageIndex;
-    UIViewController *currentController = [self.controllers objectAtIndex:pageIndex];
-    self.title = currentController.title;
+    id<RecyclableViewController> currentController = [self.controllers objectAtIndex:pageIndex];
+    self.title = ((UIViewController *)currentController).title;
     
     // init view
-    if ([currentController conformsToProtocol:@protocol(RecyclableViewController)]) {
-        [(id<RecyclableViewController>)currentController initializeView];
-    }
+    [currentController initializeView];
     
     if (self.previousIndex != self.currentIndex) {
         self.previousIndex = self.currentIndex;
@@ -169,15 +169,15 @@
 - (void)updateScrollToTop:(long)pageIndex {
     // set scrollViews scrollToTop
     for (int i = 0; i < self.controllers.count; i++) {
-        UIViewController *currentController = [self.controllers objectAtIndex:i];
+        id<RecyclableViewController> currentController = [self.controllers objectAtIndex:i];
         if (i == pageIndex) {
             if ([currentController conformsToProtocol:@protocol(RecyclableViewController)]) {
-                [(id<RecyclableViewController>)currentController currentScrollView].scrollsToTop = YES;
+                [currentController currentScrollView].scrollsToTop = YES;
             }
         }
         else {
             if ([currentController conformsToProtocol:@protocol(RecyclableViewController)]) {
-                [(id<RecyclableViewController>)currentController currentScrollView].scrollsToTop = NO;
+                [currentController currentScrollView].scrollsToTop = NO;
             }
         }
     }
@@ -187,13 +187,14 @@
 
 - (void)segmentedControllerValueChanged:(HMSegmentedControl *)segmentedControl {
     // if has badge value, refresh user message
-//    if (self.badgeController.badgeValue &&
-//        segmentedControl.selectedSegmentIndex == 1 &&
-//        self.followViewController) {
-//        [self.followViewController refresh];
-//    } else if (currentIndex == segmentedControl.selectedSegmentIndex) {
-//        return ;
-//    }
+    SSBadgeController *badageController =
+    segmentedControl.badgeControllers[segmentedControl.selectedSegmentIndex];
+    if (badageController.badgeValue &&
+        segmentedControl.selectedSegmentIndex == self.currentIndex) {
+        [self.controllers[self.currentIndex] reloadData];
+    } else if (segmentedControl.selectedSegmentIndex == self.currentIndex) {
+        return ;
+    }
     CGRect rect = CGRectMake(self.view.frame.size.width * segmentedControl.selectedSegmentIndex,
                              0.0,
                              self.view.frame.size.width,
@@ -216,6 +217,122 @@
     else if (scrollView.contentOffset.x <= currentPageX - screenWidth) {
         self.segmentController.selectedSegmentIndex--;
         [self displaySelectedView:self.segmentController.selectedSegmentIndex];
+    }
+}
+
+#pragma mark - Badge notification methods
+
+/**
+ *  Badge notification name for processing list.
+ */
+- (NSString *)notificationNameForProcessingBadge {
+    return PushNotificationBookingProcessingNotification;
+}
+
+/**
+ *  Badge notification name for succeesed list.
+ */
+- (NSString *)notificationNameForSucceesedBadge {
+    return PushNotificationBookingSucceedNotification;
+}
+
+/**
+ *  Badge notification name for failed list.
+ */
+- (NSString *)notificationNameForFailedBadge {
+    return PushNotificationBookingFailedNotification;
+}
+
+/**
+ *  Add observer for badge notification.
+ */
+- (void)addBadgeNotificationObserver {
+    // Processing badage.
+    // add notification observer
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self
+     selector:@selector(observeBadgeNotification:)
+     name:[self notificationNameForProcessingBadge]
+     object:[NotificationBadgeController sharedInstance]];
+    
+    // check badge value
+    NSUInteger processingBadgeValue =
+    [[NotificationBadgeController sharedInstance]
+     valueForBadgeWithBadgeName:[self notificationNameForProcessingBadge]];
+    if (processingBadgeValue > 0) {
+        [self setBadgeWithName:[self notificationNameForProcessingBadge]
+                    badgeValue:processingBadgeValue];
+    }
+    
+    if ([UserManager sharedInstance].userType != USER_TYPE_ADMIN) {
+        // Succeed badage.
+        // add notification observer
+        [[NSNotificationCenter defaultCenter]
+         addObserver:self
+         selector:@selector(observeBadgeNotification:)
+         name:[self notificationNameForSucceesedBadge]
+         object:[NotificationBadgeController sharedInstance]];
+        
+        // check badge value
+        NSUInteger succeedBadgeValue =
+        [[NotificationBadgeController sharedInstance]
+         valueForBadgeWithBadgeName:[self notificationNameForSucceesedBadge]];
+        if (succeedBadgeValue > 0) {
+            [self setBadgeWithName:[self notificationNameForSucceesedBadge]
+                        badgeValue:succeedBadgeValue];
+        }
+        
+        // Failed badage.
+        // add notification observer
+        [[NSNotificationCenter defaultCenter]
+         addObserver:self
+         selector:@selector(observeBadgeNotification:)
+         name:[self notificationNameForFailedBadge]
+         object:[NotificationBadgeController sharedInstance]];
+        
+        // check badge value
+        NSUInteger failedBadgeValue =
+        [[NotificationBadgeController sharedInstance]
+         valueForBadgeWithBadgeName:[self notificationNameForFailedBadge]];
+        if (failedBadgeValue > 0) {
+            [self setBadgeWithName:[self notificationNameForFailedBadge]
+                        badgeValue:failedBadgeValue];
+        }
+    }
+}
+
+/**
+ *  Observe badge notification.
+ */
+- (void)observeBadgeNotification:(NSNotification *)notification {
+    NotificationBadgeObject *badge = [notification userInfo][BadgeUserInfoKey];
+    DDLogWarn(@"received badge object: %@", badge);
+    [self setBadgeWithName:badge.name badgeValue:badge.value];
+}
+
+/**
+ *  Add badge.
+ */
+- (void)setBadgeWithName:(NSString *)badgeName badgeValue:(NSUInteger)badgeValue {
+    SSBadgeController *badageController = nil;
+    if ([badgeName isEqualToString:[self notificationNameForProcessingBadge]]) {
+        badageController = self.segmentController.badgeControllers[0];
+    } else if ([badgeName isEqualToString:[self notificationNameForSucceesedBadge]]) {
+        badageController = self.segmentController.badgeControllers[1];
+    } else if ([badgeName isEqualToString:[self notificationNameForFailedBadge]]) {
+        badageController = self.segmentController.badgeControllers[2];
+    }
+    
+    if (badageController) {
+        if (badgeValue > 0) {
+            badageController.badgeValue = [@(badgeValue) stringValue];
+            badageController.animated = YES;
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                badageController.animated = NO;
+            });
+        } else {
+            badageController.badgeValue = nil;
+        }
     }
 }
 

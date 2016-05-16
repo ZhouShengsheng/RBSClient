@@ -12,6 +12,7 @@
 #import "UIHelper.h"
 #import "MainController.h"
 #import "UserManager.h"
+#import "PushNotificationManager.h"
 
 @interface LoginViewController () <UITextFieldDelegate, BEMCheckBoxDelegate>
 
@@ -147,24 +148,10 @@
 }
 
 - (void)logout {
-    switch ([UserManager sharedInstance].userType) {
-        case USER_TYPE_UNKNOWN: {
-            [self.adminCheckBox setOn:YES animated:NO];
-            break;
-        }
-        case USER_TYPE_ADMIN: {
-            [self.adminCheckBox setOn:YES animated:NO];
-            break;
-        }
-        case USER_TYPE_FACULTY: {
-            [self.facultyCheckBox setOn:YES animated:NO];
-            break;
-        }
-        case USER_TYPE_STUDENT: {
-            [self.studentCheckBox setOn:YES animated:NO];
-            break;
-        }
-    }
+    [self.adminCheckBox setOn:YES animated:NO];
+    [self checkCheckBox:self.adminCheckBox];
+    self.idTextField.text = nil;
+    self.passwordTextField.text = nil;
     [self showLoginGroup];
     [self setUpLogin];
 }
@@ -262,6 +249,10 @@
         }
         
         [userManager saveUserData];
+        
+        // Update apn token.
+        [[PushNotificationManager sharedInstance]
+         uploadAPNToken];
     }
     
     MainController *mainController = [MainController sharedInstance];
@@ -325,6 +316,21 @@
 /**
  *  Keep single choice on login type.
  */
+- (void)checkCheckBox:(BEMCheckBox *)checkBox {
+    if (checkBox.on) {
+        if (checkBox == self.facultyCheckBox) {
+            [self.adminCheckBox setOn:NO animated:YES];
+            [self.studentCheckBox setOn:NO animated:YES];
+        } else if (checkBox == self.adminCheckBox) {
+            [self.studentCheckBox setOn:NO animated:YES];
+            [self.facultyCheckBox setOn:NO animated:YES];
+        } else {
+            [self.facultyCheckBox setOn:NO animated:YES];
+            [self.adminCheckBox setOn:NO animated:YES];
+        }
+    }
+}
+
 - (void)didTapCheckBox:(BEMCheckBox *)checkBox {
     if (checkBox.on) {
         if (checkBox == self.facultyCheckBox) {
@@ -337,6 +343,7 @@
             [self.facultyCheckBox setOn:NO animated:YES];
             [self.adminCheckBox setOn:NO animated:YES];
         }
-    }}
+    }
+}
 
 @end

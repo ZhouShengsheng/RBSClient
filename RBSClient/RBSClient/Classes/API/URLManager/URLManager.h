@@ -26,6 +26,11 @@ static const NSString *server = @"http://www.zss-rbs.site:8080/RBSServer";
 @property(copy, readonly, nonatomic) NSString *loginURL;
 
 /**
+ *  Logout url.
+ */
+@property(copy, readonly, nonatomic) NSString *logoutURL;
+
+/**
  *  Update user info url.
  */
 @property(copy, readonly, nonatomic) NSString *updateUserInfoURL;
@@ -159,6 +164,12 @@ static const NSString *server = @"http://www.zss-rbs.site:8080/RBSServer";
  *  Search supervisor url.
  */
 @property(copy, readonly, nonatomic) NSString *searchSupervisorURL;
+
+#pragma mark - Push notification
+/**
+ *  Update apn token url.
+ */
+@property(copy, readonly, nonatomic) NSString *updateAPNTokenURL;
 
 + (instancetype)sharedInstance;
 

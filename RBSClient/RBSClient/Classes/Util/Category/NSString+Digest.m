@@ -18,7 +18,7 @@ static const NSString *randomLetters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLM
     NSMutableString *randomString = [NSMutableString stringWithCapacity: len];
     
     for (int i=0; i<len; i++) {
-        [randomString appendFormat: @"%C", [randomLetters characterAtIndex: arc4random_uniform([randomLetters length])]];
+        [randomString appendFormat: @"%C", [randomLetters characterAtIndex: arc4random_uniform((unsigned int)[randomLetters length])]];
     }
     
     return randomString;

@@ -12,6 +12,7 @@
 #import "RoomBooking.h"
 #import "BookingListCell.h"
 #import "ReviewStudentBookingViewController.h"
+#import "NotificationBadgeController.h"
 
 @interface DetailedBookingListViewController ()
 
@@ -60,6 +61,10 @@
         [self.tableView reloadData];
         [self.header endRefreshing];
         self.tableView.mj_footer = self.footer;
+        
+        // Clear notification badage.
+        [[NotificationBadgeController sharedInstance]
+         clearValueWithBadgeName:[self notificationName]];
     };
     
     // Error block.
@@ -175,6 +180,10 @@
     return self.tableView;
 }
 
+- (void)reloadData {
+    [self.header beginRefreshing];
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -233,6 +242,27 @@
         [self.tableView.mj_footer endRefreshingWithNoMoreData];
     } else {
         [self loadData];
+    }
+}
+
+/**
+ *  Notification name.
+ */
+- (NSString *)notificationName {
+    switch (self.bookingType) {
+        case BOOKING_TYPE_PROCESSING: {
+            return PushNotificationBookingProcessingNotification;
+        }
+        case BOOKING_TYPE_APPROVED: {
+            return PushNotificationBookingSucceedNotification;
+        }
+        case BOOKING_TYPE_DECLINED: {
+            return PushNotificationBookingFailedNotification;
+        }
+        
+        default: {
+            return nil;
+        }
     }
 }
 

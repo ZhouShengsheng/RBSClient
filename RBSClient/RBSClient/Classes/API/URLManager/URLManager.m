@@ -28,6 +28,7 @@
 - (void)initUrls {
     // User.
     _loginURL = [self formUrlWithRoute:@"/user/login"];
+    _logoutURL = [self formUrlWithRoute:@"/user/logout"];
     _updateUserInfoURL = [self formUrlWithRoute:@"/user/update"];
     _changePasswordURL = [self formUrlWithRoute:@"/user/change_password"];
     
@@ -60,6 +61,9 @@
     _addSupervisorURL = [self formUrlWithRoute:@"/supervisor/add"];
     _removeSupervisorURL = [self formUrlWithRoute:@"/supervisor/delete"];
     _searchSupervisorURL = [self formUrlWithRoute:@"/supervisor/search"];
+    
+    // Push notification.
+    _updateAPNTokenURL = [self formUrlWithRoute:@"/push_notification/update_apn_token"];
 }
 
 @end

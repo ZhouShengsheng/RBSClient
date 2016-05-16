@@ -32,7 +32,7 @@
 
 - (void)initializeView {
     // Title.
-    self.title = @"申请详情";
+    self.title = @"电子凭证";
     
     // Table view.
     [self.tableView registerNib:[UINib nibWithNibName:@"SimpleDescriptionCell" bundle:nil]

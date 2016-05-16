@@ -15,8 +15,14 @@
 #import "SupervisorListViewController.h"
 #import "StudentBookingViewController.h"
 #import "DetailedBookingListViewController.h"
+#import "NotificationBadgeController.h"
+#import "PushNotificationManager.h"
+#import "APIManager.h"
+#import "AppDelegate.h"
 
 @interface MeViewController ()
+
+@property(strong, nonatomic) SSBadgeController *studentBookingBadageController;
 
 @end
 
@@ -99,6 +105,13 @@
                 }
                 case USER_TYPE_FACULTY: {
                     [cell displayDescription:@"学生申请审核"];
+                    if (!self.studentBookingBadageController) {
+                        self.studentBookingBadageController = [[SSBadgeController alloc] init];
+                        self.studentBookingBadageController.layer = cell.layer;
+                        UIOffset offset = {-50, 20};
+                        self.studentBookingBadageController.badgePositionAdjustment = offset;
+                        [self addBadgeNotificationObserver];
+                    }
                     break;
                 }
                 case USER_TYPE_STUDENT: {
@@ -182,8 +195,99 @@
 - (void)logout {
     PopupView *logoutPopup = [UIHelper popupViewWithMessage:@"是否确认注销登录？"];
     logoutPopup.confirmButtonPressedBlock = ^(void) {
-        [[UserManager sharedInstance] logout];
+        MBProgressHUD *hud =
+        [UIHelper showProcessingHUDWithMessage:@"正在注销登录"
+                                   addedToView:[AppDelegate delegate].window.rootViewController.view];
+        
+        UserManager *userManager = [UserManager sharedInstance];
+        [[APIManager sharedInstance]
+         logoutWithType:userManager.userTypeStr
+         userId:userManager.userId
+         success:^(id jsonData) {
+             if ([jsonData isKindOfClass:NSDictionary.class]) {
+                 NSString *message = jsonData[@"message"];
+                 if ([message isEqualToString:@"Logged out."]) {
+                     [[UserManager sharedInstance] logout];
+                 } else {
+                     [UIHelper showServerErrorAlertViewWithViewController:self.navigationController];
+                 }
+             }
+             [[UserManager sharedInstance] logout];
+             [hud hide:YES];
+         }
+         failure:^(NSError *error) {
+             [UIHelper showServerErrorAlertViewWithViewController:self.navigationController];
+             [hud hide:YES];
+         }
+         timeout:^{
+             [UIHelper showTimeoutAlertViewWithViewController:self.navigationController];
+             [hud hide:YES];
+         }];
+        
     };
+}
+
+#pragma mark - Badge notification methods
+
+/**
+ *  Badge notification name for student booking cell.
+ */
+- (NSString *)notificationNameForStudentBooking {
+    return PushNotificationMeStudentBookingNotification;
+}
+
+/**
+ *  Add observer for badge notification.
+ */
+- (void)addBadgeNotificationObserver {
+    if ([UserManager sharedInstance].userType == USER_TYPE_FACULTY) {
+        // add notification observer
+        [[NSNotificationCenter defaultCenter]
+         addObserver:self
+         selector:@selector(observeBadgeNotification:)
+         name:[self notificationNameForStudentBooking]
+         object:[NotificationBadgeController sharedInstance]];
+        
+        // check badge value
+        NSUInteger processingBadgeValue =
+        [[NotificationBadgeController sharedInstance]
+         valueForBadgeWithBadgeName:[self notificationNameForStudentBooking]];
+        if (processingBadgeValue > 0) {
+            [self setBadgeWithName:[self notificationNameForStudentBooking]
+                        badgeValue:processingBadgeValue];
+        }
+    }
+}
+
+/**
+ *  Observe badge notification.
+ */
+- (void)observeBadgeNotification:(NSNotification *)notification {
+    NotificationBadgeObject *badge = [notification userInfo][BadgeUserInfoKey];
+    DDLogWarn(@"received badge object: %@", badge);
+    [self setBadgeWithName:badge.name badgeValue:badge.value];
+}
+
+/**
+ *  Add badge.
+ */
+- (void)setBadgeWithName:(NSString *)badgeName badgeValue:(NSUInteger)badgeValue {
+    SSBadgeController *badageController = nil;
+    if ([badgeName isEqualToString:[self notificationNameForStudentBooking]]) {
+        badageController = self.studentBookingBadageController;
+    }
+    
+    if (badageController) {
+        if (badgeValue > 0) {
+            badageController.badgeValue = [@(badgeValue) stringValue];
+            badageController.animated = YES;
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                badageController.animated = NO;
+            });
+        } else {
+            badageController.badgeValue = nil;
+        }
+    }
 }
 
 @end

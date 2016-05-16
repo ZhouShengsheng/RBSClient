@@ -18,8 +18,8 @@
 
 - (void)displayWithRoom:(Room *)room {
     self.buildingNumberLabel.text = [room.building stringByAppendingString:room.number];
-    self.infoLabel.text = [NSString stringWithFormat:@"%u人 %@多媒体设备",
-                           room.capacity, room.hasMultiMedia ? @"有": @"无"];
+    self.infoLabel.text = [NSString stringWithFormat:@"%lu人 %@多媒体设备",
+                           (unsigned long)room.capacity, room.hasMultiMedia ? @"有": @"无"];
 }
 
 @end
