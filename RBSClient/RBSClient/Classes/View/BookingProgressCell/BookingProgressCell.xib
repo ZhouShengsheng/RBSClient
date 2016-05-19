@@ -15,15 +15,15 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_passed" translatesAutoresizingMaskIntoConstraints="NO" id="a9O-xX-mJY">
-                        <rect key="frame" x="20" y="15" width="18" height="14"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_passed" translatesAutoresizingMaskIntoConstraints="NO" id="a9O-xX-mJY">
+                        <rect key="frame" x="20" y="14" width="16" height="16"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="18" id="BCO-Gq-ggw"/>
-                            <constraint firstAttribute="height" constant="14" id="n79-z6-VPT"/>
+                            <constraint firstAttribute="width" constant="16" id="BCO-Gq-ggw"/>
+                            <constraint firstAttribute="height" constant="16" id="n79-z6-VPT"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="上级审核通过" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r7e-CB-dqX">
-                        <rect key="frame" x="46" y="13" width="90" height="18"/>
+                        <rect key="frame" x="44" y="13" width="90" height="18"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="18" id="8H6-u2-bZW"/>
                         </constraints>
@@ -46,6 +46,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="icon_passed" width="18" height="14"/>
+        <image name="icon_passed" width="16" height="16"/>
     </resources>
 </document>

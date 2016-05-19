@@ -11,7 +11,7 @@
 /**
  *  Server address.
  */
-static const NSString *server = @"http://www.zss-rbs.site:8080/RBSServer";
+static const NSString *server = @"http://www.zss-rbs.site/RBSServer";
 
 /**
  *  API urls stored here.

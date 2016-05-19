@@ -260,6 +260,11 @@
             return PushNotificationBookingFailedNotification;
         }
         
+        // For admin.
+        case BOOKING_TYPE_ADMIN_PROCESSING: {
+            return PushNotificationBookingProcessingNotification;
+        }
+        
         default: {
             return nil;
         }

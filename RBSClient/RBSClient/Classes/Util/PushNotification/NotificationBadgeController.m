@@ -73,11 +73,11 @@ static NSString *const UserDefaultsBadgeKey = @"BadgeTree";
     
     [self loadTreeFromUserDefaults];
     // traverse
-    [self.rootTree enumerateDescendantsWithOptions:JTTreeTraversalDepthFirstPreOrder
-                               usingBlock:^(JTTree *descendant, BOOL *stop) {
-                                   NotificationBadgeObject *badge = descendant.object;
-                                   DDLogError(@"%@", badge);
-                               }];
+//    [self.rootTree enumerateDescendantsWithOptions:JTTreeTraversalDepthFirstPreOrder
+//                               usingBlock:^(JTTree *descendant, BOOL *stop) {
+//                                   NotificationBadgeObject *badge = descendant.object;
+//                                   DDLogError(@"%@", badge);
+//                               }];
 }
 
 /**

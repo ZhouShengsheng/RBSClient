@@ -21,6 +21,7 @@
     if ([progress isEqualToString:@"申请已过期"] ||
         [progress containsString:@"拒绝"]) {
         self.progressLabel.textColor = [UIColor warningColor];
+        self.passOrFailImageView.image = [UIImage imageNamed:@"icon_warning"];
     } else if ([progress isEqualToString:@"审核不通过"]) {
         self.passOrFailImageView.image = [UIImage imageNamed:@"icon_failed"];
         self.progressLabel.textColor = [UIColor alertColor];

@@ -1217,7 +1217,7 @@
 				TargetAttributes = {
 					F9F121281C6DD65400F07165 = {
 						CreatedOnToolsVersion = 7.2.1;
-						DevelopmentTeam = 8964PV2P6Z;
+						DevelopmentTeam = B6ZE57BQZC;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -1552,11 +1552,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = RBSClient/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = cn.edu.ncu.zss.RBSClient;
+				PRODUCT_BUNDLE_IDENTIFIER = ncu.zss.RBSClient;
 				PRODUCT_NAME = "教室通";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -1566,11 +1568,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = RBSClient/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = cn.edu.ncu.zss.RBSClient;
+				PRODUCT_BUNDLE_IDENTIFIER = ncu.zss.RBSClient;
 				PRODUCT_NAME = "教室通";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
