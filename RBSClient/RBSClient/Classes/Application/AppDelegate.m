@@ -100,13 +100,13 @@
         [[PushNotificationManager sharedInstance]
          notifyPushNotification:userInfo];
         
-        UILocalNotification *localNotification = [[UILocalNotification alloc] init];
-        localNotification.userInfo = userInfo;
-        localNotification.soundName = UILocalNotificationDefaultSoundName;
-        NSString *message = userInfo[@"aps"][@"alert"];
-        localNotification.alertBody = message;
-        localNotification.fireDate = [[NSDate date] dateByAddingTimeInterval:1];
-        [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+//        UILocalNotification *localNotification = [[UILocalNotification alloc] init];
+//        localNotification.userInfo = userInfo;
+//        localNotification.soundName = UILocalNotificationDefaultSoundName;
+//        NSString *message = userInfo[@"aps"][@"alert"];
+//        localNotification.alertBody = message;
+//        localNotification.fireDate = [[NSDate date] dateByAddingTimeInterval:1];
+//        [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
     }
 }
 

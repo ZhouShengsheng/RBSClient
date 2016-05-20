@@ -88,7 +88,7 @@
 - (NSMutableArray *)progresses {
     NSMutableArray *progs = [NSMutableArray array];
     if ([self.status isEqualToString:@"canceled"]) {
-        [progs addObject:@"用户已取消"];
+        [progs addObject:@"申请人已取消"];
     } else {
         if (!self.expired) {
             if ([self.status isEqualToString:@"created"]) {

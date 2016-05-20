@@ -177,15 +177,6 @@
             vc.parentNavigationController = self.navigationController;
             vc.willAutoLoadData = YES;
             [self.navigationController pushViewController:vc animated:YES];
-            // Send local notification.
-            UILocalNotification* local = [[UILocalNotification alloc] init];
-            if (local)
-            {
-                local.fireDate = [NSDate new];
-                local.alertBody = @"Hey this is my first local notification!!!";
-                local.timeZone = [NSTimeZone defaultTimeZone];
-                [[UIApplication sharedApplication] scheduleLocalNotification:local];
-            }
         }
     }
 }
