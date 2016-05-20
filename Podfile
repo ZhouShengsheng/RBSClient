@@ -15,14 +15,9 @@ def rbs_pods
 	pod 'ActionSheetPicker-3.0'
 end
 
-target 'RBSAdmin' do
-	xcodeproj './RBSAdmin/RBSAdmin.xcodeproj'
-	rbs_pods
-end
-
 target 'RBSClient' do
 	xcodeproj './RBSClient/RBSClient.xcodeproj'
 	rbs_pods
 end
 
-workspace './RoomBookingSystem.xcworkspace'
+workspace './RBSClient.xcworkspace'
