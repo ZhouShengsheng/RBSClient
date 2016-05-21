@@ -73,6 +73,9 @@
     [application registerUserNotificationSettings:
      [UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge) categories:nil]];
     [application registerForRemoteNotifications];
+    
+    // Clear badge number.
+    application.applicationIconBadgeNumber = 0;
 }
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
