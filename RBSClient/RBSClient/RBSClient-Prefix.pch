@@ -1,0 +1,22 @@
+//
+//  RBSClient-Prefix.pch
+//  RBSClient
+//
+//  Created by Shengsheng on 2/8/16.
+//  Copyright © 2016 NTU. All rights reserved.
+//
+
+#ifndef RBSClient_Prefix_pch
+#define RBSClient_Prefix_pch
+
+#import <Availability.h>
+
+#ifdef __OBJC__
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import <SystemConfiguration/SystemConfiguration.h>
+#import <MobileCoreServices/MobileCoreServices.h>
+#endif
+
+
+#endif /* RBSClient_Prefix_pch */

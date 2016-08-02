@@ -13,6 +13,8 @@ def rbs_pods
 	pod 'SWTableViewCell', '~> 0.3.7'
 	pod 'BEMCheckBox'
 	pod 'ActionSheetPicker-3.0'
+    pod 'AFNetworking', :git => 'https://github.com/mcfedr/AFNetworking.git', :branch => 'reachability'
+    pod 'RestKit', :git => 'https://github.com/mcfedr/RestKit.git', :branch => 'pods1'
 end
 
 target 'RBSClient' do

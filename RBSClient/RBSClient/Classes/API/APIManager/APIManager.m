@@ -10,6 +10,8 @@
 #import "URLManager.h"
 #import "HttpPackage.h"
 #import "Utils.h"
+#import "RestKit.h"
+#import "Room.h"
 
 @implementation APIManager
 
